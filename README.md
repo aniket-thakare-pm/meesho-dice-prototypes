@@ -1,5 +1,8 @@
 # Meesho DICE Challenge 3.0 - UI Prototypes
 
+?? [**Click Here for Live Interactive Demo**](https://meeshodice.vercel.app/)
+
+
 This repository contains the front-end interactive UI prototypes developed for the Meesho DICE Challenge 3.0. 
 
 ## Overview
@@ -17,4 +20,5 @@ These prototypes demonstrate the proposed product levers to improve the Meesho c
 
 ## Deployment
 These prototypes are designed to be deployed instantly on Vercel as a static site. The entry point is index.html.
+
 
