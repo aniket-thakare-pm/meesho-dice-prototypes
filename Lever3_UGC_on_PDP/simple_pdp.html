@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesho - Basic Product Display</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 
+                        'meesho-purple': '#8b1874', 
+                        'meesho-pink': '#df1e7b',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen m-0 p-4 font-sans">
+
+    <!-- Mobile Wrapper -->
+    <div class="w-full max-w-[380px] h-[750px] bg-white shadow-2xl relative overflow-hidden rounded-[2rem] border-[12px] border-gray-900 flex flex-col mx-auto">
+        
+        <!-- Header -->
+        <div class="bg-white px-4 py-3 flex items-center justify-between shrink-0 z-10">
+            <!-- Links back to the Reel video -->
+            <a href="reel_view.html"><i class="fa-solid fa-chevron-left text-gray-700 text-xl cursor-pointer"></i></a>
+            <div class="flex gap-5 text-gray-700 text-xl">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-regular fa-heart"></i>
+                <div class="relative">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <div class="absolute -top-1.5 -right-2 bg-meesho-purple text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">4</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto no-scrollbar pb-20">
+            
+            <!-- Hero Image (Static, No Carousel) -->
+            <div class="w-full aspect-square bg-white relative">
+                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Product Details -->
+            <div class="p-4 bg-white mt-1">
+                <div class="flex justify-between items-start gap-4 mb-2">
+                    <h1 class="text-gray-700 text-[15px] font-medium leading-tight flex-1">
+                        Daily Hydrating Face Cream - 50g (All Skin Types) - Nourishing & Non-Greasy
+                    </h1>
+                    <div class="flex gap-4 shrink-0 text-gray-500">
+                        <div class="flex flex-col items-center cursor-pointer hover:text-meesho-pink"><i class="fa-regular fa-heart text-xl"></i><span class="text-[10px] mt-1">Wishlist</span></div>
+                        <div class="flex flex-col items-center cursor-pointer hover:text-blue-500"><i class="fa-solid fa-share-nodes text-xl"></i><span class="text-[10px] mt-1">Share</span></div>
+                    </div>
+                </div>
+                
+                <div class="flex items-end gap-2 mb-1 mt-3">
+                    <span class="text-3xl font-bold text-gray-900">₹245</span>
+                    <span class="text-sm text-gray-400 line-through mb-1">₹350</span>
+                    <span class="text-sm text-green-600 font-bold mb-1">30% off</span>
+                </div>
+                
+                <div class="inline-block bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-1 rounded mt-2">
+                    Free Delivery
+                </div>
+            </div>
+            
+            <div class="h-2 w-full bg-gray-100 border-t border-b border-gray-200"></div>
+            
+            <!-- Product Information -->
+            <div class="p-4 bg-white min-h-[200px]">
+                <h2 class="text-gray-800 font-bold text-md mb-3">Product Details</h2>
+                <div class="text-xs text-gray-600 leading-loose flex flex-col gap-1">
+                    <p><span class="font-semibold text-gray-800">Name:</span> Daily Hydrating Face Cream - 50g</p>
+                    <p><span class="font-semibold text-gray-800">Brand:</span> DermaGlow</p>
+                    <p><span class="font-semibold text-gray-800">Skin Type:</span> All Skin Types</p>
+                    <p><span class="font-semibold text-gray-800">Net Quantity:</span> 1</p>
+                    <p><span class="font-semibold text-gray-800">Shelf Life:</span> 24 Months</p>
+                    <p class="mt-2 text-gray-500 leading-relaxed border-t border-gray-100 pt-2">
+                        Experience deep hydration with our advanced non-greasy formula. Perfect for daily use, leaving your skin soft, supple, and glowing all day long.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- BOTTOM CTA BAR -->
+        <!-- ========================================== -->
+        <div class="absolute bottom-0 w-full bg-white border-t flex p-2 gap-2 z-20 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] h-16">
+            <button class="w-1/2 flex justify-center items-center gap-2 font-bold text-meesho-purple border border-meesho-purple rounded bg-white hover:bg-purple-50 transition-colors">
+                <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+            </button>
+            <button class="w-1/2 flex justify-center items-center gap-2 font-bold text-white bg-meesho-purple rounded hover:bg-meesho-darkpink transition-colors">
+                <i class="fa-solid fa-angles-right"></i> Buy Now
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+

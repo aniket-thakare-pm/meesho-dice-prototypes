@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesho - Creator Analytics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 
+                        'meesho-purple': '#8b1874', 
+                        'meesho-pink': '#df1e7b',
+                        'meesho-darkpink': '#b91362'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-gray-200 flex justify-center items-center h-screen font-sans">
+
+    <!-- Mobile Wrapper -->
+    <div class="w-full max-w-[400px] h-[800px] bg-gray-100 shadow-2xl relative overflow-hidden rounded-xl border-4 border-gray-800 flex flex-col">
+        
+        <!-- Header -->
+        <div class="bg-white px-4 py-4 flex justify-between items-center border-b border-gray-200 sticky top-0 z-20 shadow-sm">
+            <div class="flex items-center gap-3">
+                <a href="creator_profile.html"><i class="fa-solid fa-arrow-left text-gray-800 text-lg cursor-pointer"></i></a>
+                <h1 class="font-bold text-gray-900 text-lg">Analytics</h1>
+            </div>
+            <!-- Shareable Analytics Feature -->
+            <button class="text-meesho-pink font-bold text-[11px] flex items-center gap-1 bg-pink-50 px-2.5 py-1.5 rounded-full border border-pink-100 hover:bg-pink-100 transition-colors cursor-pointer">
+                <i class="fa-solid fa-share-nodes"></i> Share Card
+            </button>
+        </div>
+
+        <!-- Time Filters -->
+        <div class="flex gap-2 p-3 bg-white overflow-x-auto no-scrollbar border-b border-gray-200 shadow-sm z-10 shrink-0">
+            <button class="px-4 py-1 text-[11px] font-bold border border-gray-300 text-gray-600 rounded-full shrink-0">7 Days</button>
+            <button class="px-4 py-1 text-[11px] font-bold bg-gray-800 text-white rounded-full shrink-0 shadow-md">30 Days</button>
+            <button class="px-4 py-1 text-[11px] font-bold border border-gray-300 text-gray-600 rounded-full shrink-0">90 Days</button>
+            <button class="px-4 py-1 text-[11px] font-bold border border-gray-300 text-gray-600 rounded-full shrink-0 flex items-center gap-1">
+                <i class="fa-regular fa-calendar"></i> Custom
+            </button>
+        </div>
+
+        <!-- Scrollable Dashboard -->
+        <div class="flex-1 overflow-y-auto no-scrollbar pb-10">
+            
+            <!-- Gamification / Weekly Target -->
+            <div class="m-3 p-4 bg-gradient-to-r from-[#fdf2f8] to-[#f3e8ff] border border-purple-100 rounded-xl shadow-sm relative overflow-hidden">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="font-bold text-meesho-purple text-xs flex items-center gap-1.5 mb-1">
+                            <i class="fa-solid fa-trophy text-yellow-500"></i> Weekly Target
+                        </h3>
+                        <p class="text-[11px] text-gray-700 leading-snug w-4/5">Get 50 orders this week to unlock a flat <b>₹500 bonus!</b></p>
+                    </div>
+                </div>
+                
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-3 shadow-inner">
+                    <div class="bg-meesho-purple h-2.5 rounded-full relative" style="width: 96%">
+                        <div class="absolute right-0 top-0 bottom-0 w-2 bg-white/30 rounded-full animate-pulse"></div>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center mt-1.5">
+                    <p class="text-[9px] text-meesho-purple font-bold">Almost there!</p>
+                    <p class="text-[10px] text-gray-600 font-bold">48 / 50 Orders</p>
+                </div>
+            </div>
+
+            <!-- Earnings & At-Risk Module -->
+            <div class="m-3 bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div class="p-4 border-b border-gray-100 bg-gray-50/50">
+                    <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider mb-0.5">Total Commission</p>
+                    <p class="text-2xl font-black text-meesho-pink">₹5,000</p>
+                </div>
+                <div class="p-4">
+                    <p class="text-xs font-bold text-gray-800 mb-2">Pending Breakdown</p>
+                    
+                    <!-- Progress Bar for Risk -->
+                    <div class="flex h-2.5 rounded-full overflow-hidden mb-3 shadow-inner bg-gray-100">
+                        <div class="bg-green-500 w-[76%]"></div>
+                        <div class="bg-red-400 w-[24%]"></div>
+                    </div>
+                    
+                    <div class="flex justify-between text-[11px] font-medium">
+                        <div class="flex items-center gap-1.5">
+                            <div class="w-2.5 h-2.5 rounded-full bg-green-500 shadow-sm"></div>
+                            <span class="text-gray-700"><b>₹3,800</b> likely to clear</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 cursor-help group relative">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-400 shadow-sm"></div>
+                            <span class="text-gray-700"><b>₹1,200</b> at risk <i class="fa-solid fa-circle-info text-gray-400 text-[9px]"></i></span>
+                            <!-- Tooltip -->
+                            <div class="absolute bottom-full right-0 mb-1 hidden group-hover:block w-32 bg-gray-800 text-white text-[8px] p-1.5 rounded shadow-lg text-center">
+                                Orders that have a high probability of being cancelled or returned (RTO).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Funnel (Growth focused cards) -->
+            <div class="px-3 mb-4">
+                <h2 class="font-bold text-gray-800 text-sm mb-2 px-1">Performance Funnel</h2>
+                <div class="grid grid-cols-2 gap-2">
+                    
+                    <!-- Impressions -->
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-100 shadow-sm relative overflow-hidden">
+                        <i class="fa-regular fa-eye absolute top-3 right-3 text-gray-200 text-2xl"></i>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wide">Impressions</p>
+                        <p class="text-xl font-black text-gray-900 mt-1">14.2k</p>
+                        <p class="text-[10px] text-green-600 font-bold mt-1.5 flex items-center gap-1 bg-green-50 w-max px-1.5 py-0.5 rounded">
+                            <i class="fa-solid fa-arrow-trend-up"></i> +12% from last month
+                        </p>
+                    </div>
+
+                    <!-- Clicks -->
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-100 shadow-sm relative overflow-hidden">
+                        <i class="fa-solid fa-hand-pointer absolute top-3 right-3 text-gray-200 text-2xl"></i>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wide">Link Clicks</p>
+                        <p class="text-xl font-black text-gray-900 mt-1">342</p>
+                        <p class="text-[10px] text-green-600 font-bold mt-1.5 flex items-center gap-1 bg-green-50 w-max px-1.5 py-0.5 rounded">
+                            <i class="fa-solid fa-arrow-trend-up"></i> +5% from last month
+                        </p>
+                    </div>
+
+                    <!-- Orders -->
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-100 shadow-sm relative overflow-hidden">
+                        <i class="fa-solid fa-box absolute top-3 right-3 text-gray-200 text-2xl"></i>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wide">Total Orders</p>
+                        <p class="text-xl font-black text-gray-900 mt-1">48</p>
+                        <p class="text-[10px] text-green-600 font-bold mt-1.5 flex items-center gap-1 bg-green-50 w-max px-1.5 py-0.5 rounded">
+                            <i class="fa-solid fa-arrow-trend-up"></i> +18% from last month
+                        </p>
+                    </div>
+
+                    <!-- Sales -->
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-100 shadow-sm relative overflow-hidden">
+                        <i class="fa-solid fa-chart-line absolute top-3 right-3 text-gray-200 text-2xl"></i>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wide">Gross Sales</p>
+                        <p class="text-xl font-black text-gray-900 mt-1">₹32.4k</p>
+                        <p class="text-[10px] text-green-600 font-bold mt-1.5 flex items-center gap-1 bg-green-50 w-max px-1.5 py-0.5 rounded">
+                            <i class="fa-solid fa-arrow-trend-up"></i> +24% from last month
+                        </p>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Actionable Insights: Which Products Are Making Me Money? -->
+            <div class="m-3 p-4 bg-white rounded-xl border border-gray-200 shadow-sm">
+                <h2 class="font-bold text-gray-800 text-sm mb-4">Top Earning Products</h2>
+                
+                <!-- List item 1 -->
+                <div class="flex items-center gap-3 border-b border-gray-100 pb-3 mb-3 cursor-pointer group">
+                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="w-12 h-12 rounded-lg border border-gray-200 object-cover">
+                    <div class="flex-1">
+                        <p class="text-xs font-bold text-gray-800 line-clamp-1 group-hover:text-meesho-purple transition-colors">Daily Hydrating Face Cream - 50g</p>
+                        <p class="text-[10px] text-gray-500 mt-0.5">24 Orders • <span class="font-bold text-green-600">₹1,250 earned</span></p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                </div>
+
+                <!-- List item 2 -->
+                <div class="flex items-center gap-3 pb-1 cursor-pointer group">
+                    <img src="assets/media_1790398874019.jpg" class="w-12 h-12 rounded-lg border border-gray-200 object-cover">
+                    <div class="flex-1">
+                        <p class="text-xs font-bold text-gray-800 line-clamp-1 group-hover:text-meesho-purple transition-colors">Matte Finish Sunscreen SPF 50</p>
+                        <p class="text-[10px] text-gray-500 mt-0.5">18 Orders • <span class="font-bold text-green-600">₹840 earned</span></p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                </div>
+            </div>
+
+            <!-- Smart Recommendation (What should I create more of?) -->
+            <div class="m-3 p-4 bg-blue-50/70 border border-blue-200 rounded-xl shadow-sm">
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fa-solid fa-lightbulb text-yellow-500 text-xs"></i>
+                    </div>
+                    <h2 class="font-bold text-blue-900 text-sm">Smart Recommendation</h2>
+                </div>
+                <p class="text-[11px] text-blue-800 leading-relaxed mb-3">
+                    Your <span class="font-bold">Skincare</span> content is converting <b>3x higher</b> than other categories! 
+                    <br><br>
+                    <span class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold uppercase text-[9px] mr-1">Trending Data</span> 
+                    Sunscreen products are currently selling <span class="font-bold underline decoration-blue-300">500+ units/day</span> across Meesho. Post a video review of your favorite sunscreen this week to maximize revenue.
+                </p>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2 rounded-lg w-full shadow-sm transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass"></i> Explore Trending Sunscreens
+                </button>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+

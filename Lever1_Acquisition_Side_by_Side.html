@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesho - Lever 1 Acquisition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            margin: 0; background-color: #111827; display: flex; 
+            align-items: center; justify-content: center; gap: 80px; min-height: 100vh; 
+            font-family: -apple-system, sans-serif; padding: 40px;
+        }
+        
+        .prototype-wrapper {
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .phone-frame {
+            box-sizing: content-box; width: 390px; aspect-ratio: 472 / 1024;
+            border: 14px solid #000; border-radius: 40px;
+            position: relative; background: white;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+            overflow: hidden; 
+        }
+
+        .phone-frame::before {
+            content: ''; position: absolute; top: 15px; left: 50%;
+            transform: translateX(-50%); width: 12px; height: 12px;
+            background: #000; border-radius: 50%; z-index: 100;
+        }
+
+        .view-container {
+            width: 100%; height: 100%; overflow: hidden;
+            position: relative; background: white; display: none;
+        }
+        .bg-img { width: 100%; display: block; height: 100%; object-fit: contain; }
+        
+        /* Universal Hotspots */
+        .hotspot { position: absolute; z-index: 10; cursor: pointer; }
+        .nav-home { bottom: 0; left: 0; width: 25%; height: 70px; }
+        .nav-orders { bottom: 0; right: 0; width: 25%; height: 70px; }
+        .nav-creator-payments { bottom: 0; left: 50%; width: 25%; height: 70px; }
+        
+        /* Overlays for Buyer Funnel */
+        .popup-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6); display: flex; align-items: center;
+            justify-content: center; z-index: 50;
+        }
+        .buyer-overlay-banner {
+            position: absolute; top: 19.5%; left: 2%; width: 96%; height: 21.5%;
+            z-index: 5; border-radius: 0.5rem; overflow: hidden; display: flex;
+        }
+
+        /* Overlays for Creator Funnel */
+        .full-screen-blur {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 50; padding: 20px;
+        }
+        .widget-overlay-home {
+            position: absolute; top: 51.5%; left: 4%; width: 92%; height: 26%;
+            z-index: 5; border-radius: 12px; overflow: hidden;
+        }
+        .widget-overlay-wallet {
+            position: absolute; top: 31%; left: 3%; width: 94%; height: 16%;
+            z-index: 5; border-radius: 12px; overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PROTOTYPE 1: BUYER TO CREATOR ================= -->
+    <div class="prototype-wrapper">
+        <h2 class="text-white text-2xl font-black mb-6 tracking-wide drop-shadow-md">Internal: Buyer-to-Creator Funnel</h2>
+        <div class="phone-frame">
+            <!-- 1. BUYER HOME VIEW -->
+            <div id="view-buyer-home" class="view-container buyer-view" style="display: block;">
+                <img src="home_bg.jpg" class="bg-img" alt="Meesho Home">
+                <div class="hotspot nav-orders" onclick="switchBuyerView('buyer-orders')" title="Go to My Orders"></div>
+                
+                <!-- ACQUISITION POP-UP OVERLAY -->
+                <div id="acquisition-popup" class="popup-overlay">
+                    <div class="bg-white rounded-xl w-10/12 overflow-hidden shadow-2xl transform transition-all relative mt-20">
+                        <button onclick="document.getElementById('acquisition-popup').style.display='none'" class="absolute top-2 right-2 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-200 z-10">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <div class="bg-purple-100 h-32 w-full flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-purple-200 rounded-full opacity-50"></div>
+                            <div class="absolute left-4 bottom-2 w-12 h-12 bg-pink-200 rounded-full opacity-50"></div>
+                            <i class="fa-solid fa-bullhorn text-6xl text-purple-600 transform -rotate-12 z-10 drop-shadow-md"></i>
+                        </div>
+                        <div class="p-5 text-center">
+                            <span class="bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider mb-2 inline-block">Exclusive Invite</span>
+                            <h2 class="text-lg font-bold text-gray-800 mb-2 leading-tight">You buy a lot of beauty!</h2>
+                            <p class="text-sm text-gray-600 mb-5 leading-relaxed">
+                                You're a frequent shopper. Did you know you can earn cash directly to your bank account by sharing your honest review links?
+                            </p>
+                            <button onclick="document.getElementById('acquisition-popup').style.display='none'" class="w-full bg-purple-600 text-white font-bold py-3 rounded-lg shadow-md hover:bg-purple-700 transition">
+                                Explore Creator Program <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                            <button onclick="document.getElementById('acquisition-popup').style.display='none'" class="w-full text-gray-400 text-xs font-medium mt-3 uppercase tracking-wide">
+                                Maybe Later
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. BUYER MY ORDERS VIEW -->
+            <div id="view-buyer-orders" class="view-container buyer-view">
+                <img src="my_orders_bg.jpg" class="bg-img" alt="Meesho My Orders">
+                <div class="hotspot nav-home" onclick="switchBuyerView('buyer-home')" title="Go to Home"></div>
+
+                <!-- TARGETED CREATOR BANNER OVERLAY -->
+                <div class="buyer-overlay-banner bg-gradient-to-r from-pink-100 to-purple-200 shadow-md border border-purple-300">
+                    <div class="w-[35%] flex items-center justify-center relative bg-purple-50">
+                        <i class="fa-solid fa-bullhorn text-[6rem] text-orange-500 transform -rotate-12 absolute opacity-90 drop-shadow-lg"></i>
+                    </div>
+                    <div class="w-[65%] p-2 flex flex-col justify-center relative z-10 pl-4">
+                        <div class="bg-purple-900 text-white text-[8px] font-bold px-2 py-0.5 rounded-full self-start mb-1 tracking-wider uppercase">Power Buyer Invite</div>
+                        <h3 class="text-orange-700 font-black text-[14px] leading-tight mb-2" style="text-shadow: 1px 1px 0px rgba(255,255,255,0.7);">
+                            Did you know you can get paid to review your beauty orders?
+                        </h3>
+                        <div class="grid grid-cols-1 gap-0.5 text-[9.5px] text-gray-800 font-bold mb-2">
+                            <div class="flex items-center"><i class="fa-solid fa-check text-purple-700 mr-1 text-[8px]"></i> Earn Cash on Sales</div>
+                            <div class="flex items-center"><i class="fa-solid fa-check text-purple-700 mr-1 text-[8px]"></i> Zero followers required</div>
+                        </div>
+                        <button class="bg-gradient-to-r from-orange-500 to-orange-600 text-white text-[10px] font-bold py-1.5 px-4 rounded-full self-start shadow-md hover:from-orange-600 hover:to-orange-700">
+                            Know More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= PROTOTYPE 2: CREATOR POACHING ================= -->
+    <div class="prototype-wrapper">
+        <h2 class="text-white text-2xl font-black mb-6 tracking-wide drop-shadow-md">External: Creator Poaching Funnel</h2>
+        <div class="phone-frame">
+            <!-- 1. CREATOR OAUTH GATE -->
+            <div id="view-creator-oauth" class="view-container creator-view" style="display: block;">
+                <img src="creator_home_bg.jpg" class="bg-img" alt="Creator Hub">
+                <div class="full-screen-blur">
+                    <div class="bg-white rounded-2xl w-full p-6 text-center shadow-2xl relative overflow-hidden">
+                        <div class="absolute -right-10 -top-10 w-32 h-32 bg-purple-100 rounded-full opacity-50"></div>
+                        <div class="w-16 h-16 bg-gradient-to-tr from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                            <i class="fa-brands fa-instagram text-white text-3xl"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-2">Claim your ₹500 Token</h2>
+                        <p class="text-sm text-gray-500 mb-6 leading-relaxed">
+                            Join the Meesho Creator Club. Connect your Instagram to verify your follower count and instantly unlock your welcome bonus.
+                        </p>
+                        <button onclick="switchCreatorView('creator-success')" class="w-full bg-blue-600 text-white font-bold py-3.5 rounded-xl shadow-md hover:bg-blue-700 transition flex items-center justify-center">
+                            <i class="fa-brands fa-instagram mr-2"></i> Authenticate via Instagram
+                        </button>
+                        <p class="text-[10px] text-gray-400 mt-4">Requires >5,000 followers to qualify.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. CREATOR SUCCESS STATE -->
+            <div id="view-creator-success" class="view-container creator-view">
+                <img src="creator_home_bg.jpg" class="bg-img" alt="Creator Hub">
+                <div class="full-screen-blur">
+                    <div class="bg-white rounded-2xl w-full p-6 text-center shadow-2xl">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-green-500">
+                            <i class="fa-solid fa-check text-green-500 text-2xl"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-800 mb-1">Verification Successful!</h2>
+                        <div class="inline-block bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-1 rounded-full mb-4">
+                            @chameleon.2485 • 12.4K Followers
+                        </div>
+                        <p class="text-sm text-gray-600 mb-6">
+                            A <span class="font-bold text-green-600">₹500 Welcome Token</span> has been deposited into your Creator Wallet. Complete your first mission to permanently unlock it!
+                        </p>
+                        <button onclick="switchCreatorView('creator-mission')" class="w-full bg-purple-600 text-white font-bold py-3.5 rounded-xl shadow-md hover:bg-purple-700 transition">
+                            Go to Mission Hub
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. CREATOR MISSION HUB -->
+            <div id="view-creator-mission" class="view-container creator-view">
+                <img src="creator_home_bg.jpg" class="bg-img" alt="Creator Hub">
+                
+                <div class="hotspot nav-creator-payments" onclick="switchCreatorView('creator-wallet')" title="Go to Payments"></div>
+
+                <div class="widget-overlay-home bg-white border border-purple-200 shadow-sm p-4 flex flex-col justify-between">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <div class="flex items-center space-x-1.5 mb-1">
+                                <i class="fa-solid fa-star text-yellow-500 text-xs"></i>
+                                <h3 class="text-sm font-bold text-gray-800">Welcome Mission</h3>
+                            </div>
+                            <p class="text-[10px] text-gray-500">Complete this to unlock Tier 1 benefits</p>
+                        </div>
+                        <span class="bg-purple-100 text-purple-700 text-[9px] font-bold px-2 py-1 rounded">In Progress</span>
+                    </div>
+                    
+                    <div class="mt-3 overflow-y-auto max-h-[120px]">
+                        <div class="flex items-center text-[10px] mb-2">
+                            <div class="w-4 h-4 rounded-full bg-green-500 text-white flex items-center justify-center mr-2 flex-shrink-0"><i class="fa-solid fa-check text-[8px]"></i></div>
+                            <span class="text-gray-700 line-through">Claim ₹500 Token</span>
+                        </div>
+                        <div class="flex items-center text-[10px] mb-2">
+                            <div class="w-4 h-4 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center mr-2 flex-shrink-0">2</div>
+                            <span class="text-purple-700 font-bold">Buy a Product</span>
+                        </div>
+                        <div class="flex items-center text-[10px] mb-2">
+                            <div class="w-4 h-4 rounded-full bg-gray-100 text-gray-300 flex items-center justify-center mr-2 flex-shrink-0">3</div>
+                            <span class="text-gray-400">Make a Video</span>
+                        </div>
+                        <div class="flex items-center text-[10px] mb-2">
+                            <div class="w-4 h-4 rounded-full bg-gray-100 text-gray-300 flex items-center justify-center mr-2 flex-shrink-0">4</div>
+                            <span class="text-gray-400">Post Video and Get 100% Amount Back</span>
+                        </div>
+                        <div class="flex items-center text-[10px]">
+                            <div class="w-4 h-4 rounded-full bg-gray-100 text-gray-300 flex items-center justify-center mr-2 flex-shrink-0">5</div>
+                            <span class="text-gray-400">Earn Affiliate Commissions</span>
+                        </div>
+                    </div>
+                    
+                    <button class="w-full mt-3 bg-purple-50 text-purple-700 border border-purple-200 text-xs font-bold py-2 rounded-lg">
+                        Shop Trial Products Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4. CREATOR WALLET / EARNINGS -->
+            <div id="view-creator-wallet" class="view-container creator-view">
+                <img src="creator_payments_bg.jpg" class="bg-img" alt="Creator Payments">
+                
+                <div class="hotspot nav-home" onclick="switchCreatorView('creator-mission')" title="Go to Home"></div>
+
+                <div class="widget-overlay-wallet bg-gradient-to-br from-green-50 to-emerald-100 border border-green-200 p-4 flex flex-col justify-center">
+                    <div class="flex justify-between items-center mb-1">
+                        <h3 class="text-sm font-semibold text-gray-800">Welcome Token Balance</h3>
+                        <i class="fa-solid fa-circle-info text-gray-400 text-xs"></i>
+                    </div>
+                    <div class="text-2xl font-black text-green-700 mb-1">₹500</div>
+                    <div class="flex items-center bg-yellow-100 text-yellow-800 text-[9px] px-2 py-1 rounded w-max mt-1">
+                        <i class="fa-regular fa-clock mr-1"></i> Requires 5 sales to permanently unlock
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dual SPA Logic -->
+    <script>
+        function switchBuyerView(viewName) {
+            const views = document.querySelectorAll('.buyer-view');
+            views.forEach(view => view.style.display = 'none');
+            const activeView = document.getElementById('view-' + viewName);
+            if(activeView) activeView.style.display = 'block';
+        }
+
+        function switchCreatorView(viewName) {
+            const views = document.querySelectorAll('.creator-view');
+            views.forEach(view => view.style.display = 'none');
+            const activeView = document.getElementById('view-' + viewName);
+            if(activeView) activeView.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesho - Lever 3 Conversion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { 
+            margin: 0; background-color: #111827; display: flex; 
+            align-items: center; justify-content: center; gap: 80px; min-height: 100vh; 
+            font-family: -apple-system, sans-serif; padding: 40px;
+        }
+        
+        .prototype-wrapper {
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .phone-frame { width: 420px; height: 800px; position: relative; }
+
+        
+
+        iframe {
+            width: 100%; height: 100%; border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PROTOTYPE 1: UGC ON PDP ================= -->
+    <div class="prototype-wrapper">
+        <h2 class="text-white text-2xl font-black mb-6 tracking-wide drop-shadow-md">Internal: UGC on PDP Flow</h2>
+        <div class="phone-frame">
+            <iframe src="Lever3_UGC_on_PDP/buyer_pdp.html"></iframe>
+        </div>
+    </div>
+
+    <!-- ================= PROTOTYPE 2: SHOPPABLE LIVESTREAM ================= -->
+    <div class="prototype-wrapper">
+        <h2 class="text-white text-2xl font-black mb-6 tracking-wide drop-shadow-md">External: Shoppable Livestream</h2>
+        <div class="phone-frame bg-black">
+            <iframe src="Lever3_UGC_on_PDP/livestream_notification.html"></iframe>
+        </div>
+    </div>
+
+</body>
+</html>
+

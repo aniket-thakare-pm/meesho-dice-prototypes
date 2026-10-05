@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesho Creator Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 
+                        'meesho-purple': '#8b1874', 
+                        'meesho-pink': '#df1e7b',
+                        'meesho-darkpink': '#b91362'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen m-0 p-4 font-sans">
+
+    <!-- Mobile Wrapper -->
+    <div class="w-full max-w-[380px] h-[750px] bg-white shadow-2xl relative overflow-hidden rounded-[2rem] border-[12px] border-gray-900 flex flex-col mx-auto">
+        
+        <!-- Header -->
+        <div class="bg-white px-4 py-4 flex items-center justify-between shrink-0 border-b border-gray-200 sticky top-0 z-20">
+            <div class="flex items-center gap-4">
+                <a href="buyer_pdp.html" class="text-gray-800"><i class="fa-solid fa-arrow-left text-xl"></i></a>
+                <h1 class="font-bold text-gray-900 text-lg flex items-center gap-1">
+                    skincare_sneha <i class="fa-solid fa-certificate text-blue-500 text-[10px]"></i>
+                </h1>
+            </div>
+            <div class="flex gap-4 text-gray-800 text-xl">
+                <i class="fa-regular fa-bell"></i>
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+            </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto no-scrollbar bg-white">
+            <!-- Profile Info Section -->
+            <div class="p-4">
+                <!-- Avatar & Stats -->
+                <div class="flex items-center justify-between mb-4">
+                    <div class="relative">
+                        <div class="w-20 h-20 rounded-full border-2 border-meesho-pink overflow-hidden shrink-0 p-0.5">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" class="w-full h-full object-cover rounded-full">
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4 text-center ml-4 flex-1 justify-around">
+                        <div class="flex flex-col">
+                            <span class="font-bold text-gray-900 text-lg">4</span>
+                            <span class="text-[11px] text-gray-600">Posts</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-gray-900 text-lg">842</span>
+                            <span class="text-[11px] text-gray-600">Followers</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-bold text-gray-900 text-lg">5.1k</span>
+                            <span class="text-[11px] text-gray-600">Views</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bio -->
+                <div class="mb-4 mt-2">
+                    <p class="font-bold text-gray-900 text-sm">Sneha Sharma</p>
+                    <p class="text-xs text-gray-700 mt-1 leading-relaxed">
+                        Beauty & Skincare enthusiast ✨<br>
+                        Honest Meesho Finds & Product Reviews 🛍️<br>
+                        <span class="text-blue-700">#MeeshoAffiliate</span>
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="space-y-2 mt-4">
+                    <button class="w-full bg-meesho-pink text-white font-bold py-2 rounded-lg text-sm shadow-sm transition-transform active:scale-95">
+                        Follow
+                    </button>
+                    <div class="flex gap-2">
+                        <button class="flex-1 bg-gray-100 hover:bg-white border border-gray-200 text-gray-800 font-semibold py-1.5 rounded-lg text-xs flex items-center justify-center gap-2 transition-colors">
+                            <i class="fa-brands fa-youtube text-red-600 text-sm"></i> YouTube
+                        </button>
+                        <button class="flex-1 bg-gray-100 hover:bg-white border border-gray-200 text-gray-800 font-semibold py-1.5 rounded-lg text-xs flex items-center justify-center gap-2 transition-colors">
+                            <i class="fa-brands fa-instagram text-pink-600 text-sm"></i> Instagram
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Tabs -->
+            <div class="flex border-t border-b border-gray-200 mt-2 sticky top-0 bg-white z-10">
+                <div id="btn-grid" onclick="switchTab('grid')" class="flex-1 py-3 text-center border-b-[2px] border-gray-900 cursor-pointer transition-all">
+                    <i class="fa-solid fa-table-cells text-gray-900 text-xl"></i>
+                </div>
+                <div id="btn-shop" onclick="switchTab('shop')" class="flex-1 py-3 text-center border-b-[2px] border-transparent opacity-40 cursor-pointer transition-all">
+                    <i class="fa-solid fa-bag-shopping text-gray-900 text-xl"></i>
+                </div>
+            </div>
+
+            <!-- TAB CONTENT: POSTS GRID -->
+            <div id="tab-grid" class="grid grid-cols-3 gap-0.5 bg-white">
+                
+                <!-- Post 1: Video -->
+                <div class="aspect-square relative bg-white group cursor-pointer overflow-hidden">
+                    <img src="../assets/media_1790399988758.webp" class="w-full h-full object-cover">
+                    <!-- Playhead Icon for Video -->
+                    <i class="fa-solid fa-play absolute top-2 right-2 text-white drop-shadow-md text-sm opacity-90"></i>
+                    <!-- View count overlay -->
+                    <div class="absolute bottom-1 left-1.5 text-white text-[10px] font-bold flex items-center gap-1 drop-shadow-md">
+                        <i class="fa-solid fa-play text-[8px]"></i> 2.1k
+                    </div>
+                </div>
+
+                <!-- Post 2: Video -->
+                <div class="aspect-square relative bg-white group cursor-pointer overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+                    <!-- Playhead Icon for Video -->
+                    <i class="fa-solid fa-play absolute top-2 right-2 text-white drop-shadow-md text-sm opacity-90"></i>
+                    <div class="absolute bottom-1 left-1.5 text-white text-[10px] font-bold flex items-center gap-1 drop-shadow-md">
+                        <i class="fa-solid fa-play text-[8px]"></i> 845
+                    </div>
+                </div>
+
+                <!-- Post 3: Video (Whitish Product - Linked to Reel View) -->
+                <a href="reel_view.html" class="aspect-square relative bg-white group cursor-pointer overflow-hidden block">
+                    <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                    <!-- Playhead Icon for Video -->
+                    <i class="fa-solid fa-play absolute top-2 right-2 text-white drop-shadow-md text-sm opacity-90"></i>
+                    <div class="absolute bottom-1 left-1.5 text-white text-[10px] font-bold flex items-center gap-1 drop-shadow-md">
+                        <i class="fa-solid fa-play text-[8px]"></i> 1.8k
+                    </div>
+                </a>
+
+                <!-- Post 4: Image -->
+                <div class="aspect-square relative bg-white group cursor-pointer overflow-hidden">
+                    <img src="../assets/media_1790398874019.jpg" class="w-full h-full object-cover">
+                    <i class="fa-solid fa-clone absolute top-2 right-2 text-white drop-shadow-md text-sm opacity-90"></i>
+                </div>
+
+            </div>
+
+            <!-- TAB CONTENT: SHOP / COLLECTIONS -->
+            <div id="tab-shop" class="hidden p-4 bg-gray-50 min-h-[400px]">
+                <h2 class="text-gray-800 font-bold mb-4 text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-folder-open text-gray-400"></i> My Curated Collections
+                </h2>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- Skincare Collection -->
+                    <div class="bg-white  shadow-sm border border-gray-200 overflow-hidden cursor-pointer group">
+                        <div class="aspect-square relative">
+                            <img src="../assets/media_1790399988758.webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
+                            
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <p class="font-bold text-sm drop-shadow-md mb-0.5">Skincare</p>
+                                <p class="text-[10px] font-medium text-gray-200 bg-black/40 px-1.5 py-0.5 rounded backdrop-blur-sm inline-block">2 items</p>
+                            </div>
+                            
+                            <div class="absolute top-2 right-2 bg-white/20 backdrop-blur-md rounded-md p-1.5">
+                                <i class="fa-solid fa-layer-group text-white text-xs drop-shadow"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Haircare Collection -->
+                    <div class="bg-white  shadow-sm border border-gray-200 overflow-hidden cursor-pointer group">
+                        <div class="aspect-square relative">
+                            <img src="https://images.unsplash.com/photo-1599305090598-fe179d501227?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
+                            
+                            <div class="absolute bottom-3 left-3 text-white">
+                                <p class="font-bold text-sm drop-shadow-md mb-0.5">Haircare</p>
+                                <p class="text-[10px] font-medium text-gray-200 bg-black/40 px-1.5 py-0.5 rounded backdrop-blur-sm inline-block">2 items</p>
+                            </div>
+
+                            <div class="absolute top-2 right-2 bg-white/20 backdrop-blur-md rounded-md p-1.5">
+                                <i class="fa-solid fa-layer-group text-white text-xs drop-shadow"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="h-10 bg-white"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Tab Switching -->
+    <script>
+        function switchTab(tabName) {
+            const gridTab = document.getElementById('tab-grid');
+            const shopTab = document.getElementById('tab-shop');
+            const btnGrid = document.getElementById('btn-grid');
+            const btnShop = document.getElementById('btn-shop');
+
+            if (tabName === 'grid') {
+                gridTab.classList.remove('hidden');
+                shopTab.classList.add('hidden');
+                
+                btnGrid.classList.add('border-gray-900');
+                btnGrid.classList.remove('border-transparent', 'opacity-40');
+                
+                btnShop.classList.remove('border-gray-900');
+                btnShop.classList.add('border-transparent', 'opacity-40');
+            } else if (tabName === 'shop') {
+                shopTab.classList.remove('hidden');
+                gridTab.classList.add('hidden');
+                
+                btnShop.classList.add('border-gray-900');
+                btnShop.classList.remove('border-transparent', 'opacity-40');
+                
+                btnGrid.classList.remove('border-gray-900');
+                btnGrid.classList.add('border-transparent', 'opacity-40');
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

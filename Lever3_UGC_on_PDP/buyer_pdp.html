@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesho Buyer PDP - UGC Overlay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 
+                        'meesho-purple': '#8b1874', 
+                        'meesho-pink': '#df1e7b',
+                        'meesho-darkpink': '#b91362'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        html { scroll-behavior: smooth; }
+        
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Grab cursor for desktop dragging */
+        .cursor-grab { cursor: grab; }
+        .cursor-grabbing { cursor: grabbing; }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen m-0 p-4 font-sans">
+
+    <!-- Mobile Wrapper -->
+    <div class="w-full max-w-[380px] h-[750px] bg-white shadow-2xl relative overflow-hidden rounded-[2rem] border-[12px] border-gray-900 flex flex-col mx-auto">
+        
+        <!-- Header -->
+        <div class="bg-white px-4 py-3 flex items-center justify-between shrink-0">
+            <i class="fa-solid fa-chevron-left text-gray-700 text-xl"></i>
+            <div class="flex gap-5 text-gray-700 text-xl">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-regular fa-heart"></i>
+                <div class="relative">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <div class="absolute -top-1.5 -right-2 bg-meesho-purple text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">4</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Affiliate Banner -->
+        <div class="bg-pink-50 w-full flex items-center border-t border-b border-pink-100 shrink-0">
+            <div class="bg-meesho-pink text-white text-xs font-bold px-3 py-1.5 flex items-center gap-1 rounded-r-md">
+                <i class="fa-solid fa-tags text-[10px]"></i> Affiliate
+            </div>
+            <p class="text-gray-700 text-xs font-medium ml-3">4% Commission</p>
+        </div>
+
+        <div class="flex-1 overflow-y-auto no-scrollbar pb-20">
+            <!-- ========================================== -->
+            <!-- HERO CAROUSEL -->
+            <!-- ========================================== -->
+            <div class="relative w-full aspect-square bg-white group">
+                
+                <!-- Scrollable track for 4 Brand Images -->
+                <div class="w-full h-full flex overflow-x-auto snap-x snap-mandatory no-scrollbar cursor-grab" id="pdp-carousel">
+                    <!-- Slide 1 -->
+                    <div class="w-full h-full shrink-0 snap-center relative flex items-center justify-center pointer-events-none">
+                        <img src="../assets/media_1790398874019.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="w-full h-full shrink-0 snap-center relative flex items-center justify-center pointer-events-none">
+                        <img src="../assets/media_1790398875955.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="w-full h-full shrink-0 snap-center relative flex items-center justify-center pointer-events-none">
+                        <img src="../assets/media_1790398877680.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="w-full h-full shrink-0 snap-center relative flex items-center justify-center pointer-events-none">
+                        <img src="../assets/media_1790398879139.jpg" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <!-- Circular UGC Overlay (Video Thumbnail) -->
+                <div onclick="openUGC()" class="absolute bottom-6 right-3 w-16 h-16 rounded-full border-[3px] border-meesho-pink shadow-[0_4px_12px_rgba(223,30,123,0.4)] z-20 overflow-hidden cursor-pointer bg-white transition-transform hover:scale-105 group">
+                    <img src="../assets/media_1790399988758.webp" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                        <i class="fa-solid fa-play text-white text-lg drop-shadow-md pl-0.5"></i>
+                    </div>
+                </div>
+
+                <!-- THE EXPANDED UGC VIEW -->
+                <div id="ugc-expanded-view" class="absolute inset-0 z-30 hidden bg-black items-center justify-center fade-in">
+                    <!-- The Full UGC Image -->
+                    <img src="../assets/media_1790399988758.webp" class="w-full h-full object-cover opacity-90">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none"></div>
+
+                    <!-- Play Icon (To simulate video) -->
+                    <div class="absolute w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-md border border-white/40  pointer-events-none">
+                        <i class="fa-solid fa-play text-white text-2xl pl-1 drop-shadow-md"></i>
+                    </div>
+
+                    <!-- Close Button -->
+                    <button onclick="closeUGC()" class="absolute top-3 right-3 w-8 h-8 bg-black/50 hover:bg-black/80 rounded-full flex items-center justify-center text-white z-40 border border-white/30 backdrop-blur shadow-lg">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+
+                    <!-- Overlay text -->
+                    <div class="absolute top-4 left-4 bg-meesho-pink text-white text-[10px] font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1 border border-white/20">
+                        <i class="fa-solid fa-circle-check"></i> Creator Video Review
+                    </div>
+                    
+                    <!-- Username linked to Creator Profile -->
+                    <a href="creator_profile.html" class="absolute bottom-6 left-4 flex items-center gap-2 z-50 pointer-events-auto cursor-pointer group">
+                        <div class="w-8 h-8 rounded-full border-2 border-white overflow-hidden bg-gray-300 shadow-md transition-transform group-hover:scale-110">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="w-full h-full object-cover">
+                        </div>
+                        <p class="text-sm text-white font-bold drop-shadow-md group-hover:underline">@skincare_sneha</p>
+                    </a>
+                </div>
+
+                <!-- Navigation Arrows (Overlay) -->
+                <button onclick="prevSlide()" class="absolute left-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white/70 hover:bg-white rounded-full flex items-center justify-center shadow-md opacity-50 hover:opacity-100 transition-opacity z-10">
+                    <i class="fa-solid fa-chevron-left text-gray-800 text-sm pr-0.5"></i>
+                </button>
+                <button onclick="nextSlide()" class="absolute right-2 top-1/2 transform -translate-y-1/2 w-8 h-8 bg-white/70 hover:bg-white rounded-full flex items-center justify-center shadow-md opacity-50 hover:opacity-100 transition-opacity z-10">
+                    <i class="fa-solid fa-chevron-right text-gray-800 text-sm pl-0.5"></i>
+                </button>
+                
+                <!-- Pagination Dots Indicator (Clickable) -->
+                <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+                    <div onclick="goToSlide(0)" class="nav-dot w-3 h-1.5 rounded-full bg-meesho-purple cursor-pointer transition-all"></div>
+                    <div onclick="goToSlide(1)" class="nav-dot w-1.5 h-1.5 rounded-full bg-gray-300 cursor-pointer transition-all"></div>
+                    <div onclick="goToSlide(2)" class="nav-dot w-1.5 h-1.5 rounded-full bg-gray-300 cursor-pointer transition-all"></div>
+                    <div onclick="goToSlide(3)" class="nav-dot w-1.5 h-1.5 rounded-full bg-gray-300 cursor-pointer transition-all"></div>
+                </div>
+            </div>
+
+            <!-- Skin Tone Filter -->
+            <div class="px-4 py-3 bg-white border-b border-gray-100">
+                <p class="text-meesho-purple font-bold text-xs mb-2.5 tracking-wide">See it on skin like yours</p>
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-1.5 overflow-x-auto no-scrollbar">
+                        <span class="bg-purple-50 text-purple-900 text-[11px] px-3 py-1 rounded-full font-bold whitespace-nowrap cursor-pointer">Light</span>
+                        <span class="bg-[#4a154b] text-white text-[11px] px-3 py-1 rounded-full font-bold whitespace-nowrap cursor-pointer shadow-sm">Medium</span>
+                        <span class="bg-purple-50 text-purple-900 text-[11px] px-3 py-1 rounded-full font-bold whitespace-nowrap cursor-pointer">Tan</span>
+                        <span class="bg-purple-50 text-purple-900 text-[11px] px-3 py-1 rounded-full font-bold whitespace-nowrap cursor-pointer">Deep</span>
+                    </div>
+                    <div class="flex gap-1.5 overflow-x-auto no-scrollbar">
+                        <span class="bg-[#4a154b] text-white text-[11px] px-3 py-1 rounded-full font-bold whitespace-nowrap cursor-pointer shadow-sm">Warm</span>
+                        <span class="bg-purple-50 text-purple-900 text-[11px] px-3 py-1 rounded-full font-bold whitespace-nowrap cursor-pointer">Cool</span>
+                        <span class="bg-purple-50 text-purple-900 text-[11px] px-3 py-1 rounded-full font-bold whitespace-nowrap cursor-pointer">Neutral</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 Similar Products Section -->
+            <div class="p-4 bg-white border-b border-gray-100">
+                <p class="text-gray-700 text-sm font-medium mb-3">3 Similar Products</p>
+                <div class="flex gap-3">
+                    <div class="w-14 h-14 rounded-md border-2 border-meesho-purple overflow-hidden p-0.5 cursor-pointer" onclick="goToSlide(0)">
+                        <img src="../assets/media_1790398874019.jpg" class="w-full h-full object-cover rounded-sm">
+                    </div>
+                    <div class="w-14 h-14 rounded-md border border-gray-200 overflow-hidden p-0.5 cursor-pointer" onclick="goToSlide(1)">
+                        <img src="../assets/media_1790398875955.jpg" class="w-full h-full object-cover rounded-sm">
+                    </div>
+                    <div class="w-14 h-14 rounded-md border border-gray-200 overflow-hidden p-0.5 cursor-pointer" onclick="goToSlide(2)">
+                        <img src="../assets/media_1790398877680.jpg" class="w-full h-full object-cover rounded-sm">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Details -->
+            <div class="p-4 bg-white">
+                <div class="flex justify-between items-start gap-4 mb-2">
+                    <h1 class="text-gray-600 text-sm leading-tight flex-1">Sunscreen Cream-Non Greasy with Broad Spectrum- Sunscreen-SPF 50+...</h1>
+                    <div class="flex gap-4 shrink-0 text-gray-600">
+                        <div class="flex flex-col items-center"><i class="fa-regular fa-heart text-xl"></i><span class="text-[10px] mt-1">Wishlist</span></div>
+                        <div class="flex flex-col items-center"><i class="fa-solid fa-share-nodes text-xl"></i><span class="text-[10px] mt-1">Share</span></div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-2 mb-1 mt-3">
+                    <span class="text-3xl font-bold text-gray-900">₹94</span>
+                    <span class="text-sm text-gray-500 line-through">117</span>
+                    <span class="text-sm text-gray-600 font-medium">20% off <i class="fa-solid fa-circle-info text-[10px] text-gray-400"></i></span>
+                </div>
+            </div>
+            
+            <div class="h-2 w-full bg-gray-100 border-t border-b border-gray-200"></div>
+            
+            <div class="p-4 bg-white h-40">
+                <p class="text-xs text-gray-500 bg-gray-100 inline-block px-2 py-1 rounded font-semibold mb-4 text-green-700"><i class="fa-solid fa-truck"></i> Free Delivery</p>
+                <h2 class="text-gray-800 font-bold text-md mb-2">Product Details</h2>
+                <p class="text-xs text-gray-600 leading-relaxed mb-2">Name: Sunscreen Cream-Non Greasy with Broad Spectrum- Sunscreen-SPF 50+<br>Brand Name: Sonavi<br>Skin Type: All Skin Types</p>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- BOTTOM CTA BAR -->
+        <!-- ========================================== -->
+        <div class="absolute bottom-0 w-full bg-white border-t flex p-2 gap-2 z-20 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] h-16">
+            <button class="w-1/2 flex justify-center items-center gap-2 font-bold text-meesho-purple border border-meesho-purple rounded bg-white">
+                <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+            </button>
+            <button class="w-1/2 flex justify-center items-center gap-2 font-bold text-white bg-meesho-purple rounded">
+                <i class="fa-solid fa-angles-right"></i> Buy Now
+            </button>
+        </div>
+    </div>
+
+    <!-- JS for Carousel and UGC Overlay -->
+    <script>
+        const carousel = document.getElementById('pdp-carousel');
+        const dots = document.querySelectorAll('.nav-dot');
+        const ugcView = document.getElementById('ugc-expanded-view');
+
+        // Drag to scroll functionality for Desktop Mouse users
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            carousel.classList.add('cursor-grabbing');
+            carousel.classList.remove('cursor-grab');
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+        
+        carousel.addEventListener('mouseleave', () => {
+            isDown = false;
+            carousel.classList.remove('cursor-grabbing');
+            carousel.classList.add('cursor-grab');
+        });
+        
+        carousel.addEventListener('mouseup', () => {
+            isDown = false;
+            carousel.classList.remove('cursor-grabbing');
+            carousel.classList.add('cursor-grab');
+        });
+        
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed multiplier
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+
+        // Update dots when scrolling
+        carousel.addEventListener('scroll', () => {
+            let index = Math.round(carousel.scrollLeft / carousel.offsetWidth);
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('bg-meesho-purple', 'w-3');
+                    dot.classList.remove('bg-gray-300', 'w-1.5');
+                } else {
+                    dot.classList.remove('bg-meesho-purple', 'w-3');
+                    dot.classList.add('bg-gray-300', 'w-1.5');
+                }
+            });
+        });
+
+        // Click to go to slide
+        function goToSlide(index) {
+            carousel.scrollTo({
+                left: carousel.offsetWidth * index,
+                behavior: 'smooth'
+            });
+        }
+
+        // Arrow navigation
+        function prevSlide() {
+            carousel.scrollBy({ left: -carousel.offsetWidth, behavior: 'smooth' });
+        }
+
+        function nextSlide() {
+            carousel.scrollBy({ left: carousel.offsetWidth, behavior: 'smooth' });
+        }
+
+        // UGC Expanded View Logic
+        function openUGC() {
+            ugcView.classList.remove('hidden');
+            ugcView.classList.add('flex');
+        }
+
+        function closeUGC() {
+            ugcView.classList.add('hidden');
+            ugcView.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

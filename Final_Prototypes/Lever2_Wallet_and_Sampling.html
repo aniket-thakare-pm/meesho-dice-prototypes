@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meesho Lever 2 — Revised SplitPay & Sampling Flow</title>
+<style>
+:root{
+  --m:#a51d89;
+  --m-dark:#64104f;
+  --m-soft:#f8eef7;
+  --ink:#2c2b33;
+  --muted:#7a7781;
+  --line:#e8e4e9;
+  --green:#168d45;
+  --green-soft:#e7f6ec;
+  --yellow:#ffb21c;
+  --yellow-soft:#fff7df;
+  --bg:#f3f1f4;
+  --shadow:0 14px 40px rgba(41,25,44,.16);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+}
+button{font:inherit}
+.page{max-width:1100px;margin:auto;padding:24px}
+.intro{
+  background:linear-gradient(135deg,#4b0b3e,#78145e);
+  color:#fff;border-radius:22px;padding:20px 22px;margin-bottom:24px;
+}
+.eyebrow{font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#ffd04b}
+.intro h1{margin:5px 0 6px;font-size:23px}
+.intro p{margin:0;font-size:13px;line-height:1.45;color:#f9eaf6;max-width:820px}
+.phones{
+  display:grid;grid-template-columns:repeat(2,minmax(320px,390px));
+  gap:28px;justify-content:center;align-items:start;
+}
+.phone-wrap{text-align:center}
+.phone-label{
+  margin:0 0 9px;color:#68656e;font-size:12px;font-weight:900;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.phone{
+  width:390px;max-width:100%;height:844px;margin:auto;background:#111014;
+  border:9px solid #111014;border-radius:38px;overflow:hidden;
+  position:relative;box-shadow:var(--shadow);
+}
+.notch{
+  position:absolute;z-index:8;top:-9px;left:50%;transform:translateX(-50%);
+  width:145px;height:25px;background:#111014;border-radius:0 0 16px 16px;
+}
+.screen{height:100%;background:#fff;display:flex;flex-direction:column}
+.status{
+  height:34px;padding:8px 15px 2px;display:flex;justify-content:space-between;
+  align-items:flex-end;font-size:11px;font-weight:800;flex:none
+}
+.status span:last-child{color:#555}
+.appbar{
+  height:56px;padding:0 14px;display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid var(--line);flex:none;background:#fff
+}
+.appbar h2{margin:0;font-size:18px;flex:1}
+.icon-btn{
+  width:34px;height:34px;border:none;border-radius:50%;background:#faf6fa;
+  color:var(--m);font-weight:900;cursor:pointer;display:grid;place-items:center
+}
+.back{
+  width:32px;height:32px;border:0;background:#fff;color:#555;cursor:pointer;
+  font-size:28px;line-height:1;display:grid;place-items:center;padding:0
+}
+.content{padding:12px 12px 86px;overflow:auto;scrollbar-width:none}
+.content::-webkit-scrollbar{display:none}
+.card{
+  border:1px solid var(--line);border-radius:17px;background:#fff;
+  box-shadow:0 3px 11px rgba(38,26,42,.045)
+}
+.order-card{padding:12px}
+.product-row{display:flex;gap:11px;align-items:center}
+.prod-img{
+  width:76px;height:76px;border-radius:13px;overflow:hidden;flex:none;
+  border:1px solid #eee7ee;background:#faf7fa
+}
+.prod-img svg{width:100%;height:100%;display:block}
+.prod-main{min-width:0;flex:1}
+.prod-name{font-weight:900;font-size:13px;line-height:1.25}
+.prod-meta{margin-top:4px;font-size:10px;color:var(--muted)}
+.price{font-size:17px;font-weight:900;margin-top:7px}
+.delivery{
+  border-top:1px solid var(--line);margin-top:12px;padding-top:11px;
+  font-size:11px;line-height:1.35
+}
+.delivery strong{font-size:12px}
+.section-title{font-size:14px;font-weight:900;margin:13px 2px 8px}
+.price-box{padding:12px}
+.price-line{
+  display:flex;justify-content:space-between;gap:10px;font-size:11px;margin:7px 0
+}
+.price-line.total{font-size:14px;font-weight:900;border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+.split-toggle{
+  padding:12px;border:1px solid #eadbea;border-radius:15px;background:#fcf9fc;
+  display:flex;align-items:center;gap:11px;cursor:pointer
+}
+.toggle-copy{flex:1;text-align:left}
+.toggle-copy strong{display:block;font-size:13px}
+.toggle-copy span{display:block;color:var(--muted);font-size:10px;margin-top:3px;line-height:1.3}
+.switch{
+  width:48px;height:28px;border-radius:20px;background:#d6d2d7;
+  padding:3px;transition:.2s;flex:none
+}
+.knob{width:22px;height:22px;background:white;border-radius:50%;transition:.2s;box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.switch.on{background:var(--m)}
+.switch.on .knob{transform:translateX(20px)}
+.wallet-panel{
+  display:none;margin-top:9px;padding:11px;border-radius:14px;
+  background:var(--m-soft);border:1px solid #e7cde1
+}
+.wallet-panel.show{display:block}
+.wallet-head{display:flex;justify-content:space-between;align-items:center}
+.wallet-head strong{font-size:12px}
+.wallet-balance{color:var(--green);font-size:17px;font-weight:900}
+.wallet-copy{font-size:10px;color:#6f6a73;margin-top:4px;line-height:1.35}
+.pay-box{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px
+}
+.pay-part{
+  border:1px solid #dfd7e0;background:#fff;border-radius:10px;padding:9px
+}
+.pay-part label{display:block;font-size:9px;color:var(--muted);font-weight:800}
+.pay-part b{display:block;margin-top:3px;font-size:15px}
+.pay-part.wallet b{color:var(--green)}
+.primary{
+  width:100%;border:none;border-radius:13px;background:var(--m);color:#fff;
+  padding:13px;font-weight:900;font-size:14px;cursor:pointer;margin-top:11px;
+  box-shadow:0 7px 16px rgba(165,29,137,.18)
+}
+.primary:hover{background:#8f1774}
+.note{
+  margin-top:9px;padding:9px 10px;border-radius:11px;background:var(--yellow-soft);
+  font-size:10px;line-height:1.35;color:#695521
+}
+
+/* sampling listing */
+.search{
+  border:1px solid var(--line);border-radius:12px;height:42px;display:flex;
+  align-items:center;padding:0 11px;color:#98949d;font-size:11px;margin:12px 12px 9px
+}
+.category-row{display:flex;gap:8px;overflow:hidden;padding:0 12px 5px}
+.cat{flex:none;padding:7px 10px;border-radius:999px;background:#f8f4f8;color:#6f6b75;font-size:10px;font-weight:800}
+.cat.active{background:var(--m);color:white}
+.banner{
+  margin:6px 12px 10px;border-radius:12px;padding:11px 12px;
+  background:linear-gradient(100deg,#fbe6f6,#f5dff0);display:flex;align-items:center;gap:8px
+}
+.banner b{font-size:11px;color:var(--m-dark)}
+.banner span{font-size:10px;color:#6f5565}
+.products{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 12px}
+.listing{
+  border:1px solid var(--line);border-radius:13px;background:#fff;overflow:hidden;
+  cursor:pointer;position:relative
+}
+.listing-img{height:128px;background:#faf7fa}
+.listing-img svg{width:100%;height:100%;display:block}
+.listing-body{padding:8px}
+.listing-name{
+  font-size:11px;font-weight:850;line-height:1.25;height:28px;overflow:hidden
+}
+.listing-price{font-size:14px;font-weight:900;margin-top:5px}
+.trial{
+  display:inline-flex;margin-top:6px;padding:4px 7px;border-radius:7px;
+  background:#fff2bf;color:#714f00;font-size:9px;font-weight:900;cursor:pointer;
+  border:1px solid #f0d88d
+}
+.trial:hover{background:#ffeb9a}
+.no-trial{font-size:9px;color:#99939d;margin-top:7px}
+.listing .tiny-note{
+  position:absolute;top:7px;right:7px;background:rgba(255,255,255,.94);
+  padding:4px 6px;border-radius:8px;font-size:8px;font-weight:900;color:var(--m)
+}
+
+/* sampling credits */
+.credit-hero{
+  margin:12px 12px 0;border-radius:18px;padding:16px 15px;
+  background:linear-gradient(135deg,#a51d89,#861465);color:#fff
+}
+.credit-label{font-size:10px;font-weight:900;letter-spacing:.04em;opacity:.9}
+.credit-number{
+  display:block;font-size:34px;line-height:1.1;font-weight:950;margin-top:5px;color:#fff;
+  letter-spacing:.01em
+}
+.credit-desc{font-size:11px;line-height:1.35;margin-top:5px;color:#faeaf6}
+.pills{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+.pill{
+  border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.11);
+  color:#fff;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:900
+}
+.credit-section{padding:0 12px}
+.sample-item{
+  display:flex;align-items:center;gap:9px;border:1px solid var(--line);
+  border-radius:14px;padding:9px;margin-top:8px;background:#fff
+}
+.sample-item .prod-img{width:58px;height:58px}
+.sample-meta{min-width:0;flex:1}
+.sample-name{font-size:11px;font-weight:900;line-height:1.25}
+.sample-meta .sub{font-size:9px;color:var(--muted);margin-top:3px}
+.redeem-btn{
+  border:none;border-radius:9px;background:var(--yellow);color:#4d3200;
+  font-size:10px;font-weight:900;padding:8px 8px;cursor:pointer
+}
+.info{
+  margin-top:10px;border:1px solid #eadbea;background:#fcf9fc;border-radius:12px;
+  padding:10px;font-size:10px;line-height:1.4;color:#6d6872
+}
+.bottom{
+  position:absolute;left:0;right:0;bottom:0;height:68px;background:#fff;
+  border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center
+}
+.nav{font-size:9px;color:#85818b;text-align:center}
+.nav b{display:block;font-size:17px;line-height:19px;margin-bottom:2px}
+.nav.active{color:var(--m);font-weight:900}
+
+.modal-bg{
+  position:fixed;inset:0;background:rgba(35,24,38,.55);display:none;align-items:center;
+  justify-content:center;padding:18px;z-index:50
+}
+.modal{
+  width:min(360px,100%);background:#fff;border-radius:20px;padding:18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.28)
+}
+.modal h3{font-size:16px;margin:0 0 5px}
+.modal p{margin:0;color:var(--muted);font-size:11px;line-height:1.45}
+.modal .row{
+  margin-top:12px;padding-top:11px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;font-size:11px
+}
+.close{
+  width:100%;margin-top:12px;border:none;border-radius:12px;background:#f1ebf1;
+  color:var(--m);padding:11px;font-weight:900;cursor:pointer
+}
+@media(max-width:900px){.phones{grid-template-columns:1fr}}
+@media(max-width:450px){
+  .page{padding:12px}
+  .phone{width:100%;height:820px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="intro">
+    <div class="eyebrow">Lever 2 · Zero-friction sourcing</div>
+    <h1>Revised mobile flows for SplitPay Wallet & Supplier-funded Sampling Credits</h1>
+    <p>Both experiences now start from the normal Meesho journey: checkout for SplitPay and the product listing page for Trial-SKU sampling.</p>
+  </div>
+
+  <div class="phones">
+    <!-- SPLITPAY -->
+    <div class="phone-wrap">
+      <div class="phone-label">Option A · SplitPay starts at normal checkout</div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="status"><span>9:41</span><span>5G&nbsp;&nbsp;◔&nbsp;&nbsp;▮</span></div>
+          <div class="appbar">
+            <button class="back" onclick="alert('Back to product page')">‹</button>
+            <h2>REVIEW YOUR ORDER</h2>
+            <button class="icon-btn" onclick="openModal('SplitPay Wallet is a commission set-off at checkout. Only confirmed commission can be used.')">?</button>
+          </div>
+          <div class="content">
+            <div class="card order-card">
+              <div class="product-row">
+                <div class="prod-img">
+                  <svg viewBox="0 0 80 80">
+                    <rect width="80" height="80" fill="#fbf3fa"/>
+                    <rect x="28" y="15" width="24" height="12" rx="3" fill="#e4eaed"/>
+                    <rect x="29" y="25" width="22" height="39" rx="7" fill="#f0d8a9"/>
+                    <rect x="33" y="34" width="14" height="11" rx="2" fill="#fff"/>
+                    <text x="40" y="42" text-anchor="middle" font-size="5" font-weight="800" fill="#a51d89">VIT C</text>
+                  </svg>
+                </div>
+                <div class="prod-main">
+                  <div class="prod-name">Vitamin C Face Serum</div>
+                  <div class="prod-meta">Size: 30 ml · Qty: 1</div>
+                  <div class="price">₹500</div>
+                </div>
+              </div>
+
+              <div class="delivery">
+                <strong>Estimated Delivery by Monday, 12th Oct</strong><br>
+                Aryan Naik · Kharagpur
+              </div>
+            </div>
+
+            <div class="section-title">Payment</div>
+
+            <div class="split-toggle" onclick="toggleSplitPay()">
+              <div class="toggle-copy">
+                <strong>Use SplitPay Wallet</strong>
+                <span>Use confirmed affiliate commission and pay the rest by UPI</span>
+              </div>
+              <div class="switch" id="splitSwitch"><div class="knob"></div></div>
+            </div>
+
+            <div class="wallet-panel" id="walletPanel">
+              <div class="wallet-head">
+                <strong>Confirmed wallet balance</strong>
+                <span class="wallet-balance">₹300</span>
+              </div>
+              <div class="wallet-copy">Your ₹1,200 pending commission is locked and cannot be spent yet.</div>
+              <div class="pay-box">
+                <div class="pay-part wallet">
+                  <label>SplitPay</label><b>₹300</b>
+                </div>
+                <div class="pay-part">
+                  <label>Pay by UPI</label><b>₹200</b>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-title">Price Details</div>
+            <div class="card price-box">
+              <div class="price-line"><span>Product price</span><span>₹500</span></div>
+              <div class="price-line"><span>Delivery</span><span>₹0</span></div>
+              <div class="price-line total"><span>Total</span><span id="payTotal">₹500</span></div>
+            </div>
+
+            <div class="note">
+              <strong>How SplitPay works:</strong> confirmed affiliate earnings are used as a line-item checkout discount. Pending earnings stay locked until confirmation.
+            </div>
+
+            <button class="primary" onclick="checkoutNow()">Continue</button>
+          </div>
+
+          <div class="bottom">
+            <div class="nav"><b>⌂</b>Home</div>
+            <div class="nav"><b>▣</b>Categories</div>
+            <div class="nav"><b>♡</b>Wishlist</div>
+            <div class="nav active"><b>□</b>Cart</div>
+            <div class="nav"><b>◌</b>Account</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAMPLING -->
+    <div class="phone-wrap">
+      <div class="phone-label">Option B · Sampling starts from listing page</div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen" id="samplingScreen">
+          <div class="status"><span>9:41</span><span>5G&nbsp;&nbsp;◔&nbsp;&nbsp;▮</span></div>
+          <div class="appbar">
+            <button class="back" onclick="samplingBack()">‹</button>
+            <h2 id="samplingTitle">BEAUTY & PERSONAL CARE</h2>
+            <button class="icon-btn" onclick="openModal('Only products marked Trial are eligible for Sampling Credits. Other SKUs remain regular purchase products.')">?</button>
+          </div>
+
+          <!-- Listing state -->
+          <div class="content" id="listingView">
+            <div class="search">⌕&nbsp;&nbsp;Search beauty products</div>
+            <div class="category-row">
+              <div class="cat active">All</div>
+              <div class="cat">Skincare</div>
+              <div class="cat">Haircare</div>
+              <div class="cat">Makeup</div>
+            </div>
+            <div class="banner">
+              <div style="font-size:18px">🎁</div>
+              <div><b>Try select products using Sampling Credits</b><br><span>Trial-tagged SKUs only</span></div>
+            </div>
+
+            <div class="products">
+              <div class="listing">
+                <div class="listing-img">
+                  <svg viewBox="0 0 180 150">
+                    <rect width="180" height="150" fill="#fbf4fa"/>
+                    <ellipse cx="92" cy="124" rx="40" ry="9" fill="#e6dde5"/>
+                    <rect x="63" y="31" width="58" height="86" rx="14" fill="#e7b38f"/>
+                    <rect x="72" y="18" width="40" height="19" rx="5" fill="#e0e6e8"/>
+                    <rect x="72" y="56" width="40" height="26" rx="4" fill="#fff"/>
+                    <text x="92" y="72" text-anchor="middle" font-size="8" font-weight="800" fill="#a51d89">SERUM</text>
+                  </svg>
+                </div>
+                <div class="listing-body">
+                  <div class="listing-name">Vitamin C Glow Serum</div>
+                  <div class="listing-price">₹428</div>
+                  <div class="trial" onclick="openSamplingCredits()">TRIAL · USE CREDITS</div>
+                </div>
+              </div>
+
+              <div class="listing">
+                <div class="listing-img">
+                  <svg viewBox="0 0 180 150">
+                    <rect width="180" height="150" fill="#eef7ff"/>
+                    <ellipse cx="91" cy="125" rx="38" ry="9" fill="#dce8f1"/>
+                    <rect x="67" y="33" width="48" height="83" rx="13" fill="#dfeeff"/>
+                    <rect x="73" y="18" width="36" height="19" rx="5" fill="#d4dce3"/>
+                    <rect x="74" y="57" width="34" height="24" rx="4" fill="#fff"/>
+                    <text x="91" y="72" text-anchor="middle" font-size="8" font-weight="800" fill="#43739f">SPF 50</text>
+                  </svg>
+                </div>
+                <div class="listing-body">
+                  <div class="listing-name">Daily Sunscreen SPF 50</div>
+                  <div class="listing-price">₹349</div>
+                  <div class="trial" onclick="openSamplingCredits()">TRIAL · USE CREDITS</div>
+                </div>
+              </div>
+
+              <div class="listing">
+                <div class="listing-img">
+                  <svg viewBox="0 0 180 150">
+                    <rect width="180" height="150" fill="#f9f8f9"/>
+                    <ellipse cx="88" cy="125" rx="42" ry="9" fill="#e8e5e8"/>
+                    <rect x="66" y="34" width="44" height="83" rx="13" fill="#fff"/>
+                    <rect x="69" y="22" width="38" height="17" rx="5" fill="#d2d5d7"/>
+                    <text x="88" y="75" text-anchor="middle" font-size="7" font-weight="800" fill="#5e5a62">FACE WASH</text>
+                  </svg>
+                </div>
+                <div class="listing-body">
+                  <div class="listing-name">Acne-Control Face Wash</div>
+                  <div class="listing-price">₹299</div>
+                  <div class="no-trial">Regular SKU</div>
+                </div>
+              </div>
+
+              <div class="listing">
+                <div class="listing-img">
+                  <svg viewBox="0 0 180 150">
+                    <rect width="180" height="150" fill="#fff5ec"/>
+                    <ellipse cx="90" cy="125" rx="39" ry="9" fill="#eadfd7"/>
+                    <rect x="67" y="33" width="46" height="84" rx="12" fill="#e7c69c"/>
+                    <rect x="72" y="20" width="36" height="17" rx="5" fill="#d7c7ad"/>
+                    <rect x="74" y="57" width="32" height="23" rx="3" fill="#fff"/>
+                    <text x="90" y="72" text-anchor="middle" font-size="7" font-weight="800" fill="#a05f2c">BODY</text>
+                  </svg>
+                </div>
+                <div class="listing-body">
+                  <div class="listing-name">Daily Body Lotion</div>
+                  <div class="listing-price">₹239</div>
+                  <div class="no-trial">Regular SKU</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Credits state -->
+          <div class="content" id="creditsView" style="display:none">
+            <div class="credit-hero">
+              <div class="credit-label">YOUR SAMPLING CREDITS</div>
+              <span class="credit-number">₹300</span>
+              <div class="credit-desc">Use credits on supplier-enabled Trial SKUs. Credits are non-cash and stay inside Meesho.</div>
+              <div class="pills">
+                <span class="pill">Trial SKUs only</span>
+                <span class="pill">No cash payment</span>
+                <span class="pill">Earned from NMV</span>
+              </div>
+            </div>
+
+            <div class="section-title" style="margin-left:2px;margin-right:2px">Available Trial SKUs</div>
+            <div class="credit-section">
+              <div class="sample-item">
+                <div class="prod-img">
+                  <svg viewBox="0 0 80 80">
+                    <rect width="80" height="80" fill="#fbf3fa"/>
+                    <rect x="29" y="20" width="22" height="9" rx="3" fill="#e6eaec"/>
+                    <rect x="28" y="28" width="24" height="35" rx="7" fill="#e7b38f"/>
+                    <rect x="32" y="37" width="16" height="9" rx="2" fill="#fff"/>
+                    <text x="40" y="43" text-anchor="middle" font-size="5" font-weight="800" fill="#a51d89">GLOW</text>
+                  </svg>
+                </div>
+                <div class="sample-meta">
+                  <div class="sample-name">Vitamin C Glow Serum · Trial</div>
+                  <div class="sub">Sample value ₹120 · Mall verified</div>
+                </div>
+                <button class="redeem-btn" onclick="redeemSample(120,'Vitamin C Glow Serum')">Redeem</button>
+              </div>
+
+              <div class="sample-item">
+                <div class="prod-img">
+                  <svg viewBox="0 0 80 80">
+                    <rect width="80" height="80" fill="#eef7ff"/>
+                    <rect x="31" y="16" width="18" height="10" rx="3" fill="#d9e0e5"/>
+                    <rect x="28" y="24" width="24" height="39" rx="7" fill="#dfeeff"/>
+                    <rect x="32" y="37" width="16" height="9" rx="2" fill="#fff"/>
+                    <text x="40" y="43" text-anchor="middle" font-size="5" font-weight="800" fill="#43739f">SPF50</text>
+                  </svg>
+                </div>
+                <div class="sample-meta">
+                  <div class="sample-name">Daily Sunscreen SPF 50 · Trial</div>
+                  <div class="sub">Sample value ₹99 · High-conversion</div>
+                </div>
+                <button class="redeem-btn" onclick="redeemSample(99,'Daily Sunscreen SPF 50')">Redeem</button>
+              </div>
+
+              <div class="sample-item">
+                <div class="prod-img">
+                  <svg viewBox="0 0 80 80">
+                    <rect width="80" height="80" fill="#f7f1fa"/>
+                    <rect x="29" y="19" width="22" height="9" rx="3" fill="#d1c8d8"/>
+                    <rect x="28" y="27" width="24" height="36" rx="7" fill="#b9a6d4"/>
+                    <rect x="32" y="37" width="16" height="9" rx="2" fill="#fff"/>
+                    <text x="40" y="43" text-anchor="middle" font-size="5" font-weight="800" fill="#70519b">SERUM</text>
+                  </svg>
+                </div>
+                <div class="sample-meta">
+                  <div class="sample-name">Niacinamide Daily Serum · Trial</div>
+                  <div class="sub">Sample value ₹110 · Creator fit</div>
+                </div>
+                <button class="redeem-btn" onclick="redeemSample(110,'Niacinamide Daily Serum')">Redeem</button>
+              </div>
+
+              <div class="info">
+                <strong>How credits work:</strong> eligible creators earn Sampling Credits based on Net Attributable NMV. Credits are redeemable only on supplier-enabled Trial SKUs and cannot be withdrawn or transferred.
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom">
+            <div class="nav active"><b>⌂</b>Home</div>
+            <div class="nav"><b>▣</b>Categories</div>
+            <div class="nav"><b>♡</b>Wishlist</div>
+            <div class="nav"><b>□</b>Orders</div>
+            <div class="nav"><b>◌</b>Account</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="modalBg" onclick="closeModal(event)">
+  <div class="modal">
+    <h3 id="modalTitle"></h3>
+    <p id="modalBody"></p>
+    <div class="row" id="modalRow" style="display:none">
+      <span id="modalLeft"></span><b id="modalRight"></b>
+    </div>
+    <button class="close" onclick="closeModal()">Done</button>
+  </div>
+</div>
+
+<script>
+let splitOn=false;
+function toggleSplitPay(){
+  splitOn=!splitOn;
+  document.getElementById('splitSwitch').classList.toggle('on',splitOn);
+  document.getElementById('walletPanel').classList.toggle('show',splitOn);
+  document.getElementById('payTotal').textContent=splitOn ? '₹500' : '₹500';
+}
+function checkoutNow(){
+  openModal(splitOn
+    ? 'SplitPay applied'
+    : 'Normal UPI checkout',
+    splitOn
+    ? '₹300 confirmed commission will be settled against the order and ₹200 will be paid by UPI. Your pending commission remains locked.'
+    : 'You are continuing with the normal Meesho checkout flow. Turn on SplitPay Wallet above to use confirmed affiliate commission.',
+    splitOn ? 'SplitPay ₹300' : 'Payment method',
+    splitOn ? 'UPI ₹200' : 'UPI');
+}
+function openSamplingCredits(){
+  document.getElementById('listingView').style.display='none';
+  document.getElementById('creditsView').style.display='block';
+  document.getElementById('samplingTitle').textContent='Sampling Credits';
+}
+function samplingBack(){
+  const listing=document.getElementById('listingView');
+  const credits=document.getElementById('creditsView');
+  if(credits.style.display!=='none'){
+    credits.style.display='none'; listing.style.display='block';
+    document.getElementById('samplingTitle').textContent='BEAUTY & PERSONAL CARE';
+  }else{
+    alert('Back to previous Meesho page');
+  }
+}
+function redeemSample(price,name){
+  openModal('Redeem sample',
+    'Redeem '+name+' using Sampling Credits. No cash payment is required from you.',
+    'Credits after redemption',
+    '₹'+(300-price));
+}
+function openModal(bodyTitle,bodyText,left,right){
+  document.getElementById('modalTitle').textContent=bodyTitle;
+  document.getElementById('modalBody').textContent=bodyText;
+  const row=document.getElementById('modalRow');
+  if(left!==undefined){
+    row.style.display='flex';
+    document.getElementById('modalLeft').textContent=left;
+    document.getElementById('modalRight').textContent=right;
+  }else row.style.display='none';
+  document.getElementById('modalBg').style.display='flex';
+}
+function closeModal(e){
+  if(!e || e.target===document.getElementById('modalBg')){
+    document.getElementById('modalBg').style.display='none';
+  }
+}
+</script>
+</body>
+</html>

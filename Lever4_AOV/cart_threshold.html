@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesho - Cart Free Sample</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 
+                        'meesho-purple': '#8b1874', 
+                        'meesho-pink': '#df1e7b',
+                        'meesho-darkpink': '#b91362'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-100 m-0 p-0 h-screen w-full overflow-hidden flex flex-col font-sans">
+    
+    <!-- Top Nav -->
+    <div class="bg-white px-4 py-3 flex items-center gap-4 shadow-sm z-20">
+        <i class="fa-solid fa-arrow-left text-gray-600 text-lg"></i>
+        <div class="flex-1">
+            <h1 class="text-gray-900 font-bold text-lg">Cart</h1>
+        </div>
+        <div class="flex gap-1 items-center">
+            <div class="w-2 h-2 rounded-full bg-meesho-pink"></div>
+            <div class="w-8 h-[1px] bg-gray-300"></div>
+            <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+            <div class="w-8 h-[1px] bg-gray-300"></div>
+            <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+        </div>
+    </div>
+
+    <!-- Scrollable Cart Content -->
+    <div class="flex-1 overflow-y-auto pb-24 bg-gray-100">
+        
+        <!-- AOV GAMIFICATION BANNER (The Core Feature) -->
+        <div class="bg-white p-4 mb-2 shadow-sm border-b border-gray-200">
+            <div class="flex items-start gap-3">
+                <div class="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center border border-orange-100 relative shrink-0">
+                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&w=100&q=80" class="w-8 h-8 object-cover rounded opacity-50">
+                    <i class="fa-solid fa-lock absolute text-orange-500 text-lg drop-shadow-md"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-gray-900 font-bold text-[13px] leading-tight">Add items worth <span class="text-meesho-pink">₹90</span> more to unlock a FREE Sunscreen Mini! 🎁</h3>
+                    
+                    <!-- Progress Bar -->
+                    <div class="mt-2.5 flex items-center gap-2">
+                        <div class="w-full bg-gray-200 rounded-full h-1.5 relative overflow-hidden">
+                            <div class="bg-gradient-to-r from-meesho-purple to-meesho-pink h-1.5 rounded-full" style="width: 82%;"></div>
+                        </div>
+                        <span class="text-[9px] text-gray-500 font-bold w-max">₹410 / ₹500</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="w-full mt-3 bg-purple-50 text-meesho-purple border border-purple-200 text-[11px] font-bold py-2 rounded-lg flex items-center justify-center gap-1">
+                <i class="fa-solid fa-plus text-[10px]"></i> Add more Beauty products
+            </button>
+        </div>
+
+        <!-- Cart Item 1 -->
+        <div class="bg-white p-4 mb-2 shadow-sm border-y border-gray-200">
+            <div class="flex gap-3">
+                <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?ixlib=rb-4.0.3&w=150&q=80" class="w-16 h-20 object-cover rounded border border-gray-200 shrink-0">
+                <div class="flex-1">
+                    <h4 class="text-gray-800 text-[13px] font-medium leading-tight mb-1">Gentle Foaming Cleanser (150ml)</h4>
+                    <p class="text-[11px] text-gray-500 mb-2">Size: Free Size • Qty: 1</p>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[15px] font-black text-gray-900">₹250</span>
+                        <span class="text-[11px] text-gray-400 line-through">₹399</span>
+                    </div>
+                    <span class="text-[9px] text-green-700 bg-green-50 px-1 py-0.5 rounded font-bold mt-1 inline-block">Free Delivery</span>
+                </div>
+            </div>
+            <div class="flex border-t border-gray-100 mt-3 pt-3">
+                <button class="flex-1 text-gray-600 text-[12px] font-bold border-r border-gray-100"><i class="fa-solid fa-trash-can mr-1"></i> Remove</button>
+                <button class="flex-1 text-gray-600 text-[12px] font-bold"><i class="fa-solid fa-plus mr-1"></i> Add More</button>
+            </div>
+        </div>
+
+        <!-- Cart Item 2 -->
+        <div class="bg-white p-4 mb-2 shadow-sm border-y border-gray-200">
+            <div class="flex gap-3">
+                <img src="https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?ixlib=rb-4.0.3&w=150&q=80" class="w-16 h-20 object-cover rounded border border-gray-200 shrink-0">
+                <div class="flex-1">
+                    <h4 class="text-gray-800 text-[13px] font-medium leading-tight mb-1">Hydrating Rose Toner (100ml)</h4>
+                    <p class="text-[11px] text-gray-500 mb-2">Size: Free Size • Qty: 1</p>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[15px] font-black text-gray-900">₹160</span>
+                        <span class="text-[11px] text-gray-400 line-through">₹249</span>
+                    </div>
+                    <span class="text-[9px] text-green-700 bg-green-50 px-1 py-0.5 rounded font-bold mt-1 inline-block">Free Delivery</span>
+                </div>
+            </div>
+            <div class="flex border-t border-gray-100 mt-3 pt-3">
+                <button class="flex-1 text-gray-600 text-[12px] font-bold border-r border-gray-100"><i class="fa-solid fa-trash-can mr-1"></i> Remove</button>
+                <button class="flex-1 text-gray-600 text-[12px] font-bold"><i class="fa-solid fa-plus mr-1"></i> Add More</button>
+            </div>
+        </div>
+
+        <!-- Price Details -->
+        <div class="bg-white p-4 shadow-sm border-y border-gray-200">
+            <h3 class="text-gray-800 font-bold text-[13px] mb-3 border-b border-gray-100 pb-2">Price Details (2 Items)</h3>
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-gray-600 text-[12px]">Total Product Price</span>
+                <span class="text-gray-800 text-[12px] font-semibold">₹410</span>
+            </div>
+            <div class="flex justify-between items-center mb-3">
+                <span class="text-gray-600 text-[12px]">Delivery</span>
+                <span class="text-green-600 text-[12px] font-bold">FREE</span>
+            </div>
+            <div class="flex justify-between items-center border-t border-gray-100 pt-3">
+                <span class="text-gray-900 text-[14px] font-bold">Order Total</span>
+                <span class="text-gray-900 text-[15px] font-black">₹410</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Fixed Bottom Bar -->
+    <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-3 flex justify-between items-center shadow-[0_-5px_15px_rgba(0,0,0,0.05)] z-30">
+        <div class="flex flex-col">
+            <span class="text-lg font-black text-gray-900">₹410</span>
+            <span class="text-[10px] text-meesho-pink font-bold cursor-pointer">View Price Details</span>
+        </div>
+        <button class="bg-meesho-purple text-white font-bold py-3 px-10 rounded-lg shadow-md hover:bg-meesho-darkpink transition text-[15px]">
+            Continue
+        </button>
+    </div>
+
+</body>
+</html>
