@@ -1,6 +1,19 @@
 /* Appendix Data Modal Handler */
 const appendixData = {
     // LEVER 1 NUMBERS
+    "upfront-friction": {
+        title: "78.3% — Upfront Sourcing Friction (18 of 23 Creators)",
+        source: "Deck Slide 2 & Appendix Page 14 (Primary Creator Interviews)",
+        base: "23 In-depth Creator Interviews across BPC and Non-BPC cohorts",
+        formula: "18 out of 23 creators cited: 'Paying upfront for non-returnable cosmetics is the primary entry barrier'",
+        breakdown: [
+            { label: "Total Creators Interviewed", val: "23 creators", note: "Active, churned, and control" },
+            { label: "Face Sunk Cost Friction", val: "78.3% (18/23)", note: "'Pocket se paisa jaa raha tha'" },
+            { label: "Non-Returnable Risk", val: "100% loss", note: "Opened cosmetics cannot be hauls or returned" },
+            { label: "Orders to Recover ₹300 SKU", val: "~11 orders", note: "Out-of-pocket cash risk before earning ₹1" },
+            { label: "Solution 1.2 Impact", val: "₹500 Welcome Token", note: "De-risks first review before creator makes a sale" }
+        ]
+    },
     "rice-11": {
         title: "RICE 30.0 — Solution 1.1 In-App Onboarding",
         source: "Deck Slide 10 & Appendix Page 23 (Prioritization Matrix)",
@@ -415,7 +428,9 @@ const keyAliases = {
     "lever1-cac": "inapp-cac",
     "lever11-cac": "inapp-cac",
     "150-cac": "inapp-cac",
-    "in-app-cac": "inapp-cac"
+    "in-app-cac": "inapp-cac",
+    "upfront-risk": "upfront-friction",
+    "sunk-cost": "upfront-friction"
 };
 
 function openGuesstimate(key) {

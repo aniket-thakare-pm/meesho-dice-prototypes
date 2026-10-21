@@ -406,35 +406,68 @@
                 pillMetricBtn.setAttribute("onclick", "openGuesstimate('poaching-pool')");
 
                 tagInsight.innerText = "1.2 External Poaching Insight";
-                headInsight.innerText = "Mid-tier creators won't join without upfront validation and risk-free rewards.";
-                descInsight.innerText = "Instagram API verification instantly grants a ₹500 beauty product credit to creators with 5K+ followers. The credit is earned back after 5 sales or written off, replacing agency retainers.";
+                headInsight.innerText = "External beauty creators face upfront cash risk. Agency retainers bleed ₹5,000–₹7,000.";
+                descInsight.innerText = "Meta Graph API verification automates eligibility for creators with >5,000 followers and >2% engagement. An upfront ₹500 beauty product token is earned back after 5 sales or written off, cutting creator acquisition cost by 3–4x vs agency middlemen.";
 
                 cardsLeft.innerHTML = `
-                    <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3.5 flex items-center gap-3.5">
-                        <div class="w-11 h-11 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-shield-halved text-pink-400"></i>
+                    <!-- PAIN POINTS SECTION -->
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-black uppercase tracking-wider text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded border border-rose-500/20">Pain Points</span>
+                            <span class="text-[10px] text-gray-500 font-medium">External Supply Frictions</span>
                         </div>
-                        <div>
-                            <button onclick="openGuesstimate('poaching-net-cost')" class="text-base font-black text-white hover:text-pink-400 hover:underline text-left cursor-pointer flex items-center gap-1.5">₹977 Net Cost <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-pink-400"></i></button>
-                            <div class="text-[11px] text-gray-400 leading-tight">Net cost per activated creator (₹1,667 gross − ₹690 profit)</div>
+                        <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-file-invoice-dollar text-rose-400 text-sm"></i>
+                            </div>
+                            <div>
+                                <button onclick="openGuesstimate('mcn-markup')" class="text-sm font-black text-white hover:text-pink-400 hover:underline text-left cursor-pointer flex items-center gap-1.5">~31% Agency Leakage <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-pink-400"></i></button>
+                                <div class="text-[11px] text-gray-400 leading-tight">Middlemen markups inflate creator CAC to ₹5,000–₹7,000</div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-hand-holding-dollar text-purple-400 text-sm"></i>
+                            </div>
+                            <div>
+                                <button onclick="openGuesstimate('upfront-friction')" class="text-sm font-black text-white hover:text-pink-400 hover:underline text-left cursor-pointer flex items-center gap-1.5">78% Upfront Risk <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-pink-400"></i></button>
+                                <div class="text-[11px] text-gray-400 leading-tight">18 of 23 creators refuse to pre-buy non-returnable cosmetics</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3.5 flex items-center gap-3.5">
-                        <div class="w-11 h-11 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-stopwatch text-purple-400"></i>
+
+                    <!-- POACHING ECONOMICS & GUARDRAILS SECTION -->
+                    <div class="space-y-2 pt-2 border-t border-gray-700/60">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-black uppercase tracking-wider text-pink-400 bg-pink-500/10 px-2 py-0.5 rounded border border-pink-500/20">Poaching Economics</span>
+                            <span class="text-[10px] text-gray-500 font-medium">Unit Model & Guardrails</span>
                         </div>
-                        <div>
-                            <div class="text-base font-black text-white">Month 5-6 Payback</div>
-                            <div class="text-[11px] text-gray-400 leading-tight">Poaching pilot pays back fully via 4.6% contribution margin</div>
+                        <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-shield-halved text-pink-400 text-sm"></i>
+                            </div>
+                            <div>
+                                <button onclick="openGuesstimate('poaching-net-cost')" class="text-sm font-black text-white hover:text-pink-400 hover:underline text-left cursor-pointer flex items-center gap-1.5">₹977 Net Cost <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-pink-400"></i></button>
+                                <div class="text-[11px] text-gray-400 leading-tight">Net cost per activated creator (₹1,667 gross − ₹690 profit)</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3.5 flex items-center gap-3.5">
-                        <div class="w-11 h-11 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-ban text-emerald-400"></i>
+                        <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-stopwatch text-purple-400 text-sm"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-black text-white">Month 5-6 Payback</div>
+                                <div class="text-[11px] text-gray-400 leading-tight">Poaching pilot pays back fully via 4.6% contribution margin</div>
+                            </div>
                         </div>
-                        <div>
-                            <div class="text-base font-black text-white">Stop Below 16.7%</div>
-                            <div class="text-[11px] text-gray-400 leading-tight">Clear guardrail: halt spending if 5-sale conversion drops below 16.7%</div>
+                        <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-ban text-emerald-400 text-sm"></i>
+                            </div>
+                            <div>
+                                <div class="text-sm font-black text-white">Stop Below 16.7%</div>
+                                <div class="text-[11px] text-gray-400 leading-tight">Clear guardrail: halt spending if 5-sale conversion drops below 16.7%</div>
+                            </div>
                         </div>
                     </div>
                 `;
