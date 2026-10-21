@@ -108,7 +108,7 @@
             </div>
             
             <div class="phone-frame">
-                <iframe id="mainIframe" src="Lever2_SplitPay_Phone.html"></iframe>
+                <iframe id="mainIframe" src="Lever2_SplitPay_Phone.html?v=rev2"></iframe>
             </div>
 
             <!-- QUICK BOTTOM NAVIGATION TOGGLE -->
@@ -260,7 +260,7 @@
             const btnNavNext = document.getElementById('btnNavNext');
 
             if (tab === 'splitpay') {
-                iframe.src = 'Lever2_SplitPay_Phone.html';
+                iframe.src = 'Lever2_SplitPay_Phone.html?t=' + Date.now();
                 title.innerText = 'SplitPay Wallet Checkout';
                 subtitle.innerText = 'SOLUTION 2.1';
                 tab21.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-pink-600 text-white shadow-md flex items-center gap-2';
@@ -350,7 +350,7 @@
                 btnNavNext.setAttribute("onclick", "switchView('sampling')");
                 btnNavNext.innerText = "Next: 2.2 Sampling Credits ›";
             } else {
-                iframe.src = 'Lever2_Sampling_Phone.html';
+                iframe.src = 'Lever2_Sampling_Phone.html?t=' + Date.now();
                 title.innerText = 'Supplier-Funded Sampling Credits';
                 subtitle.innerText = 'SOLUTION 2.2';
                 tab22.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-pink-600 text-white shadow-md flex items-center gap-2';
