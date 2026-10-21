@@ -34,6 +34,32 @@ const appendixData = {
         formula: "(Reach 8 × Impact 8 × Confidence 5) ÷ Effort 3 = 106.7",
         breakdown: [
             { label: "Reach (R: 8/10)", val: "90,000 Pool", note: "Qualified Instagram nano/micro creators" },
+    "rice-21": {
+        title: "RICE 12.0 · Solution 2.1 SplitPay Wallet",
+        source: "Deck Slide 10 & Appendix Page 23 (Prioritization Matrix)",
+        base: "RICE Scoring Model: (Reach × Impact × Confidence) ÷ Effort (1–10 Scale)",
+        formula: "(Reach 2 × Impact 8 × Confidence 6) ÷ Effort 8 = 12.0",
+        breakdown: [
+            { label: "Reach (R: 2/10)", val: "2,380 Creators", note: "Addresses 42.5% of creators with unwithdrawn balance" },
+            { label: "Impact (I: 8/10)", val: "+12 Videos/yr", note: "+1 video/month velocity by eliminating upfront cash risk" },
+            { label: "Confidence (C: 6/10)", val: "Store-Credit Model", note: "Benchmarked against 35–45% store credit adoption" },
+            { label: "Effort (E: 8/10)", val: "12 PMs (₹48 L)", note: "Higher build cost; ledger integration with Meesho escrow" },
+            { label: "Final Priority", val: "RICE = 12.0", note: "Ranked #9 in DICE 3.0; Months 6–12 build sequence" }
+        ]
+    },
+    "rice-22": {
+        title: "RICE 46.7 · Solution 2.2 Sampling Credits",
+        source: "Deck Slide 10 & Appendix Page 23 (Prioritization Matrix)",
+        base: "RICE Scoring Model: (Reach × Impact × Confidence) ÷ Effort (1–10 Scale)",
+        formula: "(Reach 5 × Impact 8 × Confidence 7) ÷ Effort 6 = 46.7",
+        breakdown: [
+            { label: "Reach (R: 5/10)", val: "8,000 Creators", note: "Full BPC creator pool eligible for Trial SKUs" },
+            { label: "Impact (I: 8/10)", val: "₹51.0 Cr / yr", note: "26 samples/yr generating high-intent review videos" },
+            { label: "Confidence (C: 7/10)", val: "8.62x RoAS Proof", note: "Suppliers exchange ₹40 ad credits for ₹120 samples" },
+            { label: "Effort (E: 6/10)", val: "10 PMs (₹40 L)", note: "Supplier barter engine & Trial SKU logistics" },
+            { label: "Final Priority", val: "RICE = 46.7", note: "Ranked #4 in DICE 3.0 (DEEP DIVE); Months 0–3 foundation" }
+        ]
+    },
             { label: "Impact (I: 8/10)", val: "₹5,000/mo NMV", note: "High sales velocity with established followings" },
             { label: "Confidence (C: 5/10)", val: "API Gated", note: "Meta Graph API checks >5K followers & >2% ER" },
             { label: "Effort (E: 3/10)", val: "4 PMs (₹16 L)", note: "OAuth verification + welcome token workflow" },

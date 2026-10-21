@@ -92,14 +92,14 @@
     <div class="flex-1 flex max-w-[1720px] w-full mx-auto px-8 py-6 gap-8 items-start justify-center">
 
         <!-- LEFT PANEL: DYNAMIC INSIGHT & PRIMARY NUMBERS -->
-        <aside class="w-[360px] shrink-0 meesho-panel rounded-2xl p-6 custom-scroll max-h-[820px] overflow-y-auto space-y-5">
+        <aside class="w-[360px] shrink-0 meesho-panel rounded-2xl p-6 custom-scroll min-h-[840px] space-y-5">
             <div>
                 <span id="tagInsight" class="text-[10px] font-black tracking-wider uppercase text-[#570054] bg-purple-50 px-2.5 py-1 rounded border border-purple-200">2.1 Cashflow Bottleneck</span>
                 <h3 id="headInsight" class="text-sm font-extrabold text-gray-900 mt-2.5 leading-snug">
-                    Commission stays locked until the return period ends, paralyzing creator re-investment.
+                    Creators Face Sunk-Cost Capital Lock-in. Content Velocity Halts Between Payouts.
                 </h3>
                 <p id="descInsight" class="text-xs text-gray-600 mt-2 leading-relaxed">
-                    Creators wait 7–14 days for returns to close before accessing payouts. SplitPay unlocks this confirmed pending commission directly at checkout so they can instantly order new video inventory.
+                    Commissions remain locked during standard return and settlement cycles (10–28 days), forcing creators to fund subsequent product reviews from personal savings. SplitPay allows creators to immediately re-invest accrued, delivered commissions at checkout—advancing ₹0 platform debt and eliminating out-of-pocket hesitation.
                 </p>
             </div>
 
@@ -120,7 +120,7 @@
         </main>
 
         <!-- RIGHT PANEL: DYNAMIC MECHANIC BREAKDOWN & DEMO GUIDE -->
-        <aside class="w-[360px] shrink-0 meesho-panel rounded-2xl p-6 custom-scroll max-h-[820px] overflow-y-auto space-y-5">
+        <aside class="w-[360px] shrink-0 meesho-panel rounded-2xl p-6 custom-scroll min-h-[840px] space-y-5">
             <div>
                 <span id="tagSolution" class="text-[10px] font-black tracking-wider uppercase text-[#038d63] bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">Solution Architecture</span>
                 <h3 id="headSolution" class="text-sm font-extrabold text-gray-900 mt-2.5">
@@ -140,6 +140,14 @@
             <div class="border-t border-gray-100 pt-3">
                 <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2" id="nmvModelHeading">Annual Value Created (Deck S6 & S21)</div>
                 <div id="nmvMathBox" class="space-y-1.5 text-[11px] font-mono text-gray-700 bg-gray-50 p-3 rounded-lg border border-gray-200"></div>
+            </div>
+
+            <!-- RICE PRIORITIZATION SCORE BOX (BOTTOM RIGHT CORNER) -->
+            <div class="border-t border-gray-100 pt-3">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Prioritization & Feasibility</div>
+                </div>
+                <div id="riceScoreBox"></div>
             </div>
         </aside>
 
@@ -197,6 +205,7 @@
             const solutionDetails = document.getElementById('solutionDetails');
             const guideText = document.getElementById('guideText');
             const nmvMathBox = document.getElementById('nmvMathBox');
+            const riceScoreBox = document.getElementById('riceScoreBox');
             const pillNmvLabel = document.getElementById('pillNmvLabel');
             const pillNmvBtn = document.getElementById('pillNmvBtn');
             const pillMetricLabel = document.getElementById('pillMetricLabel');
@@ -218,44 +227,100 @@
                 pillMetricBtn.setAttribute("onclick", "openGuesstimate('splitpay-adoption')");
 
                 tagInsight.innerText = "2.1 Cashflow Bottleneck";
-                headInsight.innerText = "Commission stays locked until the return period ends, paralyzing creator re-investment.";
-                descInsight.innerText = "Creators wait 7–14 days for returns to close before accessing payouts. SplitPay unlocks this confirmed pending commission directly at checkout so they can instantly order new video inventory.";
+                headInsight.innerText = "Creators Face Sunk-Cost Capital Lock-in. Content Velocity Halts Between Payouts.";
+                descInsight.innerText = "Commissions remain locked during standard return and settlement cycles (10–28 days), forcing creators to fund subsequent product reviews from personal savings. SplitPay allows creators to immediately re-invest accrued, delivered commissions at checkout—advancing ₹0 platform debt and eliminating out-of-pocket hesitation.";
 
                 cardsLeft.innerHTML = `
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Pain Points & Sourcing Barriers</div>
                     <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
                         <div class="w-11 h-11 rounded-lg bg-pink-100 text-[#df1e7b] border border-pink-200 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-wallet"></i>
+                            <i class="fa-solid fa-scale-unbalanced text-lg"></i>
                         </div>
                         <div>
-                            <button onclick="openGuesstimate('breakeven-11')" class="text-base font-black text-gray-900 hover:text-[#df1e7b] hover:underline text-left cursor-pointer flex items-center gap-1.5">11 Orders → 0 <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-[#df1e7b]"></i></button>
-                            <div class="text-[11px] text-gray-500 leading-tight">Eliminates creator cash risk before filming</div>
+                            <button onclick="openGuesstimate('breakeven-11')" class="text-base font-black text-gray-900 hover:text-[#df1e7b] hover:underline text-left cursor-pointer flex items-center gap-1.5">
+                                ~11 Orders → 0 <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-[#df1e7b]"></i>
+                            </button>
+                            <div class="text-[11px] text-gray-500 leading-tight">Must sell 11 units at 9% commission to recover 1 ₹300 SKU before profit</div>
                         </div>
                     </div>
                     <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
-                        <div class="w-11 h-11 rounded-lg bg-purple-100 text-[#570054] border border-purple-200 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-users"></i>
+                        <div class="w-11 h-11 rounded-lg bg-rose-100 text-rose-700 border border-rose-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-triangle-exclamation text-lg"></i>
                         </div>
                         <div>
-                            <div class="text-base font-black text-gray-900">2,380 Creators</div>
-                            <div class="text-[11px] text-gray-500 leading-tight">Adopters unblocked to purchase and review new SKUs</div>
+                            <button onclick="openGuesstimate('upfront-friction')" class="text-base font-black text-gray-900 hover:text-rose-700 hover:underline text-left cursor-pointer flex items-center gap-1.5">
+                                78.3% Upfront Risk <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-rose-700"></i>
+                            </button>
+                            <div class="text-[11px] text-gray-500 leading-tight">18 of 23 interviewed creators cited upfront cash risk as primary barrier</div>
+                        </div>
+                    </div>
+
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-3 mb-1">SplitPay Economics & Adoption</div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-purple-100 text-[#570054] border border-purple-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-users text-lg"></i>
+                        </div>
+                        <div>
+                            <button onclick="openGuesstimate('splitpay-adoption')" class="text-base font-black text-gray-900 hover:text-[#570054] hover:underline text-left cursor-pointer flex items-center gap-1.5">
+                                2,380 Creators <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-[#570054]"></i>
+                            </button>
+                            <div class="text-[11px] text-gray-500 leading-tight">42.5% of 5,600 creators with pending balance adopt wallet split-pay</div>
                         </div>
                     </div>
                     <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
                         <div class="w-11 h-11 rounded-lg bg-emerald-100 text-[#038d63] border border-emerald-200 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-video"></i>
+                            <i class="fa-solid fa-video text-lg"></i>
                         </div>
                         <div>
                             <div class="text-base font-black text-gray-900">+12 Videos / yr</div>
-                            <div class="text-[11px] text-gray-500 leading-tight">Extra shoppable content produced per active creator</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">+1 extra shoppable review per month unblocked by zero cash risk</div>
                         </div>
                     </div>
                 `;
 
                 boxEconomics.innerHTML = `
-                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">SplitPay Checkout Example</span>
-                    <div class="flex items-center justify-between text-gray-700"><span>Product Order Value</span><span class="text-gray-500 font-mono">₹500</span></div>
-                    <div class="flex items-center justify-between text-gray-700"><span>Paid via Pending Wallet</span><span class="text-[#df1e7b] font-bold">−₹300</span></div>
-                    <div class="flex items-center justify-between text-gray-700"><span>Paid via Creator UPI</span><span class="text-[#038d63] font-bold">₹200</span></div>
+                    <div class="space-y-2.5">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-black text-gray-800 uppercase tracking-wider flex items-center gap-1.5">
+                                <i class="fa-solid fa-clock-rotate-left text-[#df1e7b]"></i> Payout Delay & Empty Days Math
+                            </span>
+                            <span class="text-[9px] font-black text-[#570054] bg-purple-100 px-2 py-0.5 rounded border border-purple-200">6–18 Idle Days</span>
+                        </div>
+                        
+                        <div class="space-y-1.5 text-[11px] font-mono text-gray-700 bg-white p-2.5 rounded-lg border border-gray-200">
+                            <div class="flex justify-between items-center text-gray-600">
+                                <span class="font-sans">1. Delivery + Return Window</span>
+                                <span class="font-bold text-gray-900">Day 10–15</span>
+                            </div>
+                            <div class="text-[10px] text-gray-400 font-sans pl-2">
+                                3–8d delivery + 7d return (Return liability ends)
+                            </div>
+
+                            <div class="flex justify-between items-center text-gray-600 pt-1 border-t border-gray-100">
+                                <span class="font-sans">2. Meesho Confirmation Gap</span>
+                                <span class="font-bold text-amber-700">6–11 Idle Days</span>
+                            </div>
+                            <div class="text-[10px] text-gray-400 font-sans pl-2">
+                                Strict 21-day order confirmation (21 − [10–15]d)
+                            </div>
+
+                            <div class="flex justify-between items-center text-gray-600 pt-1 border-t border-gray-100">
+                                <span class="font-sans">3. Weekly Batch Payout Lag</span>
+                                <span class="font-bold text-gray-900">+0–7 Days</span>
+                            </div>
+                            <div class="text-[10px] text-gray-400 font-sans pl-2">
+                                Weekly disbursement schedule (21–28d total wait)
+                            </div>
+
+                            <div class="flex justify-between items-center pt-1.5 border-t-2 border-purple-200 text-[#570054] font-bold">
+                                <span class="font-sans">Total Empty/Locked Days</span>
+                                <span class="text-xs bg-pink-100 text-[#df1e7b] px-1.5 py-0.5 rounded font-mono font-black">6 to 18 Days</span>
+                            </div>
+                        </div>
+                        <div class="text-[10.5px] text-gray-500 leading-snug">
+                            <strong class="text-gray-800">SplitPay Value:</strong> Unlocks this confirmed, risk-free balance instantly at checkout so creators re-invest without waiting 6–18 dead days.
+                        </div>
+                    </div>
                 `;
 
                 tagSolution.innerText = "Solution 2.1";
@@ -286,6 +351,24 @@
                     <div class="flex justify-between"><span>× 12</span><span class="text-gray-400">Extra Videos/yr</span></div>
                     <div class="flex justify-between"><span>× ₹5,436</span><span class="text-gray-400">NMV / Video</span></div>
                     <div class="flex justify-between border-t border-gray-200 pt-1 font-bold text-[#570054]"><span>= ₹15.5 Cr</span><button onclick="openGuesstimate('lever21-nmv')" class="underline hover:text-[#df1e7b]">See Guesstimate</button></div>
+                `;
+
+                riceScoreBox.innerHTML = `
+                    <div class="bg-purple-50/70 border border-purple-200/90 rounded-xl p-3 flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm font-black text-gray-900">RICE 12.0</span>
+                                <span class="text-[9px] font-bold text-[#570054] bg-purple-100 px-2 py-0.5 rounded border border-purple-200">Priority #9</span>
+                            </div>
+                            <div class="text-[10px] font-mono text-gray-500 mt-0.5">
+                                (R:2 × I:8 × C:6) ÷ E:8
+                            </div>
+                        </div>
+                        <button onclick="openGuesstimate('rice-21')" class="px-2.5 py-1.5 bg-[#570054] hover:bg-[#df1e7b] text-white rounded-lg text-[10px] font-bold transition flex items-center gap-1 shadow-xs">
+                            <span>Breakdown</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                        </button>
+                    </div>
                 `;
             } else {
                 iframe.src = 'Lever2_Sampling_Phone.html?t=' + Date.now();
@@ -375,6 +458,24 @@
                     <div class="flex justify-between"><span>× 60%</span><span class="text-gray-400">Selling</span></div>
                     <div class="flex justify-between border-t border-gray-200 pt-1 font-bold text-[#570054]"><span>= ₹51.0 Cr</span><button onclick="openGuesstimate('lever22-nmv')" class="underline hover:text-[#df1e7b]">See Guesstimate</button></div>
                 `;
+                riceScoreBox.innerHTML = `
+                    <div class="bg-pink-50/70 border border-pink-200/90 rounded-xl p-3 flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm font-black text-gray-900">RICE 46.7</span>
+                                <span class="text-[9px] font-bold text-[#df1e7b] bg-pink-100 px-2 py-0.5 rounded border border-pink-200">Priority #4 · Deep Dive</span>
+                            </div>
+                            <div class="text-[10px] font-mono text-gray-500 mt-0.5">
+                                (R:5 × I:8 × C:7) ÷ E:6
+                            </div>
+                        </div>
+                        <button onclick="openGuesstimate('rice-22')" class="px-2.5 py-1.5 bg-[#df1e7b] hover:bg-[#570054] text-white rounded-lg text-[10px] font-bold transition flex items-center gap-1 shadow-xs">
+                            <span>Breakdown</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                        </button>
+                    </div>
+                `;
+
             }
         }
 
