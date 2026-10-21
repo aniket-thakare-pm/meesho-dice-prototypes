@@ -118,7 +118,7 @@
             </div>
             
             <div class="phone-frame">
-                <iframe id="mainIframe" src="Lever1_Buyer_Funnel_Phone.html"></iframe>
+                <iframe id="mainIframe" src="Lever1_Buyer_Funnel_Phone.html?v=6bpc"></iframe>
             </div>
         </main>
 
@@ -206,7 +206,7 @@
             const pillMetricBtn = document.getElementById('pillMetricBtn');
 
             if (tab === 'inapp') {
-                iframe.src = 'Lever1_Buyer_Funnel_Phone.html';
+                iframe.src = 'Lever1_Buyer_Funnel_Phone.html?t=' + Date.now();
                 title.innerText = 'Buyer Delivery History Invite';
                 subtitle.innerText = 'SOLUTION 1.1';
                 tab11.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-[#570054] text-white shadow-sm flex items-center gap-2';
@@ -291,7 +291,7 @@
                     <div class="flex justify-between border-t border-gray-200 pt-1 font-bold text-[#570054]"><span>= ₹8.9 Cr</span><button onclick="openGuesstimate('lever11-nmv')" class="underline hover:text-[#df1e7b]">See Guesstimate</button></div>
                 `;
             } else {
-                iframe.src = 'Lever1_Poaching_Phone.html';
+                iframe.src = 'Lever1_Poaching_Phone.html?t=' + Date.now();
                 title.innerText = 'Instagram OAuth Verification Gate';
                 subtitle.innerText = 'SOLUTION 1.2';
                 tab12.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-[#570054] text-white shadow-sm flex items-center gap-2';

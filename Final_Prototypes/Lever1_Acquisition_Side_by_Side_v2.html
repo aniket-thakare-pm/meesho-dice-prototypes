@@ -108,7 +108,7 @@
             </div>
             
             <div class="phone-frame">
-                <iframe id="mainIframe" src="Lever1_Buyer_Funnel_Phone.html"></iframe>
+                <iframe id="mainIframe" src="Lever1_Buyer_Funnel_Phone.html?v=6bpc"></iframe>
             </div>
 
             <!-- QUICK BOTTOM NAVIGATION TOGGLE -->
@@ -245,7 +245,7 @@
             const btnNavNext = document.getElementById('btnNavNext');
 
             if (tab === 'inapp') {
-                iframe.src = 'Lever1_Buyer_Funnel_Phone.html';
+                iframe.src = 'Lever1_Buyer_Funnel_Phone.html?t=' + Date.now();
                 title.innerText = 'Buyer Delivery History Invite';
                 subtitle.innerText = 'SOLUTION 1.1';
                 tab11.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-pink-600 text-white shadow-md flex items-center gap-2';
@@ -335,7 +335,7 @@
                 btnNavNext.setAttribute("onclick", "switchView('poaching')");
                 btnNavNext.innerText = "Next: 1.2 Creator Poaching ›";
             } else {
-                iframe.src = 'Lever1_Poaching_Phone.html';
+                iframe.src = 'Lever1_Poaching_Phone.html?t=' + Date.now();
                 title.innerText = 'Instagram OAuth Verification Gate';
                 subtitle.innerText = 'SOLUTION 1.2';
                 tab12.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-pink-600 text-white shadow-md flex items-center gap-2';
