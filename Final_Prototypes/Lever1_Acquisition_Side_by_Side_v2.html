@@ -108,7 +108,7 @@
             </div>
             
             <div class="phone-frame">
-                <iframe id="mainIframe" src="Lever1_Buyer_Funnel_Phone.html"></iframe>
+                <iframe id="mainIframe" src="Lever1_Buyer_Funnel_Phone.html?v=6bpc"></iframe>
             </div>
 
             <!-- QUICK BOTTOM NAVIGATION TOGGLE -->
@@ -245,7 +245,7 @@
             const btnNavNext = document.getElementById('btnNavNext');
 
             if (tab === 'inapp') {
-                iframe.src = 'Lever1_Buyer_Funnel_Phone.html';
+                iframe.src = 'Lever1_Buyer_Funnel_Phone.html?t=' + Date.now();
                 title.innerText = 'Buyer Delivery History Invite';
                 subtitle.innerText = 'SOLUTION 1.1';
                 tab11.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-pink-600 text-white shadow-md flex items-center gap-2';
@@ -306,21 +306,15 @@
                     <div class="p-3.5 rounded-xl bg-gray-800/70 border-2 border-pink-500/50">
                         <h4 class="text-xs font-bold text-white mb-1">Trigger at Peak Delight</h4>
                         <p class="text-[11px] text-gray-300 leading-snug">
-                            Banner appears right when a high-frequency beauty buyer confirms delivery: <em>"Show your delivered serum → Earn cash on sales"</em>.
-                        </p>
-                    </div>
-                    <div class="p-3.5 rounded-xl bg-gray-800/40 border border-gray-700/50">
-                        <h4 class="text-xs font-bold text-white mb-1">Auto-Linked First Post</h4>
-                        <p class="text-[11px] text-gray-300 leading-snug">
-                            First video automatically links to the SKU they ordered, guaranteeing tracking without manual affiliate link generation.
+                            Banner targets the <strong>16.4 Million power beauty buyers</strong> (5+ orders/yr) directly inside order history right when delivery satisfaction and product trust are at their peak.
                         </p>
                     </div>
                 `;
 
                 guideText.innerHTML = `
-                    <p>1. Review the <strong>Vitamin C Serum Delivered</strong> notification.</p>
-                    <p>2. Tap <strong>"My Orders"</strong> or the <strong>Exclusive Invite</strong> popup.</p>
-                    <p>3. Tap <strong>"Next: 1.2 Creator Poaching"</strong> below to view the external onboarding gate!</p>
+                    <p>1. Watch Home screen — the <strong>Exclusive Invite pop-up</strong> appears automatically after 2s delay.</p>
+                    <p>2. Tap <strong>"Explore Creator Program"</strong> to slide up the YouTube Shorts <strong>Content Guide</strong> semi pop-up.</p>
+                    <p>3. Tap <strong>"My Orders"</strong> (bottom-right) to see all <strong>6 verified BPC beauty orders</strong>, the Power Buyer poster, and tap <strong>"Review and Earn ₹57"</strong>!</p>
                 `;
 
                 nmvMathBox.innerHTML = `
@@ -335,7 +329,7 @@
                 btnNavNext.setAttribute("onclick", "switchView('poaching')");
                 btnNavNext.innerText = "Next: 1.2 Creator Poaching ›";
             } else {
-                iframe.src = 'Lever1_Poaching_Phone.html';
+                iframe.src = 'Lever1_Poaching_Phone.html?t=' + Date.now();
                 title.innerText = 'Instagram OAuth Verification Gate';
                 subtitle.innerText = 'SOLUTION 1.2';
                 tab12.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-pink-600 text-white shadow-md flex items-center gap-2';
@@ -394,23 +388,23 @@
                 headSolution.innerText = "Instagram OAuth & ₹500 Welcome Token";
                 solutionDetails.innerHTML = `
                     <div class="p-3.5 rounded-xl bg-gray-800/70 border-2 border-pink-500/50">
-                        <h4 class="text-xs font-bold text-white mb-1">API Verified Engagement</h4>
+                        <h4 class="text-xs font-bold text-white mb-1">Instagram Graph API (OAuth)</h4>
                         <p class="text-[11px] text-gray-300 leading-snug">
-                            Checks >5,000 followers and >2% engagement rate automatically via OAuth, eliminating fake follower fraud.
+                            Checks &gt;5,000 followers and &gt;2% engagement rate automatically via official Meta Graph API OAuth, eliminating fake follower fraud.
                         </p>
                     </div>
                     <div class="p-3.5 rounded-xl bg-gray-800/40 border border-gray-700/50">
-                        <h4 class="text-xs font-bold text-white mb-1">Mission-Driven Unlock</h4>
+                        <h4 class="text-xs font-bold text-white mb-1">4-Step Mission Unlock</h4>
                         <p class="text-[11px] text-gray-300 leading-snug">
-                            The ₹500 token is unlocked permanently only after generating 5 verified sales, protecting Meesho cash.
+                            1. Claim 500 tokens → 2. Buy a product → 3. Post video and get 100% amount back → 4. Affiliate commission.
                         </p>
                     </div>
                 `;
 
                 guideText.innerHTML = `
-                    <p>1. Tap <strong>"Authenticate via Instagram"</strong> on the phone.</p>
-                    <p>2. See the instant follower count verification (@chameleon.2485 • 12.4K).</p>
-                    <p>3. Tap <strong>"Go to Mission Hub"</strong> to see the 5-sale unlock quest!</p>
+                    <p>1. Tap <strong>"Learn More or Claim ₹500 token"</strong> on the Instagram Creator Club sponsored ad.</p>
+                    <p>2. Tap <strong>"Authenticate via Instagram"</strong> on the phone.</p>
+                    <p>3. Tap <strong>"Go to Mission Hub"</strong> to see all 4 steps directly inside the box!</p>
                 `;
 
                 nmvMathBox.innerHTML = `

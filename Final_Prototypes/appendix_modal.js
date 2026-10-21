@@ -161,6 +161,32 @@ const appendixData = {
             { label: "Total Lever 5 Annual NMV", val: "= ₹4.3 Cr", note: "Cost: ₹28 L engineering build only, zero cash subsidies" }
         ]
     },
+    "lever51-nmv": {
+        title: "₹2.6 Cr / yr — Positive Milestone Retention NMV",
+        source: "Appendix Page 23 (Creator Retention Economics)",
+        base: "8,000 BPC Active Creators & 63,000 Overall Creator Club Pool",
+        formula: "8,000 Creators × +1.5% Retention Lift (750 kept) × ₹3,000/mo incremental NMV × 12 = ₹2.6 Cr",
+        breakdown: [
+            { label: "BPC Active Creators", val: "8,000", note: "Target beauty cohort" },
+            { label: "Retention Rate Lift", val: "+1.5 pts", note: "Zero-demotion milestone ladder" },
+            { label: "Creators Saved from Churn", val: "750 creators", note: "Maintained beyond Month 3" },
+            { label: "Net Monthly NMV / Creator", val: "₹3,000 / mo", note: "Conservative basket velocity" },
+            { label: "Annual Retention NMV", val: "= ₹2.6 Cr", note: "Deck Slide 10 & 23" }
+        ]
+    },
+    "lever52-nmv": {
+        title: "₹1.7 Cr / yr — SKU Demand Insights NMV",
+        source: "Appendix Page 23 (SKU Guidance Uplift)",
+        base: "8,000 BPC Creators & 86.9% SKU Uncertainty Bottleneck",
+        formula: "8,000 Creators × 30% Feature Adoption × 10% Sales Velocity Lift = ₹1.7 Cr NMV",
+        breakdown: [
+            { label: "BPC Active Creators", val: "8,000", note: "Eligible creators" },
+            { label: "Insights Card Adoption", val: "30%", note: "Creators picking recommended high-demand SKUs" },
+            { label: "Sales Velocity Uplift", val: "+10%", note: "Faster conversion & <15% return rate" },
+            { label: "Direct Dead-Stock Elimination", val: "Zero Risk", note: "Replaces 10% flat commission guessing" },
+            { label: "Annual Guidance NMV", val: "= ₹1.7 Cr", note: "Deck Slide 10 & 23" }
+        ]
+    },
     "sku-struggle": {
         title: "86.9% — Creators Struggle with SKU Selection",
         source: "Appendix Page 14 (Primary Creator Interviews, n=23)",
@@ -187,13 +213,13 @@ function openGuesstimate(key) {
     list.innerHTML = "";
     data.breakdown.forEach(item => {
         const row = document.createElement("div");
-        row.className = "flex items-center justify-between p-2.5 rounded-lg bg-gray-800/60 border border-gray-700/50 text-xs";
+        row.className = "flex items-center justify-between p-2.5 rounded-lg bg-gray-50 border border-gray-200 text-xs";
         row.innerHTML = `
             <div>
-                <span class="text-white font-bold">${item.label}</span>
-                <span class="text-gray-400 text-[11px] block">${item.note}</span>
+                <span class="text-gray-900 font-bold">${item.label}</span>
+                <span class="text-gray-500 text-[11px] block">${item.note}</span>
             </div>
-            <div class="font-mono font-black text-pink-400 text-sm">${item.val}</div>
+            <div class="font-mono font-black text-[#570054] text-sm">${item.val}</div>
         `;
         list.appendChild(row);
     });

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesho - Lever 1: Acquisition (In-App & Creator Poaching)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --meesho-plum: #570054;
+            --meesho-pink: #df1e7b;
+            --meesho-bg: #f8f6f9;
+            --meesho-border: #ede8f0;
+            --meesho-green: #038d63;
+        }
+        body { 
+            margin: 0; background-color: var(--meesho-bg); min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
+            color: #1f2937;
+        }
+        
+        .phone-frame {
+            box-sizing: content-box; width: 380px; height: 780px;
+            border: 14px solid #1f2937; border-radius: 42px;
+            position: relative; background: #fff;
+            box-shadow: 0 25px 60px -15px rgba(87, 0, 84, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .phone-frame::before {
+            content: ''; position: absolute; top: 12px; left: 50%;
+            transform: translateX(-50%); width: 12px; height: 12px;
+            background: #111827; border-radius: 50%; z-index: 100;
+        }
+
+        iframe { width: 100%; height: 100%; border: none; }
+        
+        .meesho-panel {
+            background: #ffffff;
+            border: 1px solid var(--meesho-border);
+            box-shadow: 0 4px 20px -2px rgba(87, 0, 84, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+        }
+
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 999px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- TOP EXECUTIVE BAR (3-COLUMN BALANCED GRID) -->
+    <header class="bg-white border-b border-[#ede8f0] px-6 sm:px-8 py-3 grid grid-cols-[1fr_auto_1fr] items-center sticky top-0 z-50 shadow-sm gap-4">
+        <!-- LEFT: BACK LINK & PUNCHY LEVER TITLE -->
+        <div class="flex items-center gap-3 min-w-0">
+            <a href="../index_meesho_style.html" class="px-3.5 py-1.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-[#570054] text-xs font-black transition flex items-center gap-2 border border-purple-200 shrink-0">
+                <i class="fa-solid fa-arrow-left"></i> All Levers
+            </a>
+            <div class="h-5 w-px bg-gray-200 shrink-0"></div>
+            <div class="min-w-0">
+                <span class="text-[10px] font-black tracking-widest text-[#df1e7b] uppercase block">LEVER 1 · CREATOR ACQUISITION</span>
+                <h1 class="text-sm font-extrabold text-gray-900 leading-tight truncate">In-App & Verified Poaching Funnel</h1>
+            </div>
+        </div>
+
+        <!-- CENTER: SUB-SOLUTION TOGGLE (PERFECTLY CENTERED ON SCREEN) -->
+        <div class="flex items-center justify-center">
+            <div class="flex items-center gap-2 bg-gray-100 p-1.5 rounded-xl border border-gray-200 shadow-xs">
+                <button id="tab11" onclick="switchView('inapp')" class="px-4 py-1.5 rounded-lg text-xs font-black transition bg-[#570054] text-white shadow-sm flex items-center gap-2">
+                    <span>1.1 In-App Buyer Funnel</span>
+                </button>
+                <button id="tab12" onclick="switchView('poaching')" class="px-4 py-1.5 rounded-lg text-xs font-bold transition text-gray-600 hover:text-gray-900 flex items-center gap-2">
+                    <span>1.2 Creator Poaching</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- RIGHT: KEY STAT PILLS -->
+        <div class="flex items-center gap-3 justify-self-end shrink-0">
+            <div class="px-3 py-1.5 rounded-xl bg-pink-50 border border-pink-200 flex items-center gap-2">
+                <span id="pillNmvLabel" class="text-[11px] text-gray-500 font-semibold">In-App NMV:</span>
+                <button id="pillNmvBtn" onclick="openGuesstimate('lever11-nmv')" class="text-sm font-black text-[#df1e7b] hover:underline flex items-center gap-1">₹8.9 Cr / yr <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+            </div>
+            <div class="px-3 py-1.5 rounded-xl bg-purple-50 border border-purple-200 flex items-center gap-2">
+                <span id="pillMetricLabel" class="text-[11px] text-gray-500 font-semibold">Target Pool:</span>
+                <button id="pillMetricBtn" onclick="openGuesstimate('power-buyers')" class="text-sm font-black text-[#570054] hover:underline flex items-center gap-1">16.4 Million <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN 3-COLUMN CONTENT -->
+    <div class="flex-1 flex max-w-[1720px] w-full mx-auto px-8 py-6 gap-8 items-start justify-center">
+
+        <!-- LEFT PANEL: DYNAMIC INSIGHT & PRIMARY NUMBERS -->
+        <aside class="w-[360px] shrink-0 meesho-panel rounded-2xl p-6 custom-scroll max-h-[820px] overflow-y-auto space-y-5">
+            <div>
+                <span id="tagInsight" class="text-[10px] font-black tracking-wider uppercase text-[#570054] bg-purple-50 px-2.5 py-1 rounded border border-purple-200">1.1 In-App Supply Insight</span>
+                <h3 id="headInsight" class="text-sm font-extrabold text-gray-900 mt-2.5 leading-snug">
+                    Power beauty buyers never see a creator path. Sign-ups rarely lead to a first sale.
+                </h3>
+                <p id="descInsight" class="text-xs text-gray-600 mt-2 leading-relaxed">
+                    Proven creators won’t risk money on an unproven marketplace. But buyers who already purchase repeatedly trust the products and understand Tier-2/3 user needs.
+                </p>
+            </div>
+
+            <!-- EVIDENCE INFOGRAPHIC CARDS (DYNAMIC) -->
+            <div id="cardsLeft" class="space-y-3"></div>
+
+            <!-- DYNAMIC ECONOMICS BOX -->
+            <div id="boxEconomics" class="bg-gray-50 border border-gray-200 rounded-xl p-4 space-y-2 text-xs"></div>
+        </aside>
+
+        <!-- CENTER: INTERACTIVE PHONE PROTOTYPE -->
+        <main class="flex flex-col items-center justify-center shrink-0">
+            <div class="mb-3 text-center">
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-400 block" id="phoneSubTitle">SOLUTION 1.1</span>
+                <h2 class="text-lg font-black text-gray-900" id="phoneTitle">Buyer Delivery History Invite</h2>
+            </div>
+            
+            <div class="phone-frame">
+                <iframe id="mainIframe" src="Lever1_Buyer_Funnel_Phone.html?v=6bpc"></iframe>
+            </div>
+        </main>
+
+        <!-- RIGHT PANEL: DYNAMIC MECHANIC BREAKDOWN & DEMO GUIDE -->
+        <aside class="w-[360px] shrink-0 meesho-panel rounded-2xl p-6 custom-scroll max-h-[820px] overflow-y-auto space-y-5">
+            <div>
+                <span id="tagSolution" class="text-[10px] font-black tracking-wider uppercase text-[#038d63] bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">Solution Architecture</span>
+                <h3 id="headSolution" class="text-sm font-extrabold text-gray-900 mt-2.5">
+                    Trigger at Peak Delight
+                </h3>
+            </div>
+
+            <div id="solutionDetails" class="space-y-3.5"></div>
+
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-xl p-4">
+                <div class="flex items-center gap-2 text-[#570054] font-bold text-xs mb-2">
+                    <i class="fa-solid fa-hand-pointer animate-bounce"></i> Try In Prototype Now:
+                </div>
+                <div id="guideText" class="text-[11px] text-gray-700 space-y-1.5 leading-snug"></div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-3">
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2" id="nmvModelHeading">Annual Value Created (Deck S5 & S20)</div>
+                <div id="nmvMathBox" class="space-y-1.5 text-[11px] font-mono text-gray-700 bg-gray-50 p-3 rounded-lg border border-gray-200"></div>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- APPENDIX GUESSTIMATE POPUP MODAL -->
+    <div id="guesstimateModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+        <div class="bg-white border border-gray-200 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative animate-in fade-in duration-200">
+            <button onclick="closeGuesstimate()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-purple-100 text-[#570054] border border-purple-200">Appendix Calculation</span>
+                <span id="modalSource" class="text-xs text-gray-500 font-medium"></span>
+            </div>
+            <h3 id="modalTitle" class="text-lg font-black text-gray-900 mt-1 mb-4 leading-snug"></h3>
+            
+            <div class="space-y-3.5 mb-5">
+                <div class="bg-gray-50 rounded-xl p-3 border border-gray-200">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-1">Base Number & Source:</span>
+                    <p id="modalBase" class="text-xs text-gray-800 font-medium leading-relaxed"></p>
+                </div>
+                <div class="bg-purple-50/60 rounded-xl p-3 border border-purple-200">
+                    <span class="text-[10px] font-bold text-[#570054] uppercase tracking-wider block mb-1">Guesstimate Formula:</span>
+                    <p id="modalFormula" class="text-xs font-mono text-[#570054] font-bold"></p>
+                </div>
+                <div>
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-2">Step-by-Step Derivation:</span>
+                    <div id="modalBreakdown" class="space-y-2"></div>
+                </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 flex justify-between items-center text-xs text-gray-500">
+                <span>Verified in DICE R2 Submission Deck</span>
+                <button onclick="closeGuesstimate()" class="px-4 py-1.5 bg-[#570054] hover:bg-[#430040] text-white font-bold rounded-lg transition">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="appendix_modal.js"></script>
+    <script>
+        function switchView(tab) {
+            const iframe = document.getElementById('mainIframe');
+            const tab11 = document.getElementById('tab11');
+            const tab12 = document.getElementById('tab12');
+            const title = document.getElementById('phoneTitle');
+            const subtitle = document.getElementById('phoneSubTitle');
+            const tagInsight = document.getElementById('tagInsight');
+            const headInsight = document.getElementById('headInsight');
+            const descInsight = document.getElementById('descInsight');
+            const cardsLeft = document.getElementById('cardsLeft');
+            const boxEconomics = document.getElementById('boxEconomics');
+            const tagSolution = document.getElementById('tagSolution');
+            const headSolution = document.getElementById('headSolution');
+            const solutionDetails = document.getElementById('solutionDetails');
+            const guideText = document.getElementById('guideText');
+            const nmvMathBox = document.getElementById('nmvMathBox');
+            const pillNmvLabel = document.getElementById('pillNmvLabel');
+            const pillNmvBtn = document.getElementById('pillNmvBtn');
+            const pillMetricLabel = document.getElementById('pillMetricLabel');
+            const pillMetricBtn = document.getElementById('pillMetricBtn');
+
+            if (tab === 'inapp') {
+                iframe.src = 'Lever1_Buyer_Funnel_Phone.html?t=' + Date.now();
+                title.innerText = 'Buyer Delivery History Invite';
+                subtitle.innerText = 'SOLUTION 1.1';
+                tab11.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-[#570054] text-white shadow-sm flex items-center gap-2';
+                tab12.className = 'px-4 py-1.5 rounded-lg text-xs font-bold transition text-gray-600 hover:text-gray-900 flex items-center gap-2';
+                
+                pillNmvLabel.innerText = "In-App NMV:";
+                pillNmvBtn.innerHTML = `₹8.9 Cr / yr <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+                pillNmvBtn.setAttribute("onclick", "openGuesstimate('lever11-nmv')");
+
+                pillMetricLabel.innerText = "Target Pool:";
+                pillMetricBtn.innerHTML = `16.4 Million <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+                pillMetricBtn.setAttribute("onclick", "openGuesstimate('power-buyers')");
+
+                tagInsight.innerText = "1.1 In-App Supply Insight";
+                headInsight.innerText = "Power beauty buyers never see a creator path. Sign-ups rarely lead to a first sale.";
+                descInsight.innerText = "Proven creators won’t risk money on an unproven marketplace. But buyers who already purchase repeatedly trust the products and understand Tier-2/3 user needs.";
+
+                cardsLeft.innerHTML = `
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-pink-100 text-[#df1e7b] border border-pink-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <div>
+                            <button onclick="openGuesstimate('power-buyers')" class="text-base font-black text-gray-900 hover:text-[#df1e7b] hover:underline text-left cursor-pointer flex items-center gap-1.5">16.4 Million <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-[#df1e7b]"></i></button>
+                            <div class="text-[11px] text-gray-500 leading-tight">Power beauty buyers (5+ orders/yr) in Meesho userbase</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-purple-100 text-[#570054] border border-purple-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-coins"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">~₹150 CAC</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">In-app acquisition cost per creator vs ₹1,667 via agencies</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-emerald-100 text-[#038d63] border border-emerald-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">3,288 Creators</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">Active creator supply recruited from verified order history</div>
+                        </div>
+                    </div>
+                `;
+
+                boxEconomics.innerHTML = `
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">In-App Conversion Funnel (Deck S20)</span>
+                    <div class="flex items-center justify-between text-gray-700"><span>16.4M Power Buyers</span><span class="text-gray-500 font-mono">100%</span></div>
+                    <div class="flex items-center justify-between text-gray-700"><span>× 0.10% Sign Up</span><span class="text-[#570054] font-bold">16,440</span></div>
+                    <div class="flex items-center justify-between text-gray-700"><span>× 20% Stay Active</span><span class="text-[#df1e7b] font-bold">3,288 creators</span></div>
+                `;
+
+                tagSolution.innerText = "Solution 1.1";
+                headSolution.innerText = "In-App Delivery History Trigger";
+                solutionDetails.innerHTML = `
+                    <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200">
+                        <h4 class="text-xs font-bold text-gray-900 mb-1">Trigger at Peak Delight</h4>
+                        <p class="text-[11px] text-gray-600 leading-snug">
+                            Banner targets the <strong>16.4 Million power beauty buyers</strong> (5+ orders/yr) directly inside order history right when delivery satisfaction and product trust are at their peak.
+                        </p>
+                    </div>
+                `;
+
+                guideText.innerHTML = `
+                    <p>1. Watch Home screen — the <strong>Exclusive Invite pop-up</strong> appears automatically after 2s delay.</p>
+                    <p>2. Tap <strong>"Explore Creator Program"</strong> to slide up the YouTube Shorts <strong>Content Guide</strong> semi pop-up.</p>
+                    <p>3. Tap <strong>"My Orders"</strong> (bottom-right) to see all <strong>6 verified BPC beauty orders</strong>, the Power Buyer poster, and tap <strong>"Review and Earn ₹57"</strong>!</p>
+                `;
+
+                nmvMathBox.innerHTML = `
+                    <div class="flex justify-between"><span>3,288</span><span class="text-gray-400">Active Creators</span></div>
+                    <div class="flex justify-between"><span>× ₹3,000/mo</span><span class="text-gray-400">Monthly NMV</span></div>
+                    <div class="flex justify-between"><span>× 12 × 75%</span><span class="text-gray-400">Incremental</span></div>
+                    <div class="flex justify-between border-t border-gray-200 pt-1 font-bold text-[#570054]"><span>= ₹8.9 Cr</span><button onclick="openGuesstimate('lever11-nmv')" class="underline hover:text-[#df1e7b]">See Guesstimate</button></div>
+                `;
+            } else {
+                iframe.src = 'Lever1_Poaching_Phone.html?t=' + Date.now();
+                title.innerText = 'Instagram OAuth Verification Gate';
+                subtitle.innerText = 'SOLUTION 1.2';
+                tab12.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-[#570054] text-white shadow-sm flex items-center gap-2';
+                tab11.className = 'px-4 py-1.5 rounded-lg text-xs font-bold transition text-gray-600 hover:text-gray-900 flex items-center gap-2';
+                
+                pillNmvLabel.innerText = "Poaching NMV:";
+                pillNmvBtn.innerHTML = `₹5.8 Cr / yr <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+                pillNmvBtn.setAttribute("onclick", "openGuesstimate('lever12-nmv')");
+
+                pillMetricLabel.innerText = "Pool Size:";
+                pillMetricBtn.innerHTML = `90,000 Creators <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+                pillMetricBtn.setAttribute("onclick", "openGuesstimate('lever12-nmv')");
+
+                tagInsight.innerText = "1.2 External Poaching Insight";
+                headInsight.innerText = "Mid-tier creators won't join without upfront validation and risk-free rewards.";
+                descInsight.innerText = "Instagram API verification instantly grants a ₹500 beauty product credit to creators with 5K+ followers. The credit is earned back after 5 sales or written off, replacing agency retainers.";
+
+                cardsLeft.innerHTML = `
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-pink-100 text-[#df1e7b] border border-pink-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div>
+                            <button onclick="openGuesstimate('lever12-nmv')" class="text-base font-black text-gray-900 hover:text-[#df1e7b] hover:underline text-left cursor-pointer flex items-center gap-1.5">₹977 Net Cost <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-[#df1e7b]"></i></button>
+                            <div class="text-[11px] text-gray-500 leading-tight">Net cost per activated creator (₹1,667 gross − ₹690 profit)</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-purple-100 text-[#570054] border border-purple-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-stopwatch"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">Month 5-6 Payback</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">Poaching pilot pays back fully via 4.6% contribution margin</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-emerald-100 text-[#038d63] border border-emerald-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-ban"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">Stop Below 16.7%</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">Clear guardrail: halt spending if 5-sale conversion drops below 16.7%</div>
+                        </div>
+                    </div>
+                `;
+
+                boxEconomics.innerHTML = `
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">Poaching Economics vs Agencies</span>
+                    <div class="flex items-center justify-between text-gray-700"><span>Agency Cost per Creator</span><span class="text-rose-600 font-bold">₹5,000–₹7,000</span></div>
+                    <div class="flex items-center justify-between text-gray-700"><span>Poaching Cost per Creator</span><span class="text-[#038d63] font-bold">₹977 net</span></div>
+                    <div class="flex items-center justify-between text-gray-700 border-t border-gray-200 pt-1"><span>Cost Advantage</span><span class="text-[#570054] font-bold">3–4x Cheaper</span></div>
+                `;
+
+                tagSolution.innerText = "Solution 1.2";
+                headSolution.innerText = "Instagram OAuth & ₹500 Welcome Token";
+                solutionDetails.innerHTML = `
+                    <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200">
+                        <h4 class="text-xs font-bold text-gray-900 mb-1">Instagram Graph API (OAuth)</h4>
+                        <p class="text-[11px] text-gray-600 leading-snug">
+                            Checks &gt;5,000 followers and &gt;2% engagement rate automatically via official Meta Graph API OAuth, eliminating fake follower fraud.
+                        </p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200">
+                        <h4 class="text-xs font-bold text-gray-900 mb-1">4-Step Mission Unlock</h4>
+                        <p class="text-[11px] text-gray-600 leading-snug">
+                            1. Claim 500 tokens → 2. Buy a product → 3. Post video and get 100% amount back → 4. Affiliate commission.
+                        </p>
+                    </div>
+                `;
+
+                guideText.innerHTML = `
+                    <p>1. Tap <strong>"Learn More or Claim ₹500 token"</strong> on the Instagram Creator Club sponsored ad.</p>
+                    <p>2. Tap <strong>"Authenticate via Instagram"</strong> on the phone.</p>
+                    <p>3. Tap <strong>"Go to Mission Hub"</strong> to see all 4 steps directly inside the box!</p>
+                `;
+
+                nmvMathBox.innerHTML = `
+                    <div class="flex justify-between"><span>1,200</span><span class="text-gray-400">Successful Creators</span></div>
+                    <div class="flex justify-between"><span>× ₹5,000/mo</span><span class="text-gray-400">Monthly NMV</span></div>
+                    <div class="flex justify-between"><span>× 12 × 80%</span><span class="text-gray-400">Incremental</span></div>
+                    <div class="flex justify-between border-t border-gray-200 pt-1 font-bold text-[#570054]"><span>= ₹5.8 Cr</span><button onclick="openGuesstimate('lever12-nmv')" class="underline hover:text-[#df1e7b]">See Guesstimate</button></div>
+                `;
+            }
+        }
+
+        switchView('inapp');
+    </script>
+</body>
+</html>
