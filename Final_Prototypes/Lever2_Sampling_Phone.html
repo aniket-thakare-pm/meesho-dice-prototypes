@@ -93,16 +93,20 @@ button{font:inherit}
 
 .home-banner-card {
   position: absolute;
-  top: 39.2%;
-  left: 2px;
-  right: 2px;
-  height: 6.5%;
+  top: 39.0%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 6.9%;
   z-index: 25;
   background: linear-gradient(135deg, #570054, #8b1874);
-  border: 1.5px solid #df1e7b;
-  border-radius: 12px;
-  padding: 0 14px;
-  box-shadow: 0 4px 15px rgba(87,0,84,0.4);
+  border-top: 1.5px solid #df1e7b;
+  border-bottom: 1.5px solid #df1e7b;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  padding: 0 16px;
+  box-shadow: 0 4px 15px rgba(87,0,84,0.35);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -289,18 +293,23 @@ button{font:inherit}
   justify-content:center;padding:18px;z-index:60;
 }
 .modal{
-  width:min(350px,100%);background:#fff;border-radius:20px;padding:18px;
+  width:min(350px,100%);background:#fff;border-radius:20px;padding:20px;
   box-shadow:0 20px 60px rgba(0,0,0,.28);
 }
-.modal h3{font-size:15px;margin:0 0 5px;font-weight:900}
-.modal p{margin:0;color:var(--muted);font-size:11px;line-height:1.45}
-.modal .row{
-  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
-  display:flex;justify-content:space-between;font-size:11px;
-}
+.modal h3{font-size:16px;margin:0 0 6px;font-weight:900;color:var(--ink)}
+.modal p{margin:0;color:var(--muted);font-size:11.5px;line-height:1.45}
 .close{
-  width:100%;margin-top:12px;border:none;border-radius:12px;background:#f1ebf1;
-  color:var(--m);padding:10px;font-weight:900;cursor:pointer;font-size:12px;
+  width:100%;margin-top:16px;border:none;border-radius:12px;
+  background:linear-gradient(135deg, #a51d89, #df1e7b);
+  color:#ffffff;padding:12px;font-weight:900;cursor:pointer;font-size:13px;
+  box-shadow:0 4px 14px rgba(165,29,137,0.3);
+  transition:all 0.15s ease;
+}
+.close:hover{
+  background:#64104f;
+}
+.close:active{
+  transform:scale(0.98);
 }
 </style>
 </head>
@@ -443,9 +452,9 @@ button{font:inherit}
       <div class="content" style="padding: 4px 12px 90px;">
         <!-- Hero Balance -->
         <div class="credit-hero">
-          <div class="credit-label">YOUR SAMPLING CREDITS</div>
-          <span class="credit-number">₹300</span>
-          <div class="credit-desc">Use credits on supplier-enabled Trial SKUs. Credits are non-cash and stay inside Meesho.</div>
+          <div class="credit-label" id="creditLabelText">AVAILABLE SAMPLING CREDITS</div>
+          <span class="credit-number" id="availableCreditNumber">₹300</span>
+          <div class="credit-desc" id="availableCreditDesc">Use credits on supplier-enabled Trial SKUs. Credits are non-cash and stay inside Meesho.</div>
           <div class="pills">
             <span class="pill">Trial SKUs only</span>
             <span class="pill">No cash payment</span>
@@ -537,11 +546,10 @@ button{font:inherit}
 <!-- Universal Dialog Modal -->
 <div class="modal-bg" id="modalBg" onclick="closeModal(event)">
   <div class="modal">
+    <div style="font-size: 26px; margin-bottom: 6px;" id="modalIcon">🎉</div>
     <h3 id="modalTitle"></h3>
     <p id="modalBody"></p>
-    <div class="row" id="modalRow" style="display:none">
-      <span id="modalLeft"></span><b id="modalRight"></b>
-    </div>
+    <div id="modalRowsContainer" style="display:none;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);flex-direction:column;gap:8px;"></div>
     <button class="close" onclick="closeModal()">Done</button>
   </div>
 </div>
@@ -594,10 +602,14 @@ function updateBasketState() {
   const warningBox = document.getElementById('basketWarning');
   const cartBtn = document.getElementById('cartBtn');
   const creditsApplied = document.getElementById('creditsAppliedText');
+  const creditHeroNumber = document.getElementById('availableCreditNumber');
+  const creditHeroDesc = document.getElementById('availableCreditDesc');
   
   if (totalText) totalText.textContent = '₹' + total;
 
   if (total > 300) {
+    if (creditHeroNumber) creditHeroNumber.textContent = '₹300';
+    if (creditHeroDesc) creditHeroDesc.innerHTML = `<span style="color:#ffd2df;font-weight:700;">⚠️ Basket exceeds ₹300 limit by ₹${total - 300}. Remove 1 item to proceed!</span>`;
     warningBox.className = 'warning-box alert';
     warningBox.innerHTML = `⚠️ <strong>Basket Total: ₹${total}</strong> · Exceeds your ₹300 Sampling Credit limit by ₹${total - 300}! You can only redeem worth ₹300. Please remove 1 item to proceed.`;
     cartBtn.disabled = true;
@@ -605,13 +617,18 @@ function updateBasketState() {
     cartBtn.textContent = 'Add to Cart (Exceeds ₹300)';
     creditsApplied.textContent = 'Max ₹300';
   } else if (total > 0) {
+    const remaining = 300 - total;
+    if (creditHeroNumber) creditHeroNumber.textContent = '₹' + remaining;
+    if (creditHeroDesc) creditHeroDesc.innerHTML = `₹${total} used for ${Object.keys(basketItems).length} items · <strong>₹${remaining} remaining</strong> available credits.`;
     warningBox.className = 'warning-box success';
-    warningBox.innerHTML = `✓ <strong>Basket Total: ₹${total} / ₹300 Credits</strong> · Covered 100% by Supplier Credits. Total payable: <strong>₹0</strong> (₹${300 - total} credit balance remaining).`;
+    warningBox.innerHTML = `✓ <strong>Basket Total: ₹${total}</strong> · Covered 100% by Supplier Credits. Total payable: <strong>₹0</strong> (₹${remaining} credit balance remaining).`;
     cartBtn.disabled = false;
     cartBtn.className = 'cart-action-btn active';
     cartBtn.textContent = 'Add to Cart (₹0 Payable)';
     creditsApplied.textContent = '-₹' + total + ' (100% Free)';
   } else {
+    if (creditHeroNumber) creditHeroNumber.textContent = '₹300';
+    if (creditHeroDesc) creditHeroDesc.textContent = 'Use credits on supplier-enabled Trial SKUs. Credits are non-cash and stay inside Meesho.';
     warningBox.className = 'warning-box alert';
     warningBox.innerHTML = `Your basket is empty. Please select sample products from the catalog.`;
     cartBtn.disabled = true;
@@ -627,25 +644,43 @@ function checkoutBasket() {
     total += basketItems[k].price;
   }
   if (total <= 300 && total > 0) {
-    openModal(
-      'Samples Added to Cart!',
-      '₹' + total + ' worth of samples covered 100% by your Sampling Credits. Zero cash payable. Items have been added to your regular Meesho checkout cart!',
-      'Total Payable at Checkout',
-      '₹0'
-    );
+    const remaining = 300 - total;
+    document.getElementById('modalIcon').style.display = 'block';
+    document.getElementById('modalIcon').textContent = '🎉';
+    document.getElementById('modalTitle').textContent = 'Samples Added to Cart!';
+    document.getElementById('modalBody').textContent = `₹${total} worth of trial samples covered 100% by your Sampling Credits. Zero cash payable. Items have been added to your regular Meesho checkout cart!`;
+    const container = document.getElementById('modalRowsContainer');
+    container.style.display = 'flex';
+    container.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#2c2b33;">
+        <span style="color:#7a7781;font-weight:600;">Total Payable at Checkout</span>
+        <b style="color:#168d45;font-size:13px;font-weight:900;">₹0</b>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#2c2b33;">
+        <span style="color:#7a7781;font-weight:600;">Remaining Sampling Credits</span>
+        <b style="color:var(--m);font-size:13px;font-weight:900;">₹${remaining}</b>
+      </div>
+    `;
+    document.getElementById('modalBg').style.display = 'flex';
   }
 }
 
 function openModal(bodyTitle, bodyText, left, right) {
+  document.getElementById('modalIcon').style.display = 'none';
   document.getElementById('modalTitle').textContent = bodyTitle;
   document.getElementById('modalBody').textContent = bodyText;
-  const row = document.getElementById('modalRow');
+  const container = document.getElementById('modalRowsContainer');
   if (left !== undefined) {
-    row.style.display = 'flex';
-    document.getElementById('modalLeft').textContent = left;
-    document.getElementById('modalRight').textContent = right;
+    container.style.display = 'flex';
+    container.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#2c2b33;">
+        <span style="color:#7a7781;font-weight:600;">${left}</span>
+        <b style="font-weight:800;">${right}</b>
+      </div>
+    `;
   } else {
-    row.style.display = 'none';
+    container.style.display = 'none';
+    container.innerHTML = '';
   }
   document.getElementById('modalBg').style.display = 'flex';
 }
