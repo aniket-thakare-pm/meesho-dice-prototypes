@@ -3,47 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meesho - Lever 3 Conversion</title>
+    <title>Meesho - Lever 3: Trust Stack (UGC on PDP)</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { 
-            margin: 0; background-color: #111827; display: flex; 
-            align-items: center; justify-content: center; gap: 80px; min-height: 100vh; 
-            font-family: -apple-system, sans-serif; padding: 40px;
+            margin: 0; background-color: #0b0f19; min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+            color: #f3f4f6;
         }
         
-        .prototype-wrapper {
-            display: flex; flex-direction: column; align-items: center;
+        .phone-frame {
+            box-sizing: content-box; width: 375px; height: 760px;
+            border: 12px solid #1f2937; border-radius: 40px;
+            position: relative; background: #fff;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08);
+            overflow: hidden;
         }
 
-        .phone-frame { width: 420px; height: 800px; position: relative; }
+        .phone-frame::before {
+            content: ''; position: absolute; top: 12px; left: 50%;
+            transform: translateX(-50%); width: 12px; height: 12px;
+            background: #111827; border-radius: 50%; z-index: 100;
+        }
 
+        iframe { width: 100%; height: 100%; border: none; }
         
-
-        iframe {
-            width: 100%; height: 100%; border: none;
-        }
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #374151; border-radius: 999px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
     </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
-    <!-- ================= PROTOTYPE 1: UGC ON PDP ================= -->
-    <div class="prototype-wrapper">
-        <h2 class="text-white text-2xl font-black mb-6 tracking-wide drop-shadow-md">Internal: UGC on PDP Flow</h2>
-        <div class="phone-frame">
-            <iframe src="../Lever3_UGC_on_PDP/buyer_pdp.html"></iframe>
+    <!-- TOP EXECUTIVE BAR -->
+    <header class="bg-gray-900/90 backdrop-blur-md border-b border-gray-800 px-8 py-3.5 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center gap-4">
+            <a href="../index.html" class="px-3.5 py-1.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white text-xs font-bold transition flex items-center gap-2 border border-gray-700">
+                <i class="fa-solid fa-arrow-left"></i> All Levers
+            </a>
+            <div class="h-5 w-px bg-gray-700"></div>
+            <div>
+                <span class="text-[11px] font-black tracking-widest text-pink-500 uppercase">LEVER 3 · RICE RANK #1</span>
+                <h1 class="text-base font-extrabold text-white leading-tight">Trust Stack: Creator UGC on PDP</h1>
+            </div>
         </div>
+
+        <!-- KEY STAT PILLS -->
+        <div class="flex items-center gap-3">
+            <div class="px-3 py-1 rounded-xl bg-pink-950/60 border border-pink-700/50 flex items-center gap-2">
+                <span class="text-[11px] text-pink-300 font-semibold">Annual NMV:</span>
+                <button onclick="openGuesstimate('pdp-nmv')" class="text-sm font-black text-pink-400 hover:underline hover:text-pink-300 cursor-pointer flex items-center gap-1">₹29.7 Cr / yr <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+            </div>
+            <div class="px-3 py-1 rounded-xl bg-purple-950/60 border border-purple-700/50 flex items-center gap-2">
+                <span class="text-[11px] text-purple-300 font-semibold">RICE Score:</span>
+                <span class="text-sm font-black text-purple-300">192 (Highest)</span>
+            </div>
+            <div class="px-3 py-1 rounded-xl bg-emerald-950/60 border border-emerald-700/50 flex items-center gap-2">
+                <span class="text-[11px] text-emerald-300 font-semibold">CVR Uplift:</span>
+                <span class="text-sm font-black text-emerald-400">+10% to +25%</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN 3-COLUMN CONTENT -->
+    <div class="flex-1 flex max-w-[1720px] w-full mx-auto px-6 py-6 gap-6 items-start justify-center">
+
+        <!-- LEFT PANEL: THE PM CASE, RESEARCH & EVIDENCE -->
+        <aside class="w-[330px] shrink-0 bg-gray-900/70 border border-gray-800 rounded-2xl p-5 custom-scroll max-h-[820px] overflow-y-auto space-y-5">
+            <div>
+                <span class="text-[10px] font-black tracking-wider uppercase text-pink-400 bg-pink-950/60 px-2 py-0.5 rounded border border-pink-800/40">The Core Insight</span>
+                <h3 class="text-sm font-bold text-gray-100 mt-2 leading-snug">
+                    Studio photos cannot show shade suitability or prove authenticity.
+                </h3>
+                <p class="text-xs text-gray-400 mt-1.5 leading-relaxed">
+                    In Beauty & Personal Care, catalog photos fail to answer: <em class="text-gray-300">"Will this look ashy on dusky skin?"</em> and <em class="text-gray-300">"Is this product genuine?"</em>
+                </p>
+            </div>
+
+            <!-- EVIDENCE INFOGRAPHIC CARDS -->
+            <div class="space-y-2.5">
+                <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-triangle-exclamation text-pink-400 text-sm"></i>
+                    </div>
+                    <div>
+                        <button onclick="openGuesstimate('fake-stat')" class="text-base font-black text-white hover:text-pink-400 hover:underline text-left cursor-pointer flex items-center gap-1.5">40% <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-pink-400"></i></button>
+                        <div class="text-[11px] text-gray-400 leading-tight">have received a fake or bad cosmetic online</div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-video text-purple-400 text-sm"></i>
+                    </div>
+                    <div>
+                        <button onclick="openGuesstimate('video-inventory')" class="text-base font-black text-white hover:text-purple-400 hover:underline text-left cursor-pointer flex items-center gap-1.5">1.7 Million <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-purple-400"></i></button>
+                        <div class="text-[11px] text-gray-400 leading-tight">order-generating videos already exist in Video Finds</div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
+                        <i class="fa-solid fa-truck-fast text-blue-400 text-sm"></i>
+                    </div>
+                    <div>
+                        <button onclick="openGuesstimate('cod-returns')" class="text-base font-black text-white hover:text-blue-400 hover:underline text-left cursor-pointer flex items-center gap-1.5">20.9% vs 5.8% <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-blue-400"></i></button>
+                        <div class="text-[11px] text-gray-400 leading-tight">COD return rate vs Prepaid returns (Unicommerce)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REJECTED IDEA (NO-GO) HIGHLIGHT -->
+            <div class="bg-rose-950/30 border border-rose-800/40 rounded-xl p-3.5">
+                <div class="flex items-center gap-2 mb-1.5">
+                    <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-rose-600 text-white uppercase">REJECTED · NO-GO</span>
+                    <span class="text-xs font-bold text-rose-300">Live Commerce Flash Sales</span>
+                </div>
+                <p class="text-[11px] text-gray-300 leading-relaxed">
+                    Live stream flash sales were analyzed and rejected. <strong>63% of Meesho orders are COD</strong>. Impulse flash purchases drive massive reverse-logistics return costs that wipe out low BPC margins.
+                </p>
+            </div>
+
+            <!-- RICE MATH -->
+            <div class="border-t border-gray-800 pt-3">
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">RICE Calculation (Deck S10)</div>
+                <div class="bg-gray-950/60 rounded-lg p-2.5 font-mono text-xs text-gray-300 flex justify-between items-center">
+                    <span>(R:9 × I:8 × C:8) ÷ E:3</span>
+                    <span class="text-pink-400 font-bold">= 192 SCORE</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CENTER: INTERACTIVE PHONE PROTOTYPE -->
+        <main class="flex flex-col items-center justify-center shrink-0">
+            <div class="mb-3 text-center">
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Interactive Simulation</span>
+                <h2 class="text-lg font-black text-white">Buyer PDP with UGC Shade Matching</h2>
+            </div>
+            <div class="phone-frame">
+                <iframe src="../Lever3_UGC_on_PDP/buyer_pdp.html"></iframe>
+            </div>
+        </main>
+
+        <!-- RIGHT PANEL: MECHANIC BREAKDOWN & DEMO GUIDE -->
+        <aside class="w-[330px] shrink-0 bg-gray-900/70 border border-gray-800 rounded-2xl p-5 custom-scroll max-h-[820px] overflow-y-auto space-y-5">
+            <div>
+                <span class="text-[10px] font-black tracking-wider uppercase text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">The 3-Part Solution</span>
+                <h3 class="text-sm font-bold text-gray-100 mt-2">
+                    How UGC Transforms the PDP
+                </h3>
+            </div>
+
+            <!-- MECHANICS LIST -->
+            <div class="space-y-3">
+                <div class="p-3 rounded-xl bg-gray-800/40 border border-gray-700/50">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="w-5 h-5 rounded-full bg-pink-500/20 text-pink-400 text-xs font-bold flex items-center justify-center">1</span>
+                        <h4 class="text-xs font-bold text-white">Exact Shade Matching</h4>
+                    </div>
+                    <p class="text-[11px] text-gray-400 leading-snug">
+                        Every video is mapped to the exact SKU variant so buyers see real texture, coverage, and finish on human skin.
+                    </p>
+                </div>
+
+                <div class="p-3 rounded-xl bg-gray-800/40 border border-gray-700/50">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="w-5 h-5 rounded-full bg-purple-500/20 text-purple-400 text-xs font-bold flex items-center justify-center">2</span>
+                        <h4 class="text-xs font-bold text-white">Skin-Tone Tone Filters</h4>
+                    </div>
+                    <p class="text-[11px] text-gray-400 leading-snug">
+                        Filter by <strong>Light, Medium, Tan, Deep</strong> & undertones (Warm/Cool) so buyers match their skin tone in 1 tap.
+                    </p>
+                </div>
+
+                <div class="p-3 rounded-xl bg-gray-800/40 border border-gray-700/50">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">3</span>
+                        <h4 class="text-xs font-bold text-white">Mandatory ASCI Disclosure</h4>
+                    </div>
+                    <p class="text-[11px] text-gray-400 leading-snug">
+                        Builds radical trust with clear provenance badges: <em>"Bought it myself"</em> vs <em>"Sampled, Not Paid"</em> vs <em>"Paid partnership"</em>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE DEMO GUIDE -->
+            <div class="bg-gradient-to-br from-pink-950/40 to-purple-950/40 border border-pink-700/40 rounded-xl p-4">
+                <div class="flex items-center gap-2 text-pink-400 font-bold text-xs mb-2">
+                    <i class="fa-solid fa-hand-pointer animate-bounce"></i> Try In Prototype Now:
+                </div>
+                <ol class="text-[11px] text-gray-300 space-y-1.5 list-decimal list-inside leading-snug">
+                    <li>Tap the <strong>"Medium"</strong> or <strong>"Warm"</strong> skin tone chips.</li>
+                    <li>Tap the circular <strong>creator video preview bubble</strong> to launch the reel.</li>
+                    <li>Tap creator <strong>@skincare_sneha</strong> to see the bundle storefront.</li>
+                </ol>
+            </div>
+
+            <!-- ANNUAL NMV MATH BREAKDOWN -->
+            <div class="border-t border-gray-800 pt-3">
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Annual NMV Model (Deck S7)</div>
+                <div class="space-y-1 text-[11px] font-mono text-gray-300 bg-gray-950/60 p-2.5 rounded-lg">
+                    <div class="flex justify-between"><span>₹3,716 Cr</span><span class="text-gray-500">BPC Base NMV</span></div>
+                    <div class="flex justify-between"><span>× 40%</span><span class="text-gray-500">SKUs with video</span></div>
+                    <div class="flex justify-between"><span>× 20%</span><span class="text-gray-500">buyers watch</span></div>
+                    <div class="flex justify-between"><span>× 10%</span><span class="text-gray-500">CVR uplift</span></div>
+                    <div onclick="openGuesstimate('pdp-nmv')" class="flex justify-between border-t border-gray-800 pt-1 font-bold text-pink-400 cursor-pointer hover:bg-gray-900/60 p-1 rounded"><span>= ₹29.7 Cr</span><span class="underline flex items-center gap-1">See Guesstimate <i class="fa-solid fa-circle-info text-[10px]"></i></span></div>
+                </div>
+            </div>
+        </aside>
+
     </div>
 
-    <!-- ================= PROTOTYPE 2: SHOPPABLE LIVESTREAM ================= -->
-    <div class="prototype-wrapper">
-        <h2 class="text-white text-2xl font-black mb-6 tracking-wide drop-shadow-md">External: Shoppable Livestream</h2>
-        <div class="phone-frame bg-black">
-            <iframe src="../Lever3_UGC_on_PDP/livestream_notification.html"></iframe>
+
+    <!-- APPENDIX GUESSTIMATE POPUP MODAL -->
+    <div id="guesstimateModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+        <div class="bg-gray-900 border border-gray-700 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative animate-in fade-in duration-200">
+            <button onclick="closeGuesstimate()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-pink-950 text-pink-400 border border-pink-800">Appendix Calculation</span>
+                <span id="modalSource" class="text-xs text-gray-400 font-medium"></span>
+            </div>
+            <h3 id="modalTitle" class="text-lg font-black text-white mt-1 mb-4 leading-snug"></h3>
+            
+            <div class="space-y-3.5 mb-5">
+                <div class="bg-gray-950/70 rounded-xl p-3 border border-gray-800">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-1">Base Number & Source:</span>
+                    <p id="modalBase" class="text-xs text-gray-200 font-medium leading-relaxed"></p>
+                </div>
+                <div class="bg-gray-950/70 rounded-xl p-3 border border-gray-800">
+                    <span class="text-[10px] font-bold text-pink-400 uppercase tracking-wider block mb-1">Guesstimate Formula:</span>
+                    <p id="modalFormula" class="text-xs font-mono text-pink-300"></p>
+                </div>
+                <div>
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block mb-2">Step-by-Step Derivation:</span>
+                    <div id="modalBreakdown" class="space-y-2"></div>
+                </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-800 flex justify-between items-center text-xs text-gray-400">
+                <span>Verified in DICE R2 Submission Deck</span>
+                <button onclick="closeGuesstimate()" class="px-4 py-1.5 bg-pink-600 hover:bg-pink-500 text-white font-bold rounded-lg transition">Close</button>
+            </div>
         </div>
     </div>
-
+    <script src="appendix_modal.js"></script>
 </body>
+
 </html>
-
-

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesho - Lever 4: Storefront & Routine Bundles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --meesho-plum: #570054;
+            --meesho-pink: #df1e7b;
+            --meesho-bg: #f8f6f9;
+            --meesho-border: #ede8f0;
+            --meesho-green: #038d63;
+        }
+        body { 
+            margin: 0; background-color: var(--meesho-bg); min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
+            color: #1f2937;
+        }
+        
+        .phone-frame {
+            box-sizing: content-box; width: 380px; height: 780px;
+            border: 14px solid #1f2937; border-radius: 42px;
+            position: relative; background: #fff;
+            box-shadow: 0 25px 60px -15px rgba(87, 0, 84, 0.18), 0 0 0 1px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .phone-frame::before {
+            content: ''; position: absolute; top: 12px; left: 50%;
+            transform: translateX(-50%); width: 12px; height: 12px;
+            background: #111827; border-radius: 50%; z-index: 100;
+        }
+
+        iframe { width: 100%; height: 100%; border: none; }
+        
+        .meesho-panel {
+            background: #ffffff;
+            border: 1px solid var(--meesho-border);
+            box-shadow: 0 4px 20px -2px rgba(87, 0, 84, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+        }
+
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 999px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- TOP EXECUTIVE BAR (3-COLUMN BALANCED GRID) -->
+    <header class="bg-white border-b border-[#ede8f0] px-6 sm:px-8 py-3 grid grid-cols-[1fr_auto_1fr] items-center sticky top-0 z-50 shadow-sm gap-4">
+        <!-- LEFT: BACK LINK & PUNCHY LEVER TITLE -->
+        <div class="flex items-center gap-3 min-w-0">
+            <a href="../index_meesho_style.html" class="px-3.5 py-1.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-[#570054] text-xs font-black transition flex items-center gap-2 border border-purple-200 shrink-0">
+                <i class="fa-solid fa-arrow-left"></i> All Levers
+            </a>
+            <div class="h-5 w-px bg-gray-200 shrink-0"></div>
+            <div class="min-w-0">
+                <span class="text-[10px] font-black tracking-widest text-[#df1e7b] uppercase block">LEVER 4 · AOV GAMIFICATION</span>
+                <h1 class="text-sm font-extrabold text-gray-900 leading-tight truncate">Storefront Routines & Sample Threshold</h1>
+            </div>
+        </div>
+
+        <!-- CENTER: SUB-SOLUTION TOGGLE (PERFECTLY CENTERED ON SCREEN) -->
+        <div class="flex items-center justify-center">
+            <div class="flex items-center gap-2 bg-gray-100 p-1.5 rounded-xl border border-gray-200 shadow-xs">
+                <button id="tab41" onclick="switchView('storefront')" class="px-4 py-1.5 rounded-lg text-xs font-black transition bg-[#570054] text-white shadow-sm flex items-center gap-2">
+                    <span>4.1 Curated Storefront</span>
+                </button>
+                <button id="tab42" onclick="switchView('threshold')" class="px-4 py-1.5 rounded-lg text-xs font-bold transition text-gray-600 hover:text-gray-900 flex items-center gap-2">
+                    <span>4.2 Cart Threshold</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- RIGHT: KEY STAT PILLS (DYNAMICALLY UPDATED) -->
+        <div class="flex items-center gap-3 justify-self-end shrink-0">
+            <div class="px-3 py-1.5 rounded-xl bg-pink-50 border border-pink-200 flex items-center gap-2">
+                <span id="pillNmvLabel" class="text-[11px] text-gray-500 font-semibold">Storefront NMV:</span>
+                <button id="pillNmvBtn" onclick="openGuesstimate('lever41-nmv')" class="text-sm font-black text-[#df1e7b] hover:underline flex items-center gap-1">₹2.4 Cr / yr <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+            </div>
+            <div class="px-3 py-1.5 rounded-xl bg-purple-50 border border-purple-200 flex items-center gap-2">
+                <span id="pillMetricLabel" class="text-[11px] text-gray-500 font-semibold">Basket Uplift:</span>
+                <button id="pillMetricBtn" onclick="openGuesstimate('basket-uplift')" class="text-sm font-black text-[#570054] hover:underline flex items-center gap-1">+15% to +20% <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+            </div>
+        </div>
+    </header>
+            <div class="px-3 py-1.5 rounded-xl bg-pink-50 border border-pink-200 flex items-center gap-2">
+                <span id="pillNmvLabel" class="text-[11px] text-gray-500 font-semibold">Storefront NMV:</span>
+                <button id="pillNmvBtn" onclick="openGuesstimate('lever41-nmv')" class="text-sm font-black text-[#df1e7b] hover:underline flex items-center gap-1">₹2.4 Cr / yr <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+            </div>
+            <div class="px-3 py-1.5 rounded-xl bg-purple-50 border border-purple-200 flex items-center gap-2">
+                <span id="pillMetricLabel" class="text-[11px] text-gray-500 font-semibold">Basket Uplift:</span>
+                <button id="pillMetricBtn" onclick="openGuesstimate('basket-uplift')" class="text-sm font-black text-[#570054] hover:underline flex items-center gap-1">+15% to +20% <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN 3-COLUMN CONTENT -->
+    <div class="flex-1 flex max-w-[1720px] w-full mx-auto px-8 py-6 gap-8 items-start justify-center">
+
+        <!-- LEFT PANEL: DYNAMIC INSIGHT & PRIMARY NUMBERS -->
+        <aside class="w-[360px] shrink-0 meesho-panel rounded-2xl p-6 custom-scroll max-h-[820px] overflow-y-auto space-y-5">
+            <div>
+                <span id="tagInsight" class="text-[10px] font-black tracking-wider uppercase text-[#570054] bg-purple-50 px-2.5 py-1 rounded border border-purple-200">4.1 Sourcing & Basket Insight</span>
+                <h3 id="headInsight" class="text-sm font-extrabold text-gray-900 mt-2.5 leading-snug">
+                    One link sells one product; but beauty is naturally bought as a multi-step routine.
+                </h3>
+                <p id="descInsight" class="text-xs text-gray-600 mt-2 leading-relaxed">
+                    Single affiliate links cap AOV at ~₹262. Buyers rarely try an unfamiliar category unprompted. Selling curated multi-step regimens (Cleanser + Serum + Sunscreen) expands the basket effortlessly.
+                </p>
+            </div>
+
+            <!-- EVIDENCE INFOGRAPHIC CARDS (DYNAMIC) -->
+            <div id="cardsLeft" class="space-y-3">
+                <!-- Injected via switchView -->
+            </div>
+
+            <!-- DYNAMIC ECONOMICS BOX -->
+            <div id="boxEconomics" class="bg-gray-50 border border-gray-200 rounded-xl p-4 space-y-2.5 text-xs">
+                <!-- Injected via switchView -->
+            </div>
+        </aside>
+
+        <!-- CENTER: INTERACTIVE PHONE PROTOTYPE -->
+        <main class="flex flex-col items-center justify-center shrink-0">
+            <div class="mb-3 text-center">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#df1e7b] block" id="phoneSubTitle">SOLUTION 4.1</span>
+                <h2 class="text-lg font-black text-gray-900" id="phoneTitle">Creator Curated Storefront</h2>
+            </div>
+            
+            <div class="phone-frame">
+                <iframe id="mainIframe" src="../Lever4_AOV/creator_storefront.html"></iframe>
+            </div>
+        </main>
+
+        <!-- RIGHT PANEL: DYNAMIC MECHANIC BREAKDOWN & DEMO GUIDE -->
+        <aside class="w-[360px] shrink-0 meesho-panel rounded-2xl p-6 custom-scroll max-h-[820px] overflow-y-auto space-y-5">
+            <div>
+                <span id="tagSolution" class="text-[10px] font-black tracking-wider uppercase text-[#038d63] bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">Solution Architecture</span>
+                <h3 id="headSolution" class="text-sm font-extrabold text-gray-900 mt-2.5">
+                    How Routine Bundling Multiplies AOV
+                </h3>
+            </div>
+
+            <!-- DYNAMIC SOLUTION DETAILS -->
+            <div id="solutionDetails" class="space-y-3.5">
+                <!-- Injected via switchView -->
+            </div>
+
+            <!-- INTERACTIVE DEMO GUIDE -->
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-xl p-4">
+                <div class="flex items-center gap-2 text-[#570054] font-bold text-xs mb-2">
+                    <i class="fa-solid fa-hand-pointer animate-bounce"></i> Try In Prototype Now:
+                </div>
+                <div id="guideText" class="text-[11px] text-gray-700 space-y-1.5 leading-snug">
+                    <!-- Injected via switchView -->
+                </div>
+            </div>
+
+            <!-- NMV MATHEMATICAL DERIVATION (DYNAMIC) -->
+            <div class="border-t border-gray-100 pt-3">
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2" id="nmvModelHeading">Annual Value Created (Deck S8 & S22)</div>
+                <div id="nmvMathBox" class="space-y-1.5 text-[11px] font-mono text-gray-700 bg-gray-50 p-3 rounded-lg border border-gray-200">
+                    <!-- Injected via switchView -->
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- APPENDIX GUESSTIMATE POPUP MODAL -->
+    <div id="guesstimateModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+        <div class="bg-white border border-gray-200 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative animate-in fade-in duration-200">
+            <button onclick="closeGuesstimate()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-lg w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-purple-100 text-[#570054] border border-purple-200">Appendix Calculation</span>
+                <span id="modalSource" class="text-xs text-gray-500 font-medium"></span>
+            </div>
+            <h3 id="modalTitle" class="text-lg font-black text-gray-900 mt-1 mb-4 leading-snug"></h3>
+            
+            <div class="space-y-3.5 mb-5">
+                <div class="bg-gray-50 rounded-xl p-3 border border-gray-200">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-1">Base Number & Source:</span>
+                    <p id="modalBase" class="text-xs text-gray-800 font-medium leading-relaxed"></p>
+                </div>
+                <div class="bg-purple-50/60 rounded-xl p-3 border border-purple-200">
+                    <span class="text-[10px] font-bold text-[#570054] uppercase tracking-wider block mb-1">Guesstimate Formula:</span>
+                    <p id="modalFormula" class="text-xs font-mono text-[#570054] font-bold"></p>
+                </div>
+                <div>
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-2">Step-by-Step Derivation:</span>
+                    <div id="modalBreakdown" class="space-y-2"></div>
+                </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 flex justify-between items-center text-xs text-gray-500">
+                <span>Verified in DICE R2 Submission Deck</span>
+                <button onclick="closeGuesstimate()" class="px-4 py-1.5 bg-[#570054] hover:bg-[#430040] text-white font-bold rounded-lg transition">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="appendix_modal.js"></script>
+    <script>
+        // Specific modal entries for 4.1 and 4.2
+        appendixData["lever41-nmv"] = {
+            title: "₹2.4 Cr / yr — Creator Storefront Routine NMV",
+            source: "Appendix Page 22 (Routines & AOV)",
+            base: "300,000 Storefront Shoppers on Creator Profiles",
+            formula: "0.3 Mn Shoppers × Checkouts × ₹263 AOV × 15% Basket Uplift = ₹2.4 Cr NMV",
+            breakdown: [
+                { label: "Storefront Shoppers", val: "0.3 Million", note: "Assumed profile visitors" },
+                { label: "Base AOV per Item", val: "₹263", note: "Delivered product price (S19)" },
+                { label: "Routine Basket Uplift", val: "+15%", note: "Multi-item routine checkouts" },
+                { label: "Creator Earnings Uplift", val: "₹23 → ₹90", note: "Single link vs full routine" },
+                { label: "Annual Routine NMV", val: "= ₹2.4 Cr", note: "Upside: ₹10 Cr (at 40/40/20 multi-item split)" }
+            ]
+        };
+
+        appendixData["lever42-nmv"] = {
+            title: "₹2.1 Cr / yr — Free Sample Threshold Gamification",
+            source: "Appendix Page 22 (Threshold Economics)",
+            base: "300,000 Storefront Shoppers & Seller-Funded Minis",
+            formula: "0.3 Mn Shoppers × 35% Redeem × ₹200 Extra Cart Value = ₹2.1 Cr NMV",
+            breakdown: [
+                { label: "Storefront Shoppers", val: "0.3 Million", note: "Shoppers near checkout" },
+                { label: "Redeem Rate", val: "35%", note: "Shoppers adding extra item" },
+                { label: "Extra Cart Value", val: "₹200", note: "Added to unlock gift" },
+                { label: "Seller Cost per Mini", val: "₹60 - ₹80", note: "Funded by Mall Verified brands (Meesho pays ₹0)" },
+                { label: "Annual Threshold NMV", val: "= ₹2.1 Cr", note: "Conservative: ₹1.5 Cr (25% redeem)" }
+            ]
+        };
+
+        appendixData["threshold-gap"] = {
+            title: "₹150–250 Extra Cart Value",
+            source: "Appendix Page 8 & 22 (Seller Margin Model)",
+            base: "₹70 Mini Sample Cost ÷ 30% Seller Margin = ₹233 Breakeven",
+            formula: "Threshold set at ₹250 extra basket size to make sample funding profit-neutral for sellers",
+            breakdown: [
+                { label: "Mini Production & Pack", val: "₹60 - ₹80", note: "Seller direct expense" },
+                { label: "Seller Gross Margin", val: "30%", note: "Typical beauty brand margin" },
+                { label: "Required Basket Expansion", val: "₹233", note: "Threshold gap needed" },
+                { label: "Actual Threshold Set", val: "₹250", note: "Guarantees supplier profits on unlocked mini" }
+            ]
+        };
+
+        function switchView(tab) {
+            const iframe = document.getElementById('mainIframe');
+            const tab41 = document.getElementById('tab41');
+            const tab42 = document.getElementById('tab42');
+            const title = document.getElementById('phoneTitle');
+            const subtitle = document.getElementById('phoneSubTitle');
+            const tagInsight = document.getElementById('tagInsight');
+            const headInsight = document.getElementById('headInsight');
+            const descInsight = document.getElementById('descInsight');
+            const cardsLeft = document.getElementById('cardsLeft');
+            const boxEconomics = document.getElementById('boxEconomics');
+            const tagSolution = document.getElementById('tagSolution');
+            const headSolution = document.getElementById('headSolution');
+            const solutionDetails = document.getElementById('solutionDetails');
+            const guideText = document.getElementById('guideText');
+            const nmvMathBox = document.getElementById('nmvMathBox');
+            const nmvModelHeading = document.getElementById('nmvModelHeading');
+            const pillNmvLabel = document.getElementById('pillNmvLabel');
+            const pillNmvBtn = document.getElementById('pillNmvBtn');
+            const pillMetricLabel = document.getElementById('pillMetricLabel');
+            const pillMetricBtn = document.getElementById('pillMetricBtn');
+
+            if (tab === 'storefront') {
+                iframe.src = '../Lever4_AOV/creator_storefront.html';
+                title.innerText = 'Creator Curated Storefront';
+                subtitle.innerText = 'SOLUTION 4.1';
+                tab41.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-[#570054] text-white shadow-sm flex items-center gap-2';
+                tab42.className = 'px-4 py-1.5 rounded-lg text-xs font-bold transition text-gray-600 hover:text-gray-900 flex items-center gap-2';
+                
+                pillNmvLabel.innerText = "Storefront NMV:";
+                pillNmvBtn.innerHTML = `₹2.4 Cr / yr <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+                pillNmvBtn.setAttribute("onclick", "openGuesstimate('lever41-nmv')");
+
+                pillMetricLabel.innerText = "Basket Uplift:";
+                pillMetricBtn.innerHTML = `+15% to +20% <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+                pillMetricBtn.setAttribute("onclick", "openGuesstimate('basket-uplift')");
+
+                tagInsight.innerText = "4.1 Multi-SKU Regimen Insight";
+                headInsight.innerText = "One link sells one product; but beauty is naturally bought as a multi-step routine.";
+                descInsight.innerText = "Single affiliate links cap AOV at ~₹262. Bundling a creator's top recommended products into a cohesive routine (Cleanser + Serum + Cream) increases basket size without discounting.";
+
+                cardsLeft.innerHTML = `
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-pink-100 text-[#df1e7b] border border-pink-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-basket-shopping text-base"></i>
+                        </div>
+                        <div>
+                            <button onclick="openGuesstimate('basket-uplift')" class="text-base font-black text-gray-900 hover:text-[#df1e7b] hover:underline text-left cursor-pointer flex items-center gap-1.5">+15% to +20% <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-[#df1e7b]"></i></button>
+                            <div class="text-[11px] text-gray-500 leading-tight">Basket size uplift when shoppers buy routines vs single links</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-purple-100 text-[#570054] border border-purple-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-hand-holding-dollar text-base"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">₹23 → ₹90</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">Creator payout per order expands from single link to full routine</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-emerald-100 text-[#038d63] border border-emerald-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-layer-group text-base"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">Top 5 Auto-Build</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">Routine storefronts automatically generate from creator's top-linked SKUs</div>
+                        </div>
+                    </div>
+                `;
+
+                boxEconomics.innerHTML = `
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">Basket Expansion Ladder (Deck S8)</span>
+                    <div class="flex items-center justify-between text-gray-700"><span>Single Linked Item</span><span class="text-gray-500 font-mono">₹250</span></div>
+                    <div class="flex items-center justify-between text-gray-700"><span>2-Item Regimen</span><span class="text-[#570054] font-mono font-bold">₹599</span></div>
+                    <div class="flex items-center justify-between text-gray-700"><span>Full Routine + Addon</span><span class="text-[#df1e7b] font-mono font-bold">₹997</span></div>
+                `;
+
+                tagSolution.innerText = "Solution 4.1";
+                headSolution.innerText = "Creator Routine Storefronts";
+                solutionDetails.innerHTML = `
+                    <div class="p-3.5 rounded-xl bg-purple-50/70 border border-purple-200">
+                        <h4 class="text-xs font-bold text-[#570054] mb-1">One-Click 'Add All to Cart'</h4>
+                        <p class="text-[11px] text-gray-600 leading-snug">
+                            Buyers tap 1 button on Sneha's profile to populate all 3 regimen steps directly into the cart, bypassing multi-page search friction.
+                        </p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200">
+                        <h4 class="text-xs font-bold text-gray-900 mb-1">Target Audience: 0.3M Shoppers</h4>
+                        <p class="text-[11px] text-gray-600 leading-snug">
+                            Targets buyers visiting creator profile hauls with proven high purchase intent.
+                        </p>
+                    </div>
+                `;
+
+                guideText.innerHTML = `
+                    <p>1. Review <strong>@skincare_sneha's Curated Routine Storefront</strong>.</p>
+                    <p>2. Tap <strong>"Next: 4.2 Cart Threshold"</strong> below to test how the cart gamifies adding another item!</p>
+                `;
+
+                nmvMathBox.innerHTML = `
+                    <div class="flex justify-between"><span>0.3 Mn</span><span class="text-gray-400">Storefront Shoppers</span></div>
+                    <div class="flex justify-between"><span>× ₹263</span><span class="text-gray-400">Base AOV (S19)</span></div>
+                    <div class="flex justify-between"><span>× +15%</span><span class="text-gray-400">Routine Basket Uplift</span></div>
+                    <div class="flex justify-between border-t border-gray-200 pt-1 font-bold text-[#570054]">
+                        <span>= ₹2.4 Cr</span>
+                        <button onclick="openGuesstimate('lever41-nmv')" class="underline hover:text-[#df1e7b]">See Guesstimate</button>
+                    </div>
+                `;
+                nmvModelHeading.innerText = "Storefront NMV Model (Deck S8 & S22)";
+            } else {
+                iframe.src = '../Lever4_AOV/cart_threshold.html';
+                title.innerText = 'Free Sample Cart Threshold';
+                subtitle.innerText = 'SOLUTION 4.2';
+                tab42.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-[#570054] text-white shadow-sm flex items-center gap-2';
+                tab41.className = 'px-4 py-1.5 rounded-lg text-xs font-bold transition text-gray-600 hover:text-gray-900 flex items-center gap-2';
+                
+                pillNmvLabel.innerText = "Threshold NMV:";
+                pillNmvBtn.innerHTML = `₹2.1 Cr / yr <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+                pillNmvBtn.setAttribute("onclick", "openGuesstimate('lever42-nmv')");
+
+                pillMetricLabel.innerText = "Redeem Rate:";
+                pillMetricBtn.innerHTML = `35% of Shoppers <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+                pillMetricBtn.setAttribute("onclick", "openGuesstimate('lever42-nmv')");
+
+                tagInsight.innerText = "4.2 Basket Gamification Insight";
+                headInsight.innerText = "Buyers rarely add an unfamiliar category unless rewarded with risk-free trial.";
+                descInsight.innerText = "Cart abandonment drops when buyers are nudged with an achievable goal: 'Add ₹150 more to unlock a free mini serum'. The free mini is 100% funded by verified brands out of their sampling CAC budget.";
+
+                cardsLeft.innerHTML = `
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-pink-100 text-[#df1e7b] border border-pink-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-gift text-base"></i>
+                        </div>
+                        <div>
+                            <button onclick="openGuesstimate('threshold-gap')" class="text-base font-black text-gray-900 hover:text-[#df1e7b] hover:underline text-left cursor-pointer flex items-center gap-1.5">₹150–250 Extra <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-[#df1e7b]"></i></button>
+                            <div class="text-[11px] text-gray-500 leading-tight">Average extra merchandise added to cart to unlock free sample</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-purple-100 text-[#570054] border border-purple-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-tags text-base"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">₹60–80 Cost</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">Paid directly by verified brands; Meesho subsidizes ₹0</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-emerald-100 text-[#038d63] border border-emerald-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-shield-check text-base"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">Mall Brands Only</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">Minis strictly restricted to Mall Verified brands to build trust</div>
+                        </div>
+                    </div>
+                `;
+
+                boxEconomics.innerHTML = `
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">Seller Unit Economics (Deck S22)</span>
+                    <div class="flex items-center justify-between text-gray-700"><span>Mini Sample Cost</span><span class="text-[#df1e7b] font-mono font-bold">₹70</span></div>
+                    <div class="flex items-center justify-between text-gray-700"><span>Seller Gross Margin</span><span class="text-gray-500 font-mono">30%</span></div>
+                    <div class="flex items-center justify-between text-gray-700"><span>Required Basket Add</span><span class="text-[#038d63] font-mono font-bold">₹233</span></div>
+                `;
+
+                tagSolution.innerText = "Solution 4.2";
+                headSolution.innerText = "Cart Threshold Free Sample";
+                solutionDetails.innerHTML = `
+                    <div class="p-3.5 rounded-xl bg-purple-50/70 border border-purple-200">
+                        <h4 class="text-xs font-bold text-[#570054] mb-1">Dynamic Progress Bar</h4>
+                        <p class="text-[11px] text-gray-600 leading-snug">
+                            "Add ₹90 more to unlock a FREE Sunscreen Mini!". Progress bar responds in real-time as items are added or removed.
+                        </p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200">
+                        <h4 class="text-xs font-bold text-gray-900 mb-1">Zero Meesho Subsidy</h4>
+                        <p class="text-[11px] text-gray-600 leading-snug">
+                            Brands gladly fund minis because each sample generates incremental full-size reorders with verified 30% contribution margin.
+                        </p>
+                    </div>
+                `;
+
+                guideText.innerHTML = `
+                    <p>1. Observe the <strong>progress bar</strong> at the top of the cart.</p>
+                    <p>2. Notice the recommended items curated specifically to bridge the ₹90 gap.</p>
+                `;
+
+                nmvMathBox.innerHTML = `
+                    <div class="flex justify-between"><span>0.3 Mn</span><span class="text-gray-400">Storefront Shoppers</span></div>
+                    <div class="flex justify-between"><span>× 35%</span><span class="text-gray-400">Threshold Redeem Rate</span></div>
+                    <div class="flex justify-between"><span>× ₹200</span><span class="text-gray-400">Extra Cart Value</span></div>
+                    <div class="flex justify-between border-t border-gray-200 pt-1 font-bold text-[#570054]">
+                        <span>= ₹2.1 Cr</span>
+                        <button onclick="openGuesstimate('lever42-nmv')" class="underline hover:text-[#df1e7b]">See Guesstimate</button>
+                    </div>
+                `;
+                nmvModelHeading.innerText = "Threshold NMV Model (Deck S8 & S22)";
+            }
+        }
+
+        // Initialize default view
+        switchView('storefront');
+    </script>
+</body>
+</html>

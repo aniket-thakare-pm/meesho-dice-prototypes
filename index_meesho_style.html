@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesho DICE Challenge 3.0 — Semi-Finale Product Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --meesho-plum: #570054;
+            --meesho-pink: #df1e7b;
+            --meesho-bg: #f8f6f9;
+            --meesho-border: #ede8f0;
+            --meesho-green: #038d63;
+        }
+        body { 
+            background-color: var(--meesho-bg); 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
+            color: #1f2937;
+        }
+        .meesho-card {
+            background: #ffffff;
+            border: 1px solid var(--meesho-border);
+            box-shadow: 0 4px 20px -2px rgba(87, 0, 84, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .meesho-card:hover {
+            transform: translateY(-2px);
+            border-color: #d8b4e2;
+            box-shadow: 0 12px 28px -4px rgba(87, 0, 84, 0.10);
+        }
+        .custom-scroll::-webkit-scrollbar { height: 4px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 999px; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-4 sm:p-6 md:p-8">
+
+    <!-- TOP MEESHO BRANDED NAV BAR -->
+    <header class="w-full max-w-[1440px] bg-white rounded-2xl border border-[#ede8f0] px-5 py-3 flex items-center justify-between shadow-sm mb-6">
+        <div class="flex items-center gap-3">
+            <!-- Official Meesho Logo from user image -->
+            <img src="assets/meesho_logo.jpg" alt="Meesho" class="h-10 w-auto rounded-lg object-contain shadow-xs border border-purple-100">
+            <div class="h-6 w-px bg-gray-200 mx-1"></div>
+            <div>
+                <span class="text-xs font-black tracking-widest text-[#df1e7b] uppercase block">DICE 3.0 · Product Suite</span>
+                <span class="text-[10px] font-semibold text-gray-500">Team Strategix_KGP · IIT Kharagpur</span>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[#038d63] text-xs font-bold">
+                <span class="w-2 h-2 rounded-full bg-[#038d63] animate-pulse"></span> Semi-Finale Interactive Demo
+            </span>
+        </div>
+    </header>
+
+    <!-- HERO TITLE (COMPACT) -->
+    <div class="text-center max-w-3xl mb-5">
+        <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#df1e7b] bg-pink-50 border border-pink-200 px-3 py-0.5 rounded-full inline-block mb-1.5">
+            Category Growth Engine · Beauty & Personal Care (BPC)
+        </span>
+        <h1 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight leading-tight mb-1.5">
+            Growing BPC Through Creators: <span class="text-[#570054]">The 5 Levers</span>
+        </h1>
+        <p class="text-xs text-gray-500 max-w-2xl mx-auto">
+            Hover over any metric or RICE addition below for full field research evidence. Click any lever to open the live interactive prototype.
+        </p>
+    </div>
+
+    <!-- SECTION 1: RESEARCH STAT NUMBERS (COMPACT WITH HOVER TOOLTIPS) -->
+    <div class="w-full max-w-[1440px] grid grid-cols-2 md:grid-cols-4 gap-3.5 mb-4">
+
+        <!-- Stat 1: Category Inversion -->
+        <div class="group relative meesho-card rounded-xl p-3 text-center cursor-pointer hover:border-[#570054] transition-all">
+            <span class="text-[10px] font-black uppercase tracking-wider text-gray-400 block mb-0.5">Content Commerce</span>
+            <div class="text-2xl sm:text-3xl font-black text-[#570054]">3.4%</div>
+            <div class="text-[11px] font-bold text-gray-700">vs 10%+ on Myntra</div>
+            <div class="text-[9px] text-[#df1e7b] font-medium mt-1 flex items-center justify-center gap-1">
+                <span>Hover for data</span> <i class="fa-solid fa-circle-info text-[9px]"></i>
+            </div>
+            
+            <!-- Hover Popover Tooltip -->
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-gray-100/90 backdrop-blur-md border border-gray-300/80 text-gray-800 text-[11px] p-3.5 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+                <span class="font-extrabold text-[#570054] block mb-1">The Category Inversion:</span>
+                Beauty is TikTok Shop's #1 category worldwide. On Myntra, creator-led sales drive 10%+ revenue. Yet at Meesho, content commerce drives only ~3.4% of NMV despite +141% YoY content growth.
+                <div class="text-[9px] text-gray-500 mt-2 pt-1.5 border-t border-gray-300">Source: Meesho Q1 FY27 & Redseer ($40B India TAM)</div>
+            </div>
+        </div>
+
+        <!-- Stat 2: Sunk Cost Trap -->
+        <div class="group relative meesho-card rounded-xl p-3 text-center cursor-pointer hover:border-[#df1e7b] transition-all">
+            <span class="text-[10px] font-black uppercase tracking-wider text-gray-400 block mb-0.5">Sunk Cost Trap</span>
+            <div class="text-2xl sm:text-3xl font-black text-[#df1e7b]">~11</div>
+            <div class="text-[11px] font-bold text-gray-700">Orders to Break Even</div>
+            <div class="text-[9px] text-[#df1e7b] font-medium mt-1 flex items-center justify-center gap-1">
+                <span>Hover for data</span> <i class="fa-solid fa-circle-info text-[9px]"></i>
+            </div>
+            
+            <!-- Hover Popover Tooltip -->
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-gray-100/90 backdrop-blur-md border border-gray-300/80 text-gray-800 text-[11px] p-3.5 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+                <span class="font-extrabold text-[#df1e7b] block mb-1">Sunk Cost & Cashflow:</span>
+                77.7% of creators pre-buy BPC SKUs out of pocket (median ₹3,500/mo). Unlike fashion, opened cosmetics cannot be returned. At ₹27 commission, a creator needs 11 orders just to recover 1 product.
+                <div class="text-[9px] text-gray-500 mt-2 pt-1.5 border-t border-gray-300">Source: Primary Creator Interviews (n=23)</div>
+            </div>
+        </div>
+
+        <!-- Stat 3: Sourcing Blindspot -->
+        <div class="group relative meesho-card rounded-xl p-3 text-center cursor-pointer hover:border-purple-600 transition-all">
+            <span class="text-[10px] font-black uppercase tracking-wider text-gray-400 block mb-0.5">Creator Bottleneck</span>
+            <div class="text-2xl sm:text-3xl font-black text-purple-700">86.9%</div>
+            <div class="text-[11px] font-bold text-gray-700">Struggle on SKU Selection</div>
+            <div class="text-[9px] text-[#df1e7b] font-medium mt-1 flex items-center justify-center gap-1">
+                <span>Hover for data</span> <i class="fa-solid fa-circle-info text-[9px]"></i>
+            </div>
+            
+            <!-- Hover Popover Tooltip -->
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-gray-100/90 backdrop-blur-md border border-gray-300/80 text-gray-800 text-[11px] p-3.5 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+                <span class="font-extrabold text-[#570054] block mb-1">Sourcing Blindspot:</span>
+                Creators only see generic commission % (e.g. 10%) on dashboards with zero visibility into sales velocity, leading them to promote dead stock that never sells or has high return rates.
+                <div class="text-[9px] text-gray-500 mt-2 pt-1.5 border-t border-gray-300">Source: Primary Creator Fieldwork (n=23)</div>
+            </div>
+        </div>
+
+        <!-- Stat 4: Trust Deficit -->
+        <div class="group relative meesho-card rounded-xl p-3 text-center cursor-pointer hover:border-[#038d63] transition-all">
+            <span class="text-[10px] font-black uppercase tracking-wider text-gray-400 block mb-0.5">Buyer Trust Deficit</span>
+            <div class="text-2xl sm:text-3xl font-black text-[#038d63]">40%</div>
+            <div class="text-[11px] font-bold text-gray-700">Received Fake Cosmetics</div>
+            <div class="text-[9px] text-[#038d63] font-medium mt-1 flex items-center justify-center gap-1">
+                <span>Hover for data</span> <i class="fa-solid fa-circle-info text-[9px]"></i>
+            </div>
+            
+            <!-- Hover Popover Tooltip -->
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-gray-100/90 backdrop-blur-md border border-gray-300/80 text-gray-800 text-[11px] p-3.5 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+                <span class="font-extrabold text-[#038d63] block mb-1">Trust Deficit on PDP:</span>
+                30% of consumers bought fake cosmetics (LocalCircles n=4,300); 56% find reviews biased. In our survey (n=118), catalog photos failed to show skin tone match. Reels die in feeds without reaching the PDP.
+                <div class="text-[9px] text-gray-500 mt-2 pt-1.5 border-t border-gray-300">Source: Primary Survey (n=118) & LocalCircles</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SECTION 2: 1-LINE EQUATION BANNER (FITS ON ONE SINGLE LINE) -->
+    <div class="w-full max-w-[1440px] bg-gradient-to-r from-purple-50 via-pink-50/40 to-purple-50 border border-purple-200/80 rounded-xl px-4 py-2 text-center overflow-x-auto custom-scroll mb-2">
+        <div class="inline-flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm font-black text-gray-900 whitespace-nowrap">
+            <span class="text-[#570054] font-extrabold uppercase tracking-wide text-[10px]">The Equation:</span>
+            <span class="bg-purple-100 text-[#570054] px-2 py-0.5 rounded font-black text-xs">NMV</span>
+            <span class="text-gray-400 font-normal">=</span>
+            <span class="bg-white border border-purple-200 text-[#570054] px-2 py-0.5 rounded shadow-xs text-xs">[Active Creators</span>
+            <span class="text-gray-400 font-normal">×</span>
+            <span class="bg-white border border-purple-200 text-[#570054] px-2 py-0.5 rounded shadow-xs text-xs">Videos per Creator]</span>
+            <span class="text-gray-400 font-normal">×</span>
+            <span class="bg-white border border-pink-200 text-[#df1e7b] px-2 py-0.5 rounded shadow-xs text-xs">Conversion</span>
+            <span class="text-gray-400 font-normal">×</span>
+            <span class="bg-white border border-purple-200 text-[#570054] px-2 py-0.5 rounded shadow-xs text-xs">AOV</span>
+            <span class="text-gray-400 font-normal">×</span>
+            <span class="bg-white border border-emerald-200 text-[#038d63] px-2 py-0.5 rounded shadow-xs text-xs">(1 − Return Rate)</span>
+        </div>
+    </div>
+
+    <!-- SECTION 3: EXACT 5-COLUMN LEVER MAPPING BAR (VERBATIM FROM DECK SLIDE 1) -->
+    <div class="w-full max-w-[1440px] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 mb-8">
+        <div class="bg-white border border-purple-100 rounded-xl px-2.5 py-2 text-center shadow-xs">
+            <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-400 block mb-0.5">Active creators</span>
+            <span class="text-xs font-black text-[#570054]">L1 Acquire + L5 Retain</span>
+        </div>
+        <div class="bg-white border border-purple-100 rounded-xl px-2.5 py-2 text-center shadow-xs">
+            <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-400 block mb-0.5">Videos / creator</span>
+            <span class="text-xs font-black text-[#570054]">L2 Produce: wallet + sampling</span>
+        </div>
+        <div class="bg-white border border-pink-100 rounded-xl px-2.5 py-2 text-center shadow-xs">
+            <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-400 block mb-0.5">Conversion</span>
+            <span class="text-xs font-black text-[#df1e7b]">L3 Convert: PDP video</span>
+        </div>
+        <div class="bg-white border border-purple-100 rounded-xl px-2.5 py-2 text-center shadow-xs">
+            <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-400 block mb-0.5">AOV</span>
+            <span class="text-xs font-black text-[#570054]">L4 Basket: storefronts</span>
+        </div>
+        <div class="bg-white border border-emerald-100 rounded-xl px-2.5 py-2 text-center shadow-xs">
+            <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-400 block mb-0.5">1 − Returns</span>
+            <span class="text-xs font-black text-[#038d63]">Handled in L3 and L4</span>
+        </div>
+    </div>
+
+    <!-- MAIN FOCUS: EXPLORE THE 5 LEVERS -->
+    <div class="w-full max-w-[1440px] flex items-center justify-between mb-4">
+        <div>
+            <span class="text-[10px] font-black tracking-wider text-[#df1e7b] uppercase block">Interactive Suite</span>
+            <h2 class="text-xl sm:text-2xl font-black text-gray-900">Explore the 5 Levers</h2>
+        </div>
+        <span class="text-xs text-gray-500 font-medium hidden sm:inline">Hover over any RICE badge to see how the score is calculated</span>
+    </div>
+
+    <!-- 5 CLEAN PRODUCT LEVER CARDS WITH VISIBLE ADDITIONS & HOVER BREAKDOWNS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 w-full max-w-[1440px] mb-8">
+        
+        <!-- Lever 1 (MAIN HIGHLIGHT & HIGHEST RICE LEVER) -->
+        <a href="Final_Prototypes/Lever1_Meesho_Style.html" class="meesho-card rounded-2xl p-5 flex flex-col group border-2 border-[#570054] relative bg-gradient-to-b from-purple-50/25 to-white shadow-md hover:z-30">
+            <div class="absolute top-0 right-0 bg-[#570054] text-white text-[8px] font-black uppercase px-2.5 py-0.5 rounded-tr-xl rounded-bl-lg tracking-wider shadow-xs">
+                Main Focus · Top RICE
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <span class="w-8 h-8 rounded-xl bg-[#570054] text-white font-black text-xs flex items-center justify-center shadow-xs">1</span>
+                
+                <!-- RICE Badge with Hover Tooltip -->
+                <div class="relative group/rice mr-14">
+                    <span class="text-[9px] font-black tracking-wider text-[#570054] bg-purple-100/80 px-2 py-0.5 rounded border border-purple-300 uppercase flex items-center gap-1 cursor-help">
+                        <span>Σ RICE 208.7</span> <i class="fa-solid fa-circle-question text-[8px] text-[#570054]"></i>
+                    </span>
+                    <div class="absolute bottom-full left-0 mb-2 w-72 bg-gray-100/95 backdrop-blur-md border border-gray-300/90 text-gray-800 text-[10px] p-3.5 rounded-xl shadow-2xl opacity-0 invisible group-hover/rice:opacity-100 group-hover/rice:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+                        <span class="font-extrabold text-[#570054] block mb-1">#1 Priority Lever (Deck Slide 9):</span>
+                        Lever 1 is our <strong>primary strategic focus</strong> with the highest total RICE score across the suite. It stacks 3 rapid, low-friction acquisition tracks:
+                        <ul class="mt-1.5 space-y-0.5 text-gray-700">
+                            <li>• <strong class="text-gray-900 font-bold">Poaching Engine:</strong> RICE 106.7</li>
+                            <li>• <strong class="text-gray-900 font-bold">Meesho Creator Fest:</strong> RICE 72.0</li>
+                            <li>• <strong class="text-gray-900 font-bold">In-App Onboarding:</strong> RICE 30.0</li>
+                        </ul>
+                        <div class="text-[9px] text-[#570054] font-bold mt-2 pt-1 border-t border-gray-300">Sum = 106.7 + 72 + 30 = 208.7 RICE (Highest in DICE 3.0)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visible Addition Math Pill -->
+            <div class="text-[10px] text-purple-950 font-bold mb-3 bg-purple-100/60 px-2.5 py-1 rounded-lg border border-purple-200 flex items-center justify-between">
+                <span>Σ 106.7 + 72 + 30</span>
+                <span class="text-[9px] text-white font-black bg-[#570054] px-1.5 py-0.2 rounded">#1 Lever</span>
+            </div>
+
+            <h3 class="text-sm font-extrabold text-gray-900 group-hover:text-[#570054] transition-colors mb-1.5 leading-snug">Creator Acquisition</h3>
+            <p class="text-[11px] text-gray-500 mb-5 leading-relaxed flex-1">In-app buyer-to-creator onboarding from delivery order history at peak delight.</p>
+            
+            <div class="pt-3 border-t border-purple-100 flex items-center justify-between text-xs">
+                <span class="text-gray-400 font-medium text-[11px]">Annual NMV:</span>
+                <span class="font-black text-[#570054] text-xs">₹20.7 Cr</span>
+            </div>
+        </a>
+
+        <!-- Lever 2 -->
+        <a href="Final_Prototypes/Lever2_Meesho_Style.html" class="meesho-card rounded-2xl p-5 flex flex-col group relative hover:z-30">
+            <div class="flex items-center justify-between mb-2">
+                <span class="w-8 h-8 rounded-xl bg-purple-50 text-[#570054] border border-purple-200 font-black text-xs flex items-center justify-center group-hover:bg-[#570054] group-hover:text-white transition-colors">2</span>
+                
+                <!-- RICE Badge with Hover Tooltip -->
+                <div class="relative group/rice">
+                    <span class="text-[9px] font-black tracking-wider text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200 uppercase flex items-center gap-1 cursor-help">
+                        <span>Σ RICE 58.7</span> <i class="fa-solid fa-circle-question text-[8px] text-purple-400"></i>
+                    </span>
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-gray-100/95 backdrop-blur-md border border-gray-300/90 text-gray-800 text-[10px] p-3.5 rounded-xl shadow-2xl opacity-0 invisible group-hover/rice:opacity-100 group-hover/rice:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+                        <span class="font-extrabold text-[#570054] block mb-1">Lever 2 RICE Addition (Slide 9):</span>
+                        Sum of 2 zero-friction sourcing solutions:
+                        <ul class="mt-1 space-y-0.5 text-gray-700">
+                            <li>• <strong class="text-gray-900 font-bold">Supplier Sampling:</strong> RICE 46.7</li>
+                            <li>• <strong class="text-gray-900 font-bold">SplitPay Wallet:</strong> RICE 12.0</li>
+                        </ul>
+                        <div class="text-[9px] text-gray-600 mt-1.5 pt-1 border-t border-gray-300">Drives highest gross platform volume (₹66.5 Cr NMV) with supplier effort E=6 to 9. Total = <strong class="text-gray-900">58.7 RICE</strong>.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visible Addition Math Pill -->
+            <div class="text-[10px] text-purple-900 font-bold mb-3 bg-purple-50/80 px-2.5 py-1 rounded-lg border border-purple-200 flex items-center justify-between">
+                <span>Σ 46.7 + 12.0</span>
+                <span class="text-[9px] text-[#570054] font-black bg-white px-1.5 py-0.2 rounded border border-purple-100">Top NMV</span>
+            </div>
+
+            <h3 class="text-sm font-extrabold text-gray-900 group-hover:text-[#570054] transition-colors mb-1.5 leading-snug">Zero-Friction Sourcing</h3>
+            <p class="text-[11px] text-gray-500 mb-5 leading-relaxed flex-1">SplitPay pending wallet at checkout & supplier-funded Ad Credit sampling.</p>
+            
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+                <span class="text-gray-400 font-medium text-[11px]">Annual NMV:</span>
+                <span class="font-black text-[#570054] text-xs">₹66.5 Cr</span>
+            </div>
+        </a>
+
+        <!-- Lever 3 (Best Single Bet) -->
+        <a href="Final_Prototypes/Lever3_Meesho_Style.html" class="meesho-card rounded-2xl p-5 flex flex-col group relative hover:z-30">
+            <div class="absolute top-0 right-0 bg-pink-50 text-[#df1e7b] border-l border-b border-pink-200 text-[8px] font-bold uppercase px-2 py-0.5 rounded-tr-xl rounded-bl-lg tracking-wider">
+                Best Single Bet
+            </div>
+            <div class="flex items-center justify-between mb-2">
+                <span class="w-8 h-8 rounded-xl bg-pink-50 text-[#df1e7b] border border-pink-200 font-black text-xs flex items-center justify-center group-hover:bg-[#df1e7b] group-hover:text-white transition-colors">3</span>
+                
+                <!-- RICE Badge with Hover Tooltip -->
+                <div class="relative group/rice mr-12">
+                    <span class="text-[9px] font-black tracking-wider text-[#df1e7b] bg-pink-50 px-2 py-0.5 rounded border border-pink-200 uppercase flex items-center gap-1 cursor-help">
+                        <span>RICE 192</span> <i class="fa-solid fa-circle-question text-[8px] text-[#df1e7b]"></i>
+                    </span>
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-gray-100/95 backdrop-blur-md border border-gray-300/90 text-gray-800 text-[10px] p-3.5 rounded-xl shadow-2xl opacity-0 invisible group-hover/rice:opacity-100 group-hover/rice:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+                        <span class="font-extrabold text-[#df1e7b] block mb-1">Best Single Bet in Competition:</span>
+                        Trust Stack UGC on PDP scored <strong class="text-gray-900">192 RICE</strong> (R:9 × I:8 × C:8 ÷ E:3).
+                        <div class="text-[9px] text-gray-600 mt-1.5 pt-1 border-t border-gray-300">
+                            Ranks as the <strong class="text-gray-900">#1 standalone single solution</strong> with 4.8x ROI. (Lever 1 achieves higher 208.7 RICE by summing 3 acquisition solutions).
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visible Single Solution Badge -->
+            <div class="text-[10px] text-[#df1e7b] font-bold mb-3 bg-pink-50/80 px-2.5 py-1 rounded-lg border border-pink-200 flex items-center justify-between">
+                <span>Single Solution</span>
+                <span class="text-[9px] bg-pink-100 text-[#df1e7b] px-2 py-0.2 rounded font-extrabold border border-pink-200">RICE 192</span>
+            </div>
+
+            <h3 class="text-sm font-extrabold text-gray-900 group-hover:text-[#df1e7b] transition-colors mb-1.5 leading-snug">Trust Stack (UGC)</h3>
+            <p class="text-[11px] text-gray-500 mb-5 leading-relaxed flex-1">Real creator video on PDP mapped to exact shade with skin-tone tone filters.</p>
+            
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+                <span class="text-gray-400 font-medium text-[11px]">Annual NMV:</span>
+                <span class="font-black text-[#df1e7b] text-xs">₹29.7 Cr</span>
+            </div>
+        </a>
+
+        <!-- Lever 4 -->
+        <a href="Final_Prototypes/Lever4_Meesho_Style.html" class="meesho-card rounded-2xl p-5 flex flex-col group relative hover:z-30">
+            <div class="flex items-center justify-between mb-2">
+                <span class="w-8 h-8 rounded-xl bg-purple-50 text-[#570054] border border-purple-200 font-black text-xs flex items-center justify-center group-hover:bg-[#570054] group-hover:text-white transition-colors">4</span>
+                
+                <!-- RICE Badge with Hover Tooltip -->
+                <div class="relative group/rice">
+                    <span class="text-[9px] font-black tracking-wider text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200 uppercase flex items-center gap-1 cursor-help">
+                        <span>Σ RICE 57.0</span> <i class="fa-solid fa-circle-question text-[8px] text-purple-400"></i>
+                    </span>
+                    <div class="absolute bottom-full right-0 mb-2 w-72 bg-gray-100/95 backdrop-blur-md border border-gray-300/90 text-gray-800 text-[10px] p-3.5 rounded-xl shadow-2xl opacity-0 invisible group-hover/rice:opacity-100 group-hover/rice:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+                        <span class="font-extrabold text-[#570054] block mb-1">Lever 4 RICE Addition (Slide 9):</span>
+                        Sum of 2 basket-building routine solutions:
+                        <ul class="mt-1 space-y-0.5 text-gray-700">
+                            <li>• <strong class="text-gray-900 font-bold">Routine Storefronts:</strong> RICE 36.0</li>
+                            <li>• <strong class="text-gray-900 font-bold">Free Sample Cart Threshold:</strong> RICE 21.0</li>
+                        </ul>
+                        <div class="text-[9px] text-gray-600 mt-1.5 pt-1 border-t border-gray-300">Total = 36 + 21 = <strong class="text-gray-900">57.0 RICE</strong>. Expands AOV from ₹250 to ₹430.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visible Addition Math Pill -->
+            <div class="text-[10px] text-purple-900 font-bold mb-3 bg-purple-50/80 px-2.5 py-1 rounded-lg border border-purple-200 flex items-center justify-between">
+                <span>Σ 36.0 + 21.0</span>
+                <span class="text-[9px] text-purple-700 font-semibold bg-white px-1.5 py-0.2 rounded border border-purple-100">2 Solutions</span>
+            </div>
+
+            <h3 class="text-sm font-extrabold text-gray-900 group-hover:text-[#570054] transition-colors mb-1.5 leading-snug">Routines & AOV</h3>
+            <p class="text-[11px] text-gray-500 mb-5 leading-relaxed flex-1">Curated multi-step routine bundles & free sample cart threshold bar.</p>
+            
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+                <span class="text-gray-400 font-medium text-[11px]">Annual NMV:</span>
+                <span class="font-black text-[#570054] text-xs">₹4.5 Cr</span>
+            </div>
+        </a>
+
+        <!-- Lever 5 -->
+        <a href="Final_Prototypes/Lever5_Meesho_Style.html" class="meesho-card rounded-2xl p-5 flex flex-col group relative hover:z-30">
+            <div class="flex items-center justify-between mb-2">
+                <span class="w-8 h-8 rounded-xl bg-purple-50 text-[#570054] border border-purple-200 font-black text-xs flex items-center justify-center group-hover:bg-[#570054] group-hover:text-white transition-colors">5</span>
+                
+                <!-- RICE Badge with Hover Tooltip -->
+                <div class="relative group/rice">
+                    <span class="text-[9px] font-black tracking-wider text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200 uppercase flex items-center gap-1 cursor-help">
+                        <span>Σ RICE 40.0</span> <i class="fa-solid fa-circle-question text-[8px] text-purple-400"></i>
+                    </span>
+                    <div class="absolute bottom-full right-0 mb-2 w-72 bg-gray-100/95 backdrop-blur-md border border-gray-300/90 text-gray-800 text-[10px] p-3.5 rounded-xl shadow-2xl opacity-0 invisible group-hover/rice:opacity-100 group-hover/rice:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+                        <span class="font-extrabold text-[#570054] block mb-1">Lever 5 RICE Addition (Slide 9):</span>
+                        Sum of 2 creator retention solutions:
+                        <ul class="mt-1 space-y-0.5 text-gray-700">
+                            <li>• <strong class="text-gray-900 font-bold">Creator Demand Insights:</strong> RICE 30.0</li>
+                            <li>• <strong class="text-gray-900 font-bold">Milestone Badges:</strong> RICE 10.0</li>
+                        </ul>
+                        <div class="text-[9px] text-gray-600 mt-1.5 pt-1 border-t border-gray-300">Total = 30 + 10 = <strong class="text-gray-900">40.0 RICE</strong>. Solves creator SKU confusion and Month 3 churn.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visible Addition Math Pill -->
+            <div class="text-[10px] text-purple-900 font-bold mb-3 bg-purple-50/80 px-2.5 py-1 rounded-lg border border-purple-200 flex items-center justify-between">
+                <span>Σ 30.0 + 10.0</span>
+                <span class="text-[9px] text-purple-700 font-semibold bg-white px-1.5 py-0.2 rounded border border-purple-100">2 Solutions</span>
+            </div>
+
+            <h3 class="text-sm font-extrabold text-gray-900 group-hover:text-[#570054] transition-colors mb-1.5 leading-snug">Retention & Insights</h3>
+            <p class="text-[11px] text-gray-500 mb-5 leading-relaxed flex-1">BPC SKU demand signals & positive-only milestones with zero demotions.</p>
+            
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
+                <span class="text-gray-400 font-medium text-[11px]">Annual NMV:</span>
+                <span class="font-black text-[#570054] text-xs">₹4.3 Cr</span>
+            </div>
+        </a>
+
+    </div>
+
+
+    <!-- BOTTOM TOTAL IMPACT SCORECARD -->
+    <div class="w-full max-w-[1440px] bg-white rounded-2xl border border-[#ede8f0] p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-5 shadow-sm">
+        <div class="flex items-center gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200 flex items-center justify-center text-[#570054] shrink-0 text-lg font-black">
+                ₹
+            </div>
+            <div>
+                <h4 class="text-sm font-extrabold text-gray-900">Total Loop Opportunity (Deck Slide 10)</h4>
+                <p class="text-[11px] text-gray-500">Conservative portfolio model after removing 25% deduplicated customer journey overlap</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-6 self-end md:self-auto">
+            <div>
+                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Gross Sum</span>
+                <span class="text-base font-black text-gray-700">₹125.8 Cr</span>
+            </div>
+            <div class="h-7 w-px bg-gray-200"></div>
+            <div>
+                <span class="text-[10px] font-black text-[#df1e7b] uppercase tracking-wider block">Net De-duplicated NMV</span>
+                <span class="text-xl sm:text-2xl font-black text-[#570054]">~₹94.0 Cr <span class="text-xs font-bold text-gray-500">/ yr</span></span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

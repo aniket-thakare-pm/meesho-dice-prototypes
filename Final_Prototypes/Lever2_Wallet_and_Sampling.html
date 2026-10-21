@@ -21,26 +21,20 @@
 }
 *{box-sizing:border-box}
 body{
-  margin:0;background:var(--bg);color:var(--ink);
+  margin:0;background:#111827;color:var(--ink);
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 40px;
 }
 button{font:inherit}
-.page{max-width:1100px;margin:auto;padding:24px}
-.intro{
-  background:linear-gradient(135deg,#4b0b3e,#78145e);
-  color:#fff;border-radius:22px;padding:20px 22px;margin-bottom:24px;
-}
-.eyebrow{font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#ffd04b}
-.intro h1{margin:5px 0 6px;font-size:23px}
-.intro p{margin:0;font-size:13px;line-height:1.45;color:#f9eaf6;max-width:820px}
+.page{max-width:1100px;margin:auto;}
 .phones{
   display:grid;grid-template-columns:repeat(2,minmax(320px,390px));
-  gap:28px;justify-content:center;align-items:start;
+  gap:80px;justify-content:center;align-items:start;
 }
-.phone-wrap{text-align:center}
+.phone-wrap{display:flex; flex-direction:column; align-items:center;}
 .phone-label{
-  margin:0 0 9px;color:#68656e;font-size:12px;font-weight:900;
-  letter-spacing:.06em;text-transform:uppercase;
+  margin:0 0 24px;color:#fff;font-size:24px;font-weight:900;
+  letter-spacing:.025em;text-transform:none;text-shadow:0 4px 6px -1px rgba(0,0,0,0.3);
 }
 .phone{
   width:390px;max-width:100%;height:844px;margin:auto;background:#111014;
@@ -247,16 +241,11 @@ button{font:inherit}
 </head>
 <body>
 <div class="page">
-  <div class="intro">
-    <div class="eyebrow">Lever 2 · Zero-friction sourcing</div>
-    <h1>Revised mobile flows for SplitPay Wallet & Supplier-funded Sampling Credits</h1>
-    <p>Both experiences now start from the normal Meesho journey: checkout for SplitPay and the product listing page for Trial-SKU sampling.</p>
-  </div>
 
   <div class="phones">
     <!-- SPLITPAY -->
     <div class="phone-wrap">
-      <div class="phone-label">Option A · SplitPay starts at normal checkout</div>
+      <div class="phone-label">SplitPay Wallet Checkout</div>
       <div class="phone">
         <div class="notch"></div>
         <div class="screen">
@@ -344,7 +333,7 @@ button{font:inherit}
 
     <!-- SAMPLING -->
     <div class="phone-wrap">
-      <div class="phone-label">Option B · Sampling starts from listing page</div>
+      <div class="phone-label">Sampling Credits & Trial SKUs</div>
       <div class="phone">
         <div class="notch"></div>
         <div class="screen" id="samplingScreen">
