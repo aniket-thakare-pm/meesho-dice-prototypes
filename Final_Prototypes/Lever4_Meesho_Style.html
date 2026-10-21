@@ -132,7 +132,7 @@
             </div>
             
             <div class="phone-frame">
-                <iframe id="mainIframe" src="../Lever4_AOV/creator_storefront.html"></iframe>
+                <iframe id="mainIframe" src="../Lever4_AOV/creator_storefront.html?v=rev2"></iframe>
             </div>
         </main>
 
@@ -272,7 +272,7 @@
             const pillMetricBtn = document.getElementById('pillMetricBtn');
 
             if (tab === 'storefront') {
-                iframe.src = '../Lever4_AOV/creator_storefront.html';
+                iframe.src = '../Lever4_AOV/creator_storefront.html?t=' + Date.now();
                 title.innerText = 'Creator Curated Storefront';
                 subtitle.innerText = 'SOLUTION 4.1';
                 tab41.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-[#570054] text-white shadow-sm flex items-center gap-2';
@@ -360,7 +360,7 @@
                 `;
                 nmvModelHeading.innerText = "Storefront NMV Model (Deck S8 & S22)";
             } else {
-                iframe.src = '../Lever4_AOV/cart_threshold.html';
+                iframe.src = '../Lever4_AOV/cart_threshold.html?t=' + Date.now();
                 title.innerText = 'Free Sample Cart Threshold';
                 subtitle.innerText = 'SOLUTION 4.2';
                 tab42.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-[#570054] text-white shadow-sm flex items-center gap-2';
