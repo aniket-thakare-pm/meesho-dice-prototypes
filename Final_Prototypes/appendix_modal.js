@@ -1,6 +1,32 @@
 /* Appendix Data Modal Handler */
 const appendixData = {
     // LEVER 1 NUMBERS
+    "rice-11": {
+        title: "RICE 30.0 — Solution 1.1 In-App Onboarding",
+        source: "Deck Slide 10 & Appendix Page 23 (Prioritization Matrix)",
+        base: "RICE Scoring Model: (Reach × Impact × Confidence) ÷ Effort (1–10 Scale)",
+        formula: "(Reach 6 × Impact 3 × Confidence 5) ÷ Effort 3 = 30.0",
+        breakdown: [
+            { label: "Reach (R: 6/10)", val: "16.4 Mn Buyers", note: "Targets verified 5+ beauty order cohort" },
+            { label: "Impact (I: 3/10)", val: "₹3,000/mo NMV", note: "Entry micro-volume per activated creator" },
+            { label: "Confidence (C: 5/10)", val: "High Trust", note: "Grounded in verified delivery satisfaction" },
+            { label: "Effort (E: 3/10)", val: "1.25 PMs (₹5 L)", note: "Rapid, low-cost engineering build" },
+            { label: "Final Priority", val: "RICE = 30.0", note: "Ranked #7 in DICE 3.0; Months 0–3 foundation" }
+        ]
+    },
+    "rice-12": {
+        title: "RICE 106.7 — Solution 1.2 Creator Poaching",
+        source: "Deck Slide 10 & Appendix Page 23 (Prioritization Matrix)",
+        base: "RICE Scoring Model: (Reach × Impact × Confidence) ÷ Effort (1–10 Scale)",
+        formula: "(Reach 8 × Impact 8 × Confidence 5) ÷ Effort 3 = 106.7",
+        breakdown: [
+            { label: "Reach (R: 8/10)", val: "90,000 Pool", note: "Qualified Instagram nano/micro creators" },
+            { label: "Impact (I: 8/10)", val: "₹5,000/mo NMV", note: "High sales velocity with established followings" },
+            { label: "Confidence (C: 5/10)", val: "API Gated", note: "Meta Graph API checks >5K followers & >2% ER" },
+            { label: "Effort (E: 3/10)", val: "4 PMs (₹16 L)", note: "OAuth verification + welcome token workflow" },
+            { label: "Final Priority", val: "RICE = 106.7", note: "Ranked #2 in DICE 3.0; #1 highest in Lever 1" }
+        ]
+    },
     "bpc-creator-share": {
         title: "16.0% — Beauty Creator Share Deficit",
         source: "Deck Slide 1, Slide 3 & Appendix Page 21",

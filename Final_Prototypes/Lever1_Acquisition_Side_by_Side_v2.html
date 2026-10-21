@@ -237,6 +237,7 @@
             const solutionDetails = document.getElementById('solutionDetails');
             const guideText = document.getElementById('guideText');
             const nmvMathBox = document.getElementById('nmvMathBox');
+            const riceScoreBox = document.getElementById('riceScoreBox');
             const pillNmvLabel = document.getElementById('pillNmvLabel');
             const pillNmvBtn = document.getElementById('pillNmvBtn');
             const pillMetricLabel = document.getElementById('pillMetricLabel');
@@ -362,6 +363,22 @@
                     <p>3. Tap <strong>"My Orders"</strong> (bottom-right) to see all <strong>6 verified BPC beauty orders</strong>, the Power Buyer poster, and tap <strong>"Review and Earn ₹57"</strong>!</p>
                 `;
 
+                                riceScoreBox.innerHTML = `
+                    <div class="bg-gray-800/60 border border-purple-500/30 rounded-xl p-3 flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm font-black text-white">RICE 30.0</span>
+                                <span class="text-[9px] font-bold text-purple-300 bg-purple-500/20 px-2 py-0.5 rounded border border-purple-500/30">Priority #7</span>
+                            </div>
+                            <div class="text-[10px] font-mono text-gray-400 mt-0.5">
+                                (R:6 × I:3 × C:5) ÷ E:3
+                            </div>
+                        </div>
+                        <button onclick="openGuesstimate('rice-11')" class="px-2.5 py-1.5 bg-purple-600 hover:bg-pink-600 text-white rounded-lg text-[10px] font-bold transition flex items-center gap-1 shadow-xs cursor-pointer">
+                            <span>Breakdown</span> <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
+                        </button>
+                    </div>
+                `;
                 nmvMathBox.innerHTML = `
                     <div class="flex justify-between"><span>3,288</span><span class="text-gray-500">Active Creators</span></div>
                     <div class="flex justify-between"><span>× ₹3,000/mo</span><span class="text-gray-500">Monthly NMV</span></div>
@@ -452,6 +469,22 @@
                     <p>3. Tap <strong>"Go to Mission Hub"</strong> to see all 4 steps directly inside the box!</p>
                 `;
 
+                                riceScoreBox.innerHTML = `
+                    <div class="bg-gray-800/60 border border-pink-500/30 rounded-xl p-3 flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm font-black text-white">RICE 106.7</span>
+                                <span class="text-[9px] font-bold text-pink-400 bg-pink-500/20 px-2 py-0.5 rounded border border-pink-500/30">#1 in Lever 1</span>
+                            </div>
+                            <div class="text-[10px] font-mono text-gray-400 mt-0.5">
+                                (R:8 × I:8 × C:5) ÷ E:3
+                            </div>
+                        </div>
+                        <button onclick="openGuesstimate('rice-12')" class="px-2.5 py-1.5 bg-pink-600 hover:bg-purple-600 text-white rounded-lg text-[10px] font-bold transition flex items-center gap-1 shadow-xs cursor-pointer">
+                            <span>Breakdown</span> <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
+                        </button>
+                    </div>
+                `;
                 nmvMathBox.innerHTML = `
                     <div class="flex justify-between"><span>1,200</span><span class="text-gray-500">Successful Creators</span></div>
                     <div class="flex justify-between"><span>× ₹5,000/mo</span><span class="text-gray-500">Monthly NMV</span></div>
