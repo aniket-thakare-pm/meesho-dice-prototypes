@@ -128,9 +128,18 @@
             <div class="mb-3 text-center">
                 <span class="text-xs font-bold uppercase tracking-wider text-gray-400">Interactive Simulation</span>
                 <h2 class="text-lg font-black text-white">Creator Analytics & Milestone Hub</h2>
+                <!-- View Switcher -->
+                <div class="flex gap-2 justify-center mt-2.5">
+                    <button id="v2tab51" onclick="switchV2View('milestones')" class="px-3.5 py-1 rounded-lg text-xs font-bold bg-pink-600 text-white shadow-sm flex items-center gap-1.5 transition cursor-pointer">
+                        <i class="fa-solid fa-trophy text-amber-300 text-[10px]"></i> 5.1 Milestones
+                    </button>
+                    <button id="v2tab52" onclick="switchV2View('insights')" class="px-3.5 py-1 rounded-lg text-xs font-bold bg-gray-800 text-gray-300 hover:text-white border border-gray-700 flex items-center gap-1.5 transition cursor-pointer">
+                        <i class="fa-solid fa-chart-line text-pink-400 text-[10px]"></i> 5.2 SKU Intelligence
+                    </button>
+                </div>
             </div>
             <div class="phone-frame">
-                <iframe src="creator_analytics_dashboard.html"></iframe>
+                <iframe id="v2Iframe" src="creator_analytics_dashboard.html"></iframe>
             </div>
         </main>
 
@@ -226,6 +235,22 @@
         </div>
     </div>
     <script src="appendix_modal.js"></script>
+    <script>
+    function switchV2View(tab) {
+        const iframe = document.getElementById('v2Iframe');
+        const t51 = document.getElementById('v2tab51');
+        const t52 = document.getElementById('v2tab52');
+        if (tab === 'milestones') {
+            iframe.src = 'creator_analytics_dashboard.html?t=' + Date.now();
+            t51.className = 'px-3.5 py-1 rounded-lg text-xs font-bold bg-pink-600 text-white shadow-sm flex items-center gap-1.5 transition cursor-pointer';
+            t52.className = 'px-3.5 py-1 rounded-lg text-xs font-bold bg-gray-800 text-gray-300 hover:text-white border border-gray-700 flex items-center gap-1.5 transition cursor-pointer';
+        } else {
+            iframe.src = 'creator_sku_insights.html?t=' + Date.now();
+            t52.className = 'px-3.5 py-1 rounded-lg text-xs font-bold bg-pink-600 text-white shadow-sm flex items-center gap-1.5 transition cursor-pointer';
+            t51.className = 'px-3.5 py-1 rounded-lg text-xs font-bold bg-gray-800 text-gray-300 hover:text-white border border-gray-700 flex items-center gap-1.5 transition cursor-pointer';
+        }
+    }
+    </script>
 </body>
 
 </html>

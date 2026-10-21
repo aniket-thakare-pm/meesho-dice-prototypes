@@ -230,6 +230,7 @@
             const pillMetricBtn = document.getElementById('pillMetricBtn');
 
             if (tab === 'milestones') {
+                iframe.src = 'creator_analytics_dashboard.html?t=' + Date.now();
                 title.innerText = 'Positive Milestone Progression';
                 subtitle.innerText = 'SOLUTION 5.1';
                 tab51.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-[#570054] text-white shadow-sm flex items-center gap-2';
@@ -320,6 +321,7 @@
                 `;
                 nmvModelHeading.innerText = "Milestones NMV Model (Deck S10 & S23)";
             } else {
+                iframe.src = 'creator_sku_insights.html?t=' + Date.now();
                 title.innerText = 'SKU Demand Intelligence';
                 subtitle.innerText = 'SOLUTION 5.2';
                 tab52.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-[#570054] text-white shadow-sm flex items-center gap-2';
@@ -392,8 +394,9 @@
                 `;
 
                 guideText.innerHTML = `
-                    <p>1. Scroll down the phone screen to <strong>"High-Converting Opportunities"</strong>.</p>
-                    <p>2. See Bella Vita Perfume flagged with <strong>89% Sell-through</strong> and <strong>4% Low Return</strong>.</p>
+                    <p>1. In the phone screen, review the <strong>Performance & SKU Velocity Dashboard</strong>.</p>
+                    <p>2. See the <strong>Listing Date (20-26 Sep)</strong> and live sales velocity (500+ units sold/day, 89% sell-through).</p>
+                    <p>3. Review <strong>Bella Vita Perfume</strong> & <strong>Minimalist Serum</strong> flagged with low returns (&lt;4%) to guarantee zero commission clawbacks.</p>
                 `;
 
                 nmvMathBox.innerHTML = `

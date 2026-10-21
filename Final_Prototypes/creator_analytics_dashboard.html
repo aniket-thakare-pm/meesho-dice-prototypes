@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meesho - Creator Analytics</title>
+    <title>Meesho - Creator Analytics & Milestones</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: { 
-                        'meesho-purple': '#8b1874', 
+                        'meesho-purple': '#570054', 
                         'meesho-pink': '#df1e7b',
                         'meesho-darkpink': '#b91362'
                     }
@@ -24,27 +24,45 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-white m-0 p-0 h-screen w-full overflow-hidden font-sans">
+<body class="bg-white m-0 p-0 h-screen w-full overflow-hidden font-sans select-none">
 
     <!-- Mobile Wrapper (clean full frame) -->
     <div class="w-full h-full bg-gray-50 relative overflow-hidden flex flex-col">
         
+        <!-- Native Meesho Status Bar -->
+        <div class="shrink-0 w-full bg-white relative z-30" style="height: 28px;">
+            <img src="../assets/status_bar_notification.png" alt="Status Bar" style="width: 100%; height: 100%; object-fit: fill; display: block;">
+        </div>
+
         <!-- Header -->
-        <div class="bg-white px-4 py-3.5 flex justify-between items-center border-b border-gray-200 sticky top-0 z-20 shadow-sm">
+        <div class="bg-white px-4 py-3 flex justify-between items-center border-b border-gray-200 sticky top-0 z-20 shadow-sm shrink-0">
             <div class="flex items-center gap-3">
-                <i class="fa-solid fa-arrow-left text-gray-800 text-lg cursor-pointer"></i>
-                <h1 class="font-bold text-gray-900 text-base">Creator Analytics & Insights</h1>
+                <i class="fa-solid fa-arrow-left text-gray-800 text-base cursor-pointer"></i>
+                <div>
+                    <h1 class="font-bold text-gray-900 text-sm leading-tight">Creator Milestones & Rewards</h1>
+                    <p class="text-[10px] text-gray-500">Positive-Only Progression · Zero Demotions</p>
+                </div>
             </div>
             <!-- Shareable Analytics Feature -->
-            <button class="text-meesho-pink font-bold text-[11px] flex items-center gap-1 bg-pink-50 px-2.5 py-1.5 rounded-full border border-pink-100 hover:bg-pink-100 transition-colors cursor-pointer">
+            <button class="text-[#df1e7b] font-bold text-[11px] flex items-center gap-1 bg-pink-50 px-2.5 py-1.5 rounded-full border border-pink-100 hover:bg-pink-100 transition-colors cursor-pointer">
                 <i class="fa-solid fa-share-nodes"></i> Share Card
             </button>
         </div>
 
+        <!-- In-App View Toggle (Milestones vs SKU Intelligence) -->
+        <div class="flex bg-gray-100 p-1 mx-3 mt-2.5 rounded-xl border border-gray-200 text-xs font-bold shrink-0">
+            <a href="creator_analytics_dashboard.html" class="flex-1 py-1.5 text-center rounded-lg bg-white text-[#570054] shadow-sm flex items-center justify-center gap-1.5 font-extrabold transition">
+                <i class="fa-solid fa-trophy text-amber-500 text-[11px]"></i> Milestones
+            </a>
+            <a href="creator_sku_insights.html" class="flex-1 py-1.5 text-center rounded-lg text-gray-600 hover:text-gray-900 flex items-center justify-center gap-1.5 transition">
+                <i class="fa-solid fa-chart-line text-gray-400 text-[11px]"></i> SKU Intelligence
+            </a>
+        </div>
+
         <!-- Time Filters -->
-        <div class="flex gap-2 px-3 py-2.5 bg-white overflow-x-auto no-scrollbar border-b border-gray-200 shadow-sm z-10 shrink-0">
+        <div class="flex gap-2 px-3 py-2 bg-white overflow-x-auto no-scrollbar border-b border-gray-200 shadow-sm z-10 shrink-0 mt-2">
             <button class="px-3.5 py-1 text-[11px] font-bold border border-gray-300 text-gray-600 rounded-full shrink-0">7 Days</button>
-            <button class="px-3.5 py-1 text-[11px] font-bold bg-gray-900 text-white rounded-full shrink-0 shadow-md">30 Days</button>
+            <button class="px-3.5 py-1 text-[11px] font-bold bg-[#570054] text-white rounded-full shrink-0 shadow-md">30 Days</button>
             <button class="px-3.5 py-1 text-[11px] font-bold border border-gray-300 text-gray-600 rounded-full shrink-0">90 Days</button>
             <button class="px-3.5 py-1 text-[11px] font-bold border border-gray-300 text-gray-600 rounded-full shrink-0 flex items-center gap-1">
                 <i class="fa-regular fa-calendar text-[10px]"></i> Custom
@@ -52,13 +70,13 @@
         </div>
 
         <!-- Scrollable Dashboard -->
-        <div class="flex-1 overflow-y-auto no-scrollbar pb-10">
+        <div class="flex-1 overflow-y-auto no-scrollbar pb-24">
             
             <!-- Positive Milestone Target (Bronze -> Diamond, Zero Demotions) -->
             <div class="m-3 p-4 bg-gradient-to-r from-pink-50 via-purple-50 to-pink-50 border border-pink-200/80 rounded-2xl shadow-sm relative overflow-hidden">
                 <div class="flex justify-between items-start">
                     <div>
-                        <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 text-[9px] font-black uppercase tracking-wider mb-1">
+                        <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-purple-100 text-[#570054] text-[9px] font-black uppercase tracking-wider mb-1">
                             <i class="fa-solid fa-medal text-amber-500"></i> Milestone Tier: Silver Creator
                         </div>
                         <h3 class="font-extrabold text-gray-900 text-xs">Drive 50 orders to unlock Gold Tier</h3>
@@ -67,13 +85,54 @@
                 </div>
                 
                 <div class="w-full bg-gray-200 rounded-full h-2.5 mt-3 shadow-inner">
-                    <div class="bg-gradient-to-r from-meesho-purple to-meesho-pink h-2.5 rounded-full relative" style="width: 96%">
+                    <div class="bg-gradient-to-r from-[#570054] to-[#df1e7b] h-2.5 rounded-full relative" style="width: 96%">
                         <div class="absolute right-0 top-0 bottom-0 w-2 bg-white/40 rounded-full animate-pulse"></div>
                     </div>
                 </div>
                 <div class="flex justify-between items-center mt-1.5">
-                    <p class="text-[9px] text-meesho-purple font-bold">Almost there!</p>
+                    <p class="text-[9px] text-[#570054] font-bold">Almost there!</p>
                     <p class="text-[10px] text-gray-700 font-extrabold">48 / 50 Orders</p>
+                </div>
+            </div>
+
+            <!-- Positive-Only Tier Progression Roadmap -->
+            <div class="m-3 bg-white rounded-2xl border border-gray-200 p-3.5 shadow-sm">
+                <div class="flex justify-between items-center mb-2.5">
+                    <h3 class="text-xs font-bold text-gray-900">Tier Roadmap</h3>
+                    <span class="text-[9px] font-black text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                        Zero Demotions
+                    </span>
+                </div>
+
+                <div class="flex gap-1.5 text-center">
+                    <div class="flex-1 bg-gray-50 border border-gray-200 rounded-xl p-2">
+                        <div class="w-5 h-5 mx-auto rounded-full bg-gray-400 text-white text-[10px] flex items-center justify-center font-bold">✓</div>
+                        <p class="text-[10px] font-bold text-gray-800 mt-1">Bronze</p>
+                        <p class="text-[8px] text-gray-500">Unlocked</p>
+                    </div>
+                    <div class="flex-1 bg-purple-50 border border-purple-200 rounded-xl p-2">
+                        <div class="w-5 h-5 mx-auto rounded-full bg-[#570054] text-white text-[10px] flex items-center justify-center font-bold">★</div>
+                        <p class="text-[10px] font-bold text-[#570054] mt-1">Silver</p>
+                        <p class="text-[8px] text-[#570054] font-bold">Current</p>
+                    </div>
+                    <div class="flex-1 bg-amber-50 border border-amber-200 rounded-xl p-2 relative">
+                        <div class="w-5 h-5 mx-auto rounded-full bg-amber-500 text-white text-[10px] flex items-center justify-center font-bold">48/50</div>
+                        <p class="text-[10px] font-bold text-amber-900 mt-1">Gold</p>
+                        <p class="text-[8px] text-amber-700 font-bold">Next</p>
+                    </div>
+                    <div class="flex-1 bg-gray-50 border border-gray-200 rounded-xl p-2 opacity-60">
+                        <div class="w-5 h-5 mx-auto rounded-full bg-gray-300 text-gray-600 text-[10px] flex items-center justify-center font-bold">🔒</div>
+                        <p class="text-[10px] font-bold text-gray-700 mt-1">Platinum</p>
+                        <p class="text-[8px] text-gray-400">Locked</p>
+                    </div>
+                </div>
+
+                <!-- Positive-only Guarantee Callout -->
+                <div class="mt-3 p-2.5 bg-emerald-50/70 border border-emerald-200 rounded-xl flex items-start gap-2">
+                    <i class="fa-solid fa-circle-check text-emerald-600 text-xs mt-0.5 shrink-0"></i>
+                    <p class="text-[10px] text-emerald-900 leading-snug">
+                        <b>Positive-Only by Design:</b> Zero streak loss, no punitive targets, and no status drops within a quarter. Your progress is permanently preserved.
+                    </p>
                 </div>
             </div>
 
@@ -82,7 +141,7 @@
                 <div class="p-4 border-b border-gray-100 bg-gray-50/70 flex justify-between items-center">
                     <div>
                         <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider mb-0.5">Total Commission Earned</p>
-                        <p class="text-2xl font-black text-meesho-pink">₹5,000</p>
+                        <p class="text-2xl font-black text-[#df1e7b]">₹15,000</p>
                     </div>
                     <span class="text-xs bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded-full border border-emerald-200 flex items-center gap-1">
                         <i class="fa-solid fa-arrow-trend-up text-[10px]"></i> +24% MoM
@@ -100,7 +159,7 @@
                     <div class="flex justify-between text-[11px] font-medium">
                         <div class="flex items-center gap-1.5">
                             <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
-                            <span class="text-gray-700"><b>₹3,800</b> Confirmed (Return Passed)</span>
+                            <span class="text-gray-700"><b>₹13,800</b> Confirmed (Return Passed)</span>
                         </div>
                         <div class="flex items-center gap-1.5">
                             <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
@@ -154,46 +213,10 @@
                 </div>
             </div>
 
-            <!-- Actionable SKU Insights: Solves the 86.9% SKU struggle -->
-            <div class="m-3 p-4 bg-white rounded-2xl border border-gray-200 shadow-sm">
-                <div class="flex justify-between items-center mb-3">
-                    <h2 class="font-bold text-gray-900 text-xs uppercase tracking-wider">Top Recommended BPC SKUs to Post</h2>
-                    <span class="text-[10px] text-meesho-purple font-extrabold">Demand Signals</span>
-                </div>
-                
-                <!-- SKU Item 1 -->
-                <div class="flex items-center gap-3 border-b border-gray-100 pb-3 mb-3">
-                    <div class="w-12 h-12 rounded-xl bg-pink-50 border border-pink-100 flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-pump-soap text-meesho-pink text-lg"></i>
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex justify-between items-start">
-                            <p class="text-xs font-bold text-gray-900 line-clamp-1">Daily Hydrating Face Cream</p>
-                            <span class="text-[9px] font-black text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">Low Returns &lt;4%</span>
-                        </div>
-                        <p class="text-[10px] text-gray-500 mt-0.5">500+ units/day sold on Meesho • <span class="font-bold text-meesho-purple">₹1,250 earned</span></p>
-                    </div>
-                </div>
-
-                <!-- SKU Item 2 -->
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center shrink-0">
-                        <i class="fa-solid fa-sun text-purple-600 text-lg"></i>
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex justify-between items-start">
-                            <p class="text-xs font-bold text-gray-900 line-clamp-1">Matte Finish Sunscreen SPF 50</p>
-                            <span class="text-[9px] font-black text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">High Demand</span>
-                        </div>
-                        <p class="text-[10px] text-gray-500 mt-0.5">Shade matches 78% of your followers • <span class="font-bold text-meesho-purple">₹840 earned</span></p>
-                    </div>
-                </div>
-            </div>
-
             <!-- PRISM AI Smart Recommendation -->
             <div class="m-3 p-4 bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-2xl shadow-sm">
                 <div class="flex items-center gap-2 mb-2">
-                    <div class="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center">
+                    <div class="w-6 h-6 bg-[#570054] rounded-full flex items-center justify-center">
                         <i class="fa-solid fa-wand-magic-sparkles text-white text-[10px]"></i>
                     </div>
                     <h2 class="font-extrabold text-purple-950 text-xs">PRISM AI Recommendation</h2>
@@ -201,12 +224,37 @@
                 <p class="text-[11px] text-purple-900 leading-relaxed mb-3">
                     Your <span class="font-bold">Skincare Reviews</span> convert <b>3.2x higher</b> than makeup! Sunscreen SKUs are trending with <b>500+ orders/day</b>. Post a quick routine reel this week to unlock your Gold Tier milestone bonus.
                 </p>
-                <button class="bg-gradient-to-r from-meesho-purple to-meesho-pink text-white text-xs font-bold px-4 py-2.5 rounded-xl w-full shadow-md transition-all flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-video"></i> Create Video Link for Sunscreen
-                </button>
+                <a href="creator_sku_insights.html" class="bg-gradient-to-r from-[#570054] to-[#df1e7b] text-white text-xs font-bold px-4 py-2.5 rounded-xl w-full shadow-md transition-all flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-chart-line"></i> View Actionable SKU Demand Signals
+                </a>
             </div>
 
         </div>
+
+        <!-- Fixed Bottom Navbar -->
+        <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center py-2 text-[10px] text-gray-500 z-30 shadow-lg shrink-0">
+            <div class="flex flex-col items-center cursor-pointer hover:text-[#570054]">
+                <i class="fa-solid fa-house text-base mb-0.5"></i>
+                <span>Home</span>
+            </div>
+            <div class="flex flex-col items-center cursor-pointer text-[#570054] font-black">
+                <i class="fa-solid fa-trophy text-base mb-0.5 text-amber-500"></i>
+                <span>Milestones</span>
+            </div>
+            <div class="flex flex-col items-center cursor-pointer hover:text-[#570054]">
+                <i class="fa-regular fa-credit-card text-base mb-0.5"></i>
+                <span>Payments</span>
+            </div>
+            <div class="flex flex-col items-center cursor-pointer hover:text-[#570054]">
+                <i class="fa-regular fa-comment-dots text-base mb-0.5"></i>
+                <span>AutoDM</span>
+            </div>
+            <div class="flex flex-col items-center cursor-pointer hover:text-[#570054]">
+                <i class="fa-regular fa-user text-base mb-0.5"></i>
+                <span>Account</span>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
