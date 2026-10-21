@@ -39,13 +39,7 @@
             display: flex;
             flex-direction: column;
         }
-        @keyframes disc-spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .spinning-disc {
-            animation: disc-spin 5s linear infinite;
-        }
+
     </style>
 </head>
 <body class="bg-black m-0 p-0 h-screen w-full overflow-hidden">
@@ -118,7 +112,7 @@
             </div>
 
             <!-- Spinning Vinyl Audio Track -->
-            <div class="w-9 h-9 rounded-lg border-2 border-white/80 overflow-hidden shadow-lg mt-0.5 cursor-pointer relative bg-zinc-900 flex items-center justify-center spinning-disc">
+            <div class="w-9 h-9 rounded-lg border-2 border-white/80 overflow-hidden shadow-lg mt-0.5 cursor-pointer relative bg-zinc-900 flex items-center justify-center">
                 <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&w=100&q=80" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
                     <i class="fa-solid fa-music text-[9px] text-white"></i>
