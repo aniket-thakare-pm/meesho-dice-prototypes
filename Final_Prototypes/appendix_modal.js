@@ -1,5 +1,201 @@
 /* Appendix Data Modal Handler */
 const appendixData = {
+    // LEVER 1 NUMBERS
+    "lever11-nmv": {
+        title: "₹8.9 Cr / yr — In-App Buyer-to-Creator NMV",
+        source: "Appendix Page 20 & Deck Slide 5 (Route A: In-App Supply)",
+        base: "16.4 Million power beauty buyers (5+ orders/yr) in Meesho user base",
+        formula: "3,288 Active Creators × ₹3,000/mo × 12 months × 75% incremental",
+        breakdown: [
+            { label: "Power Beauty Buyers", val: "16.4 Mn", note: "274M ATUs × 30% BPC × 20% power frequency" },
+            { label: "Organic Sign-Up Rate", val: "0.10%", note: "16,440 sign-ups via peak delight banner" },
+            { label: "Retained Active Creators", val: "20%", note: "3,288 active creators posting regularly" },
+            { label: "Monthly NMV Velocity", val: "₹3,000 / mo", note: "Entry micro-creator volume" },
+            { label: "Incremental Factor", val: "75%", note: "Accounting for organic cannibalization" },
+            { label: "Total In-App Annual NMV", val: "= ₹8.9 Cr", note: "Base Case: ₹8.9 Cr | Conservative: ₹3.3 Cr" }
+        ]
+    },
+    "inapp-cac": {
+        title: "~₹150 / Creator — In-App Acquisition Cost (CAC)",
+        source: "Appendix Page 20 & Deck Slide 5 (In-App Conversion Funnel)",
+        base: "₹5.0 Lakh one-time engineering build cost ÷ 3,288 active creators acquired",
+        formula: "One-Time Feature Build (₹5,00,000) ÷ Retained Active Creators (3,288) = ~₹150 / creator",
+        breakdown: [
+            { label: "Target Power Buyers", val: "16.4 Mn", note: "5+ orders/yr in BPC category" },
+            { label: "Organic Sign-up (0.10%)", val: "16,440", note: "Delivery history invite at peak delight" },
+            { label: "Active Cohort (20%)", val: "3,288", note: "Creators generating regular orders" },
+            { label: "One-Time Build Cost", val: "₹5.0 Lakhs", note: "Zero cash subsidies, zero paid ads" },
+            { label: "In-App CAC per Creator", val: "= ~₹150", note: "30x+ cheaper than agency retainers (₹5,000–₹7,000)" }
+        ]
+    },
+    "power-buyers": {
+        title: "16.4 Million — Power Beauty Buyers",
+        source: "Appendix Page 19 (User Base Segmentation)",
+        base: "Meesho Q1 FY27 Annual Transacting Users (274 Million ATUs)",
+        formula: "274 Mn Users × 30% Beauty Shoppers (82 Mn) × 20% Power Buyers (5+ orders/yr)",
+        breakdown: [
+            { label: "Total Meesho ATUs", val: "274 Mn", note: "Reported FY27 baseline" },
+            { label: "Beauty & Personal Care Buyers", val: "82 Mn", note: "~30% category penetration" },
+            { label: "High-Frequency Power Buyers", val: "16.4 Mn", note: "Top 20% purchasing 5+ times a year" },
+            { label: "Conversion to Creators", val: "~3,300 creators", note: "0.10% sign-up × 20% active = 3,288 active" }
+        ]
+    },
+    "lever12-nmv": {
+        title: "₹5.8 Cr / yr — Creator Poaching Pilot NMV",
+        source: "Appendix Page 20 & Deck Slide 5 (Route C: External Poaching)",
+        base: "Pilot outreach of 4,000 Instagram Nano/Micro Creators with ₹20 L budget",
+        formula: "1,200 Successful Creators × ₹5,000/mo × 12 months × 80% incremental",
+        breakdown: [
+            { label: "Pilot Creator Outreach", val: "4,000", note: "Instagram Graph API check: >5K followers, >2% ER" },
+            { label: "5-Sale Hit Rate (Success)", val: "30%", note: "1,200 creators activate successfully" },
+            { label: "Gross Cost per Success", val: "₹1,667", note: "₹500 welcome credit ÷ 30% hit rate" },
+            { label: "90-Day Gross Contribution", val: "₹690", note: "₹15,000 GMV × 4.6% contribution margin" },
+            { label: "Net Cost per Creator", val: "= ₹977 net", note: "Fully pays back in month 5-6" },
+            { label: "Pilot Annual NMV", val: "= ₹5.8 Cr", note: "Base Case: ₹5.8 Cr (Scaled across 90.5K = ₹65 Cr)" }
+        ]
+    },
+    "poaching-net-cost": {
+        title: "₹977 Net Cost / Creator — Poaching Economics",
+        source: "Appendix Page 20 (Route C Unit Economics)",
+        base: "₹500 welcome credit for Instagram creators with 5K+ followers and >2% ER",
+        formula: "Gross Cost (₹500 ÷ 30% = ₹1,667) − 90-Day Contribution (₹15,000 × 4.6% = ₹690) = ₹977",
+        breakdown: [
+            { label: "Welcome Product Credit", val: "₹500", note: "Granted on IG OAuth verification" },
+            { label: "Hit 5 Sales Target", val: "30%", note: "Unrecovered credits written off, never chased" },
+            { label: "Gross Acquisition Cost", val: "₹1,667", note: "₹500 ÷ 30% conversion" },
+            { label: "90-Day Platform Contribution", val: "₹690", note: "Meesho 4.6% CM on ₹15,000 GMV" },
+            { label: "Net CAC per Creator", val: "= ₹977 net", note: "Stop guardrail if success drops below 16.7%" },
+            { label: "Agency Comparison", val: "₹5,000–₹7,000", note: "3-4x cheaper than agency retainers" }
+        ]
+    },
+    "poaching-pool": {
+        title: "90,000 Creators — Addressable External Pool",
+        source: "Appendix Page 20 & Deck Slide 5 (Nano/Micro Creator Filter)",
+        base: "1.81 Million Indian Nano/Micro Influencers (Kofluence 2024 Report)",
+        formula: "1.81 Mn Creators × 5% Category & Engagement Filter (>5K followers, >2% ER) = ~90,000",
+        breakdown: [
+            { label: "Total Nano/Micro Creators", val: "1.81 Million", note: "Kofluence national benchmark" },
+            { label: "BPC & Engagement Filter", val: "5%", note: "Verified via Instagram Graph API" },
+            { label: "Addressable Beauty Creators", val: "90,000", note: "Target pool for automated poaching" },
+            { label: "Scaled Retained Supply", val: "13,575", note: "15% retained at scale = ₹65 Cr NMV" }
+        ]
+    },
+    "acq-nmv": {
+        title: "₹20.6 Cr / yr — Creator Acquisition NMV",
+        source: "Appendix Page 20 (Three Acquisition Routes)",
+        base: "Launch Budget: ₹39.5 L across 6,713 total new creators",
+        formula: "In-App Funnel (₹8.9 Cr) + Creator Fest (₹6.0 Cr) + Poaching Pilot (₹5.8 Cr)",
+        breakdown: [
+            { label: "In-App Funnel (3,288 creators)", val: "₹8.9 Cr", note: "CAC: ~₹150 per creator" },
+            { label: "Creator Fest (2,225 creators)", val: "₹6.0 Cr", note: "CAC: ₹650 per creator" },
+            { label: "Poaching Pilot (1,200 creators)", val: "₹5.8 Cr", note: "CAC: ₹977 net per creator" },
+            { label: "Combined Lever NMV", val: "= ₹20.7 Cr", note: "Conservative case: ₹11.8 Cr" }
+        ]
+    },
+    "creator-fest": {
+        title: "₹6.0 Cr / yr — Creator Fest NMV",
+        source: "Appendix Page 20 & Deck Slide 5 (Route B: Creator Fest)",
+        base: "₹14.5 L campaign budget across 3 city events and 30-day competition",
+        formula: "2,225 Active Creators × ₹3,000/mo × 12 months × 75% incremental = ₹6.0 Cr",
+        breakdown: [
+            { label: "Target Campaign Reach", val: "5 Million", note: "Paid ads & organic buzz" },
+            { label: "Contest Entrants (0.2%)", val: "10,000", note: "Judged on orders, not vanity views" },
+            { label: "Retained Active Creators", val: "2,225", note: "20% stayed active + 225 offline event cohort" },
+            { label: "Total Campaign Cost", val: "₹14.5 Lakhs", note: "Prizes ₹1.75L + Ads ₹5L + Ops ₹4L + Events ₹3.72L" },
+            { label: "Cost per Active Creator", val: "= ₹650", note: "₹14.5 L ÷ 2,225 creators" },
+            { label: "Annual Incremental NMV", val: "= ₹6.0 Cr", note: "Conservative case: ₹4.7 Cr" }
+        ]
+    },
+    "mcn-markup": {
+        title: "~₹31 / ₹100 — Middlemen Agency Markup",
+        source: "Appendix Page 20 (Agency vs Direct Cost Model)",
+        base: "Brand agency interview calls & rate cards (n=4 brands)",
+        formula: "Brand Spend (₹100) ÷ (1.2 Markup × 1.2 Fee = 1.44) = ~₹69 reaches the creator",
+        breakdown: [
+            { label: "Agency Agency Markups", val: "15% - 25%", note: "Overhead fee" },
+            { label: "Agency Management Fee", val: "15% - 25%", note: "Handling cost" },
+            { label: "Middlemen Leakage", val: "~31%", note: "Lost to metro agency" },
+            { label: "Agency CAC per Creator", val: "₹5,000 - ₹7,000", note: "30x+ higher than in-app CAC (₹150)" }
+        ]
+    },
+
+    // LEVER 2 NUMBERS
+    "lever2-nmv": {
+        title: "₹66.5 Cr / yr — Sourcing Levers NMV",
+        source: "Appendix Page 21 (Zero-Friction Sourcing)",
+        base: "8,000 BPC Programme Creators on Meesho Creator Club",
+        formula: "SplitPay Wallet (₹15.5 Cr) + Sampling Credits (₹51.0 Cr)",
+        breakdown: [
+            { label: "SplitPay Wallet NMV", val: "₹15.5 Cr", note: "2,380 adopters × 12 videos × ₹5,436" },
+            { label: "Ad-Credit Sampling NMV", val: "₹51.0 Cr", note: "8,000 creators × 26 samples × 45% post × 60% sell" },
+            { label: "Total Lever 2 Annual NMV", val: "= ₹66.5 Cr", note: "Conservative case: ₹14.5 Cr | Upside: ₹141 Cr" }
+        ]
+    },
+    "lever21-nmv": {
+        title: "₹15.5 Cr / yr — SplitPay Wallet NMV",
+        source: "Appendix Page 21 (Split-Pay Wallet Economics)",
+        base: "8,000 BPC Programme Creators on Meesho Creator Club",
+        formula: "2,380 Adopters × 12 extra videos/yr × ₹5,436 NMV per video = ₹15.5 Cr",
+        breakdown: [
+            { label: "Programme Creators", val: "8,000", note: "Target BPC cohort" },
+            { label: "With Pending Balance", val: "70%", note: "Creators with accrued unpaid commissions" },
+            { label: "Wallet Adoption Rate", val: "42.5%", note: "2,380 active adopters" },
+            { label: "Extra Video Output", val: "12 videos/yr", note: "+1 extra review video per month" },
+            { label: "NMV Generated per Video", val: "₹5,436", note: "Proven affiliate conversion benchmark" },
+            { label: "Annual SplitPay NMV", val: "= ₹15.5 Cr", note: "Conservative case: ₹4.5 Cr" }
+        ]
+    },
+    "splitpay-adoption": {
+        title: "42.5% Adopters (2,380 Creators) — SplitPay Wallet",
+        source: "Appendix Page 21 (Split-Pay Funnel)",
+        base: "8,000 BPC Creators & 70% Pending Balance Ratio",
+        formula: "8,000 Creators × 70% with Pending Balance × 42.5% Adoption = 2,380 Adopters",
+        breakdown: [
+            { label: "BPC Programme Creators", val: "8,000", note: "Total active beauty creator pool" },
+            { label: "Creators with Accrued Balance", val: "5,600 (70%)", note: "Have unwithdrawn commissions" },
+            { label: "SplitPay Opt-in Share", val: "42.5%", note: "Choose wallet split-pay over waiting for cash cycle" },
+            { label: "Active Wallet Adopters", val: "= 2,380 creators", note: "Generate 12 extra videos/year each" }
+        ]
+    },
+    "lever22-nmv": {
+        title: "₹51.0 Cr / yr — Ad-Credit Sampling NMV",
+        source: "Appendix Page 21 (Ad Credit Unit Economics & Sampling)",
+        base: "8,000 BPC Creators × 26 samples/yr × 45% post × 60% sell",
+        formula: "8,000 creators × 26 samples × 45% post × 60% sell × ₹12,080 NMV/video × 75% incremental",
+        breakdown: [
+            { label: "BPC Programme Creators", val: "8,000", note: "Active creator base" },
+            { label: "Samples Redeemed per Year", val: "26 samples", note: "Funded via ₹40 ad credits each" },
+            { label: "Post Compliance Rate", val: "45%", note: "Mandated within 14 days of delivery" },
+            { label: "Order-Generating Videos", val: "60%", note: "Videos that convert to at least 1 sale" },
+            { label: "NMV Generated per Video", val: "₹12,080", note: "Average basket volume per video" },
+            { label: "Total Sampling NMV", val: "= ₹51.0 Cr", note: "2.8x return on ad credits (Conservative: ₹10 Cr)" }
+        ]
+    },
+    "ad-credit-sample": {
+        title: "₹40 Ad Credits Replaces ₹120 Sample",
+        source: "Appendix Page 21 (Ad Credit Unit Economics)",
+        base: "Meesho Seller RoAS FY25: 8.62x & Supplier 33.3% Gross Margin",
+        formula: "Supplier Total Cost (₹115) ÷ RoAS Margin Factor (8.62 × 33.3% = ₹2.87) = ₹40",
+        breakdown: [
+            { label: "Product + Packaging + Shipping", val: "₹75 cash", note: "Supplier COGS" },
+            { label: "Supplier Foregone Profit", val: "₹40", note: "₹120 retail × 33.3% margin" },
+            { label: "Total Supplier Value to Recover", val: "₹115", note: "Required trade-off" },
+            { label: "Meesho Ad Credits Granted", val: "= ₹40", note: "Supplier recovers ₹115 in gross profit via 8.62x RoAS ads" }
+        ]
+    },
+    "breakeven-11": {
+        title: "~11 Orders — Beauty Creator Break-Even",
+        source: "Appendix Page 19 (Creator Economics)",
+        base: "Meesho Creator Club 9% BPC Commission Rate & ₹300 SKU Price",
+        formula: "SKU Cost (₹300) ÷ Commission per Order (₹300 × 9% = ₹27) = 11.1 Orders",
+        breakdown: [
+            { label: "Average BPC Product Cost", val: "₹300", note: "Out-of-pocket spend" },
+            { label: "Commission per Order", val: "₹27", note: "9% affiliate cut" },
+            { label: "Orders to Recover 1 SKU", val: "11.1 Orders", note: "1 ÷ commission rate (holds across all prices)" },
+            { label: "SplitPay & Sampling Impact", val: "11 → 0 Orders", note: "Eliminates creator upfront cash risk" }
+        ]
+    },
+
     // LEVER 3 NUMBERS
     "pdp-nmv": {
         title: "₹29.7 Cr / yr — PDP Creator Video NMV",
@@ -49,81 +245,6 @@ const appendixData = {
         ]
     },
 
-    // LEVER 1 NUMBERS
-    "power-buyers": {
-        title: "16.4 Million — Power Beauty Buyers",
-        source: "Appendix Page 19 (User Base Segmentation)",
-        base: "Meesho Q1 FY27 Annual Transacting Users (274 Million ATUs)",
-        formula: "274 Mn Users × 30% Beauty Shoppers (82 Mn) × 20% Power Buyers (5+ orders/yr)",
-        breakdown: [
-            { label: "Total Meesho ATUs", val: "274 Mn", note: "Reported FY27 baseline" },
-            { label: "Beauty & Personal Care Buyers", val: "82 Mn", note: "~30% category penetration" },
-            { label: "High-Frequency Power Buyers", val: "16.4 Mn", note: "Top 20% purchasing 5+ times a year" },
-            { label: "Conversion to Creators", val: "~3,300 creators", note: "0.10% sign-up × 20% active = 3,288 active" }
-        ]
-    },
-    "acq-nmv": {
-        title: "₹20.6 Cr / yr — Creator Acquisition NMV",
-        source: "Appendix Page 20 (Three Acquisition Routes)",
-        base: "Launch Budget: ₹39.5 L across 6,713 total new creators",
-        formula: "In-App Funnel (₹8.9 Cr) + Creator Fest (₹6.0 Cr) + Poaching Pilot (₹5.8 Cr)",
-        breakdown: [
-            { label: "In-App Funnel (3,288 creators)", val: "₹8.9 Cr", note: "CAC: ~₹150 per creator" },
-            { label: "Creator Fest (2,225 creators)", val: "₹6.0 Cr", note: "CAC: ₹650 per creator" },
-            { label: "Poaching Pilot (1,200 creators)", val: "₹5.8 Cr", note: "CAC: ₹977 net per creator" },
-            { label: "Combined Lever NMV", val: "= ₹20.7 Cr", note: "Conservative case: ₹11.8 Cr" }
-        ]
-    },
-    "mcn-markup": {
-        title: "~₹31 / ₹100 — Middlemen Agency Markup",
-        source: "Appendix Page 20 (Agency vs Direct Cost Model)",
-        base: "Brand agency interview calls & rate cards (n=4 brands)",
-        formula: "Brand Spend (₹100) ÷ (1.2 Markup × 1.2 Fee = 1.44) = ~₹69 reaches the creator",
-        breakdown: [
-            { label: "Agency Agency Markups", val: "15% - 25%", note: "Overhead fee" },
-            { label: "Agency Management Fee", val: "15% - 25%", note: "Handling cost" },
-            { label: "Middlemen Leakage", val: "~31%", note: "Lost to metro agency" },
-            { label: "Agency CAC per Creator", val: "₹5,000 - ₹7,000", note: "30x+ higher than in-app CAC (₹150)" }
-        ]
-    },
-
-    // LEVER 2 NUMBERS
-    "lever2-nmv": {
-        title: "₹66.5 Cr / yr — Sourcing Levers NMV",
-        source: "Appendix Page 21 (Zero-Friction Sourcing)",
-        base: "8,000 BPC Programme Creators on Meesho Creator Club",
-        formula: "SplitPay Wallet (₹15.5 Cr) + Sampling Credits (₹51.0 Cr)",
-        breakdown: [
-            { label: "SplitPay Wallet NMV", val: "₹15.5 Cr", note: "2,380 adopters × 12 videos × ₹5,436" },
-            { label: "Ad-Credit Sampling NMV", val: "₹51.0 Cr", note: "8,000 creators × 26 samples × 45% post × 60% sell" },
-            { label: "Total Lever 2 Annual NMV", val: "= ₹66.5 Cr", note: "Conservative case: ₹14.5 Cr | Upside: ₹141 Cr" }
-        ]
-    },
-    "ad-credit-sample": {
-        title: "₹40 Ad Credits Replaces ₹120 Sample",
-        source: "Appendix Page 21 (Ad Credit Unit Economics)",
-        base: "Meesho Seller RoAS FY25: 8.62x & Supplier 33.3% Gross Margin",
-        formula: "Supplier Total Cost (₹115) ÷ RoAS Margin Factor (8.62 × 33.3% = ₹2.87) = ₹40",
-        breakdown: [
-            { label: "Product + Packaging + Shipping", val: "₹75 cash", note: "Supplier COGS" },
-            { label: "Supplier Foregone Profit", val: "₹40", note: "₹120 retail × 33.3% margin" },
-            { label: "Total Supplier Value to Recover", val: "₹115", note: "Required trade-off" },
-            { label: "Meesho Ad Credits Granted", val: "= ₹40", note: "Supplier recovers ₹115 in gross profit via 8.62x RoAS ads" }
-        ]
-    },
-    "breakeven-11": {
-        title: "~11 Orders — Beauty Creator Break-Even",
-        source: "Appendix Page 19 (Creator Economics)",
-        base: "Meesho Creator Club 9% BPC Commission Rate & ₹300 SKU Price",
-        formula: "SKU Cost (₹300) ÷ Commission per Order (₹300 × 9% = ₹27) = 11.1 Orders",
-        breakdown: [
-            { label: "Average BPC Product Cost", val: "₹300", note: "Out-of-pocket spend" },
-            { label: "Commission per Order", val: "₹27", note: "9% affiliate cut" },
-            { label: "Orders to Recover 1 SKU", val: "11.1 Orders", note: "1 ÷ commission rate (holds across all prices)" },
-            { label: "SplitPay & Sampling Impact", val: "11 → 0 Orders", note: "Eliminates creator upfront cash risk" }
-        ]
-    },
-
     // LEVER 4 NUMBERS
     "lever4-nmv": {
         title: "₹4.5 Cr / yr — Routines & AOV NMV",
@@ -136,6 +257,18 @@ const appendixData = {
             { label: "Total Lever 4 Annual NMV", val: "= ₹4.5 Cr", note: "Upside: ₹10 Cr (at 40/40/20 multi-item split)" }
         ]
     },
+    "lever41-nmv": {
+        title: "₹2.4 Cr / yr — Routine Storefronts NMV",
+        source: "Appendix Page 22 (Storefronts Economics)",
+        base: "300,000 Storefront Buyers on Creator Profiles",
+        formula: "0.3M buyers × checkouts × ₹263 AOV × 15% routine basket uplift = ₹2.4 Cr",
+        breakdown: [
+            { label: "Storefront Shoppers", val: "0.3 Million", note: "Traffic browsing creator storefronts" },
+            { label: "Baseline AOV", val: "₹263", note: "Meesho beauty category average order value" },
+            { label: "Routine Basket Size Uplift", val: "+15%", note: "Multi-item routine checkouts (cleanser+serum+sunscreen)" },
+            { label: "Annual Storefront NMV", val: "= ₹2.4 Cr", note: "Base Case: ₹2.4 Cr | Upside: ₹10 Cr at 40/40/20 split" }
+        ]
+    },
     "basket-uplift": {
         title: "+15% to +20% — Routine Basket Size Uplift",
         source: "Appendix Page 8 & 22 (Shopify & E-Commerce Benchmarks)",
@@ -146,6 +279,31 @@ const appendixData = {
             { label: "2-Item Routine Add", val: "₹599", note: "Creator earns ₹54" },
             { label: "Full Routine + Balm", val: "₹748+", note: "Creator earns ₹90" },
             { label: "Platform Basket Uplift", val: "+15-20%", note: "Proven multi-item routine behavior" }
+        ]
+    },
+    "lever42-nmv": {
+        title: "₹2.1 Cr / yr — Free Sample Threshold NMV",
+        source: "Appendix Page 22 (Free Sample Threshold Economics)",
+        base: "300,000 Storefront Shoppers with achievable cart threshold",
+        formula: "0.3M buyers × 35% redemption rate × ₹200 extra cart value = ₹2.1 Cr",
+        breakdown: [
+            { label: "Storefront Shoppers", val: "0.3 Million", note: "Eligible cart visitors" },
+            { label: "Threshold Redemption Rate", val: "35%", note: "Buyers adding items to reach threshold" },
+            { label: "Incremental Cart Spend", val: "₹200", note: "'Add ₹150–250 more for a free mini serum'" },
+            { label: "Funding Structure", val: "100% Seller CAC", note: "105,000 minis funded by brand sample budgets" },
+            { label: "Annual Threshold NMV", val: "= ₹2.1 Cr", note: "Conservative: ₹1.5 Cr at 25% redemption" }
+        ]
+    },
+    "threshold-gap": {
+        title: "₹150–250 Extra — Cart Threshold Gap",
+        source: "Appendix Page 22 (Threshold Mechanics)",
+        base: "Cart abandonment drop via achievable micro-incentive",
+        formula: "Mini serum unit cost (₹70) ÷ 30% seller gross margin = ₹233 target threshold (set at ₹150–250)",
+        breakdown: [
+            { label: "Target Free Gift", val: "Mini Serum (15ml)", note: "Brand sample unit cost ₹60–₹80" },
+            { label: "Seller Margin Recovery", val: "30%", note: "Gross margin on extra items added" },
+            { label: "Optimal Spending Gap", val: "₹150 – ₹250", note: "Achievable bite-sized bump for Tier-2/3 cart" },
+            { label: "Platform Cash Outlay", val: "₹0 Cash", note: "100% brand-sponsored sampling CAC" }
         ]
     },
 
@@ -200,37 +358,62 @@ const appendixData = {
     }
 };
 
+/* Key Aliases for seamless modal lookups across prototypes */
+const keyAliases = {
+    "lever1-cac": "inapp-cac",
+    "lever11-cac": "inapp-cac",
+    "150-cac": "inapp-cac",
+    "in-app-cac": "inapp-cac"
+};
+
 function openGuesstimate(key) {
-    const data = appendixData[key];
-    if (!data) return;
-
-    document.getElementById("modalTitle").innerText = data.title;
-    document.getElementById("modalSource").innerText = data.source;
-    document.getElementById("modalBase").innerText = data.base;
-    document.getElementById("modalFormula").innerText = data.formula;
-
-    const list = document.getElementById("modalBreakdown");
-    list.innerHTML = "";
-    data.breakdown.forEach(item => {
-        const row = document.createElement("div");
-        row.className = "flex items-center justify-between p-2.5 rounded-lg bg-gray-50 border border-gray-200 text-xs";
-        row.innerHTML = `
-            <div>
-                <span class="text-gray-900 font-bold">${item.label}</span>
-                <span class="text-gray-500 text-[11px] block">${item.note}</span>
-            </div>
-            <div class="font-mono font-black text-[#570054] text-sm">${item.val}</div>
-        `;
-        list.appendChild(row);
-    });
+    const lookupKey = keyAliases[key] || key;
+    const data = appendixData[lookupKey];
+    if (!data) {
+        console.warn("Guesstimate key not found:", key);
+        return;
+    }
 
     const modal = document.getElementById("guesstimateModal");
+    if (!modal) {
+        console.error("guesstimateModal element not found in DOM");
+        return;
+    }
+
+    const titleEl = document.getElementById("modalTitle");
+    const sourceEl = document.getElementById("modalSource");
+    const baseEl = document.getElementById("modalBase");
+    const formulaEl = document.getElementById("modalFormula");
+    const list = document.getElementById("modalBreakdown");
+
+    if (titleEl) titleEl.innerText = data.title;
+    if (sourceEl) sourceEl.innerText = data.source;
+    if (baseEl) baseEl.innerText = data.base;
+    if (formulaEl) formulaEl.innerText = data.formula;
+
+    if (list) {
+        list.innerHTML = "";
+        data.breakdown.forEach(item => {
+            const row = document.createElement("div");
+            row.className = "flex items-center justify-between p-2.5 rounded-lg bg-gray-50 border border-gray-200 text-xs";
+            row.innerHTML = `
+                <div>
+                    <span class="text-gray-900 font-bold">${item.label}</span>
+                    <span class="text-gray-500 text-[11px] block">${item.note}</span>
+                </div>
+                <div class="font-mono font-black text-[#570054] text-sm">${item.val}</div>
+            `;
+            list.appendChild(row);
+        });
+    }
+
     modal.classList.remove("hidden");
     modal.classList.add("flex");
 }
 
 function closeGuesstimate() {
     const modal = document.getElementById("guesstimateModal");
+    if (!modal) return;
     modal.classList.add("hidden");
     modal.classList.remove("flex");
 }
