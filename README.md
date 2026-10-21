@@ -1,6 +1,8 @@
 # Meesho DICE Challenge 3.0 - UI Prototypes
 
-?? [**Click Here for Live Interactive Demo**](https://meeshodice.vercel.app/)
+🚀 [**Click Here for Live Interactive Demo (GitHub Pages)**](https://aniket-thakare-pm.github.io/meesho-dice-prototypes/)
+
+*(Mirror: [Vercel Deployment](https://meeshodice.vercel.app/))*
 
 
 This repository contains the front-end interactive UI prototypes developed for the Meesho DICE Challenge 3.0. 
