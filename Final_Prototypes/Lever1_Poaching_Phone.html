@@ -131,60 +131,63 @@ html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; back
                 </div>
             </div>
 
-            <!-- 3. CREATOR MISSION HUB (4 STEPS VISIBLE DIRECTLY WITHOUT SCROLLING) -->
+            <!-- 3. CREATOR MISSION HUB (NATIVE UI INTEGRATION - ZERO POPUP GAP) -->
             <div id="view-creator-mission" class="view-container creator-view" style="position: relative; width: 100%; height: 100%; overflow: hidden;">
                 <img src="../creator_home_bg.jpg" class="bg-img" alt="Creator Hub">
 
-                <div class="widget-overlay-home bg-white border border-purple-200 shadow-md p-4 flex flex-col justify-between rounded-2xl">
-                    <div class="flex justify-between items-start mb-2.5">
-                        <div>
-                            <div class="flex items-center space-x-1.5 mb-0.5">
-                                <i class="fa-solid fa-star text-amber-500 text-xs"></i>
-                                <h3 class="text-sm font-black text-gray-900">Welcome Mission</h3>
+                <!-- Native Lower UI Section (Flush below the AutoDM card, covering all lower elements completely down to the navbar) -->
+                <div class="absolute left-0 right-0 w-full" style="top: 417px; bottom: 60px; z-index: 20; background: #f7f8fa; border-top: 1px solid #e5e7eb; padding: 10px 12px; display: flex; flex-direction: column; justify-content: center;">
+                    <div class="bg-white border border-purple-200/90 shadow-2xs p-3.5 rounded-2xl flex flex-col justify-between" style="width: 100%; height: 100%; max-height: 282px;">
+                        <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <div class="flex items-center space-x-1.5 mb-0.5">
+                                    <i class="fa-solid fa-star text-amber-500 text-xs"></i>
+                                    <h3 class="text-sm font-black text-gray-900 leading-tight">Welcome Mission</h3>
+                                </div>
+                                <p class="text-[10px] text-gray-500 font-medium">Complete this to unlock Tier 1 benefits</p>
                             </div>
-                            <p class="text-[10px] text-gray-500 font-medium">Complete this to unlock Tier 1 benefits</p>
+                            <span class="bg-purple-100 text-[#570054] text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider border border-purple-200 shrink-0">In Progress</span>
                         </div>
-                        <span class="bg-purple-100 text-[#570054] text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider border border-purple-200">In Progress</span>
+                        
+                        <!-- 4 STEPS DIRECTLY FITTING WITH ZERO VERTICAL SCROLLING -->
+                        <div class="space-y-2 py-1">
+                            <!-- Step 1 -->
+                            <div class="flex items-center text-xs">
+                                <div class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center mr-2.5 shrink-0 shadow-2xs">
+                                    <i class="fa-solid fa-check text-[9px]"></i>
+                                </div>
+                                <span class="text-gray-400 line-through font-medium text-[11px]">Claim 500 Tokens</span>
+                                <span class="ml-auto text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-100">Claimed</span>
+                            </div>
+                            <!-- Step 2 -->
+                            <div class="flex items-center text-xs">
+                                <div class="w-5 h-5 rounded-full bg-[#570054] text-white flex items-center justify-center mr-2.5 shrink-0 font-black text-[10px] shadow-2xs">
+                                    2
+                                </div>
+                                <span class="text-[#570054] font-black text-[11px]">Buy a Product</span>
+                                <span class="ml-auto text-[9px] font-extrabold text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.2 rounded">Current</span>
+                            </div>
+                            <!-- Step 3 -->
+                            <div class="flex items-center text-xs">
+                                <div class="w-5 h-5 rounded-full bg-gray-100 border border-gray-300 text-gray-500 flex items-center justify-center mr-2.5 shrink-0 font-bold text-[10px]">
+                                    3
+                                </div>
+                                <span class="text-gray-700 font-semibold text-[11px]">Post Video and Get 100% Amount Back</span>
+                            </div>
+                            <!-- Step 4 -->
+                            <div class="flex items-center text-xs">
+                                <div class="w-5 h-5 rounded-full bg-gray-100 border border-gray-300 text-gray-500 flex items-center justify-center mr-2.5 shrink-0 font-bold text-[10px]">
+                                    4
+                                </div>
+                                <span class="text-gray-700 font-semibold text-[11px]">Affiliate Commission</span>
+                            </div>
+                        </div>
+                        
+                        <button class="w-full mt-2 bg-[#570054] hover:bg-[#6f006b] text-white text-xs font-black py-2.5 rounded-xl shadow-sm transition flex items-center justify-center gap-1.5 active:scale-[0.98]">
+                            <span>Shop Trial Products Now</span>
+                            <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                        </button>
                     </div>
-                    
-                    <!-- 4 STEPS DIRECTLY FITTING WITH ZERO VERTICAL SCROLLING -->
-                    <div class="space-y-2 py-1">
-                        <!-- Step 1 -->
-                        <div class="flex items-center text-xs">
-                            <div class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center mr-2.5 shrink-0 shadow-2xs">
-                                <i class="fa-solid fa-check text-[9px]"></i>
-                            </div>
-                            <span class="text-gray-500 line-through font-medium text-[11px]">Claim 500 Tokens</span>
-                            <span class="ml-auto text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-100">Claimed</span>
-                        </div>
-                        <!-- Step 2 -->
-                        <div class="flex items-center text-xs">
-                            <div class="w-5 h-5 rounded-full bg-[#570054] text-white flex items-center justify-center mr-2.5 shrink-0 font-black text-[10px] shadow-2xs">
-                                2
-                            </div>
-                            <span class="text-[#570054] font-black text-[11px]">Buy a Product</span>
-                            <span class="ml-auto text-[9px] font-extrabold text-amber-700 bg-amber-50 border border-amber-200 px-1.5 py-0.2 rounded">Current</span>
-                        </div>
-                        <!-- Step 3 -->
-                        <div class="flex items-center text-xs">
-                            <div class="w-5 h-5 rounded-full bg-gray-100 border border-gray-300 text-gray-500 flex items-center justify-center mr-2.5 shrink-0 font-bold text-[10px]">
-                                3
-                            </div>
-                            <span class="text-gray-700 font-semibold text-[11px]">Post Video and Get 100% Amount Back</span>
-                        </div>
-                        <!-- Step 4 -->
-                        <div class="flex items-center text-xs">
-                            <div class="w-5 h-5 rounded-full bg-gray-100 border border-gray-300 text-gray-500 flex items-center justify-center mr-2.5 shrink-0 font-bold text-[10px]">
-                                4
-                            </div>
-                            <span class="text-gray-700 font-semibold text-[11px]">Affiliate Commission</span>
-                        </div>
-                    </div>
-                    
-                    <button class="w-full mt-3 bg-[#570054] hover:bg-[#6f006b] text-white text-xs font-black py-2.5 rounded-xl shadow-sm transition flex items-center justify-center gap-1.5">
-                        <span>Shop Trial Products Now</span>
-                        <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                    </button>
                 </div>
 
                 <!-- REAL MEESHO CREATOR BOTTOM NAVBAR (Home Active Overlay) -->
