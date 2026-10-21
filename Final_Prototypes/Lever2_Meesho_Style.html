@@ -282,43 +282,56 @@
                     <div class="space-y-2.5">
                         <div class="flex items-center justify-between">
                             <span class="text-[10px] font-black text-gray-800 uppercase tracking-wider flex items-center gap-1.5">
-                                <i class="fa-solid fa-clock-rotate-left text-[#df1e7b]"></i> Payout Delay & Empty Days Math
+                                <i class="fa-solid fa-calculator text-[#df1e7b]"></i> Proving The "Empty Days" Math
                             </span>
-                            <span class="text-[9px] font-black text-[#570054] bg-purple-100 px-2 py-0.5 rounded border border-purple-200">6–18 Idle Days</span>
+                            <button onclick="openGuesstimate('empty-days')" class="text-[9px] font-black text-[#570054] bg-purple-100 hover:bg-purple-200 px-2 py-0.5 rounded border border-purple-200 flex items-center gap-1 transition cursor-pointer">
+                                <span>6–18 Days Gap</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
+                            </button>
                         </div>
                         
                         <div class="space-y-1.5 text-[11px] font-mono text-gray-700 bg-white p-2.5 rounded-lg border border-gray-200">
+                            <!-- Phase 1 -->
                             <div class="flex justify-between items-center text-gray-600">
-                                <span class="font-sans">1. Delivery + Return Window</span>
-                                <span class="font-bold text-gray-900">Day 10–15</span>
+                                <span class="font-sans font-medium">1. Order → Return Window Closes</span>
+                                <span class="font-bold text-gray-900">Day 10 to 15</span>
                             </div>
-                            <div class="text-[10px] text-gray-400 font-sans pl-2">
-                                3–8d delivery + 7d return (Return liability ends)
-                            </div>
-
-                            <div class="flex justify-between items-center text-gray-600 pt-1 border-t border-gray-100">
-                                <span class="font-sans">2. Meesho Confirmation Gap</span>
-                                <span class="font-bold text-amber-700">6–11 Idle Days</span>
-                            </div>
-                            <div class="text-[10px] text-gray-400 font-sans pl-2">
-                                Strict 21-day order confirmation (21 − [10–15]d)
+                            <div class="text-[10px] text-gray-500 font-sans pl-2 leading-tight">
+                                3–8 days delivery + 7-day return window. After Day 15, customer return risk is 0%.
                             </div>
 
-                            <div class="flex justify-between items-center text-gray-600 pt-1 border-t border-gray-100">
-                                <span class="font-sans">3. Weekly Batch Payout Lag</span>
-                                <span class="font-bold text-gray-900">+0–7 Days</span>
+                            <!-- Phase 2 -->
+                            <div class="flex justify-between items-center text-gray-600 pt-1.5 border-t border-gray-100">
+                                <span class="font-sans font-medium">2. Meesho 21-Day Confirmation Gap</span>
+                                <span class="font-bold text-amber-700">6 to 11 Idle Days</span>
                             </div>
-                            <div class="text-[10px] text-gray-400 font-sans pl-2">
-                                Weekly disbursement schedule (21–28d total wait)
+                            <div class="text-[10px] text-gray-500 font-sans pl-2 leading-tight">
+                                Strict 21-day order closure policy: 21d − 15d = 6d (min), 21d − 10d = 11d (max).
                             </div>
 
-                            <div class="flex justify-between items-center pt-1.5 border-t-2 border-purple-200 text-[#570054] font-bold">
-                                <span class="font-sans">Total Empty/Locked Days</span>
-                                <span class="text-xs bg-pink-100 text-[#df1e7b] px-1.5 py-0.5 rounded font-mono font-black">6 to 18 Days</span>
+                            <!-- Phase 3 -->
+                            <div class="flex justify-between items-center text-gray-600 pt-1.5 border-t border-gray-100">
+                                <span class="font-sans font-medium">3. Weekly Batch Payout Delay</span>
+                                <span class="font-bold text-gray-900">+0 to 7 Days</span>
+                            </div>
+                            <div class="text-[10px] text-gray-500 font-sans pl-2 leading-tight">
+                                Weekly bank disbursement cycle (Day 0 if on payout day, Day 7 if cycle missed).
+                            </div>
+
+                            <!-- Total Formula Bar -->
+                            <div class="pt-2 border-t-2 border-purple-200">
+                                <div class="flex justify-between items-center text-[#570054] font-bold">
+                                    <span class="font-sans text-[11px]">Total Empty / Locked Days</span>
+                                    <span class="text-xs bg-pink-100 text-[#df1e7b] px-2 py-0.5 rounded font-mono font-black border border-pink-200">6 to 18 Days Gap</span>
+                                </div>
+                                <div class="text-[10px] text-gray-500 font-mono text-right mt-0.5">
+                                    Min: 6d + 0d = 6d · Max: 11d + 7d = 18d
+                                </div>
                             </div>
                         </div>
-                        <div class="text-[10.5px] text-gray-500 leading-snug">
-                            <strong class="text-gray-800">SplitPay Value:</strong> Unlocks this confirmed, risk-free balance instantly at checkout so creators re-invest without waiting 6–18 dead days.
+
+                        <div class="text-[10.5px] text-gray-600 leading-snug bg-purple-50/60 p-2 rounded-lg border border-purple-200/60">
+                            <strong class="text-gray-900">Why SplitPay Solves This:</strong> Unlocks confirmed commission at Day 10–15 directly at checkout, completely bypassing the 6–18 idle days of dead capital.
                         </div>
                     </div>
                 `;

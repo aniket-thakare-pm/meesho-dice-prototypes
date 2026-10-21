@@ -236,7 +236,7 @@ const appendixData = {
             { label: "Annual SplitPay NMV", val: "= ₹15.5 Cr", note: "Conservative case: ₹4.5 Cr" }
         ]
     },
-    "splitpay-adoption": {
+        "splitpay-adoption": {
         title: "42.5% Adopters (2,380 Creators) — SplitPay Wallet",
         source: "Appendix Page 21 (Split-Pay Funnel)",
         base: "8,000 BPC Creators & 70% Pending Balance Ratio",
@@ -246,6 +246,23 @@ const appendixData = {
             { label: "Creators with Accrued Balance", val: "5,600 (70%)", note: "Have unwithdrawn commissions" },
             { label: "SplitPay Opt-in Share", val: "42.5%", note: "Choose wallet split-pay over waiting for cash cycle" },
             { label: "Active Wallet Adopters", val: "= 2,380 creators", note: "Generate 12 extra videos/year each" }
+        ]
+    },
+    "empty-days": {
+        title: "6 to 18 'Empty Days' · Dead Capital Gap Derivation",
+        source: "Primary Research & Meesho Seller/Creator Settlement Policy",
+        base: "Timeline Analysis from Customer Order Placement to Creator Bank Settlement",
+        formula: "Empty Days = (21 Days Confirmation − [3–8d Delivery + 7d Return]) + [0–7d Weekly Payout]",
+        breakdown: [
+            { label: "1. Delivery Window", val: "3 to 8 Days", note: "Standard logistics transit time across Tier-2/3 pincodes" },
+            { label: "2. Customer Return Window", val: "7 Days", note: "Strict return policy; return liability ends at Day 10–15" },
+            { label: "3. Total Return Risk Window", val: "10 to 15 Days", note: "After Day 15, customer return risk is mathematically 0%" },
+            { label: "4. Meesho Confirmation Policy", val: "21 Days Fixed", note: "Meesho holds order in pending state for 21 days regardless" },
+            { label: "5. Policy Confirmation Gap", val: "6 to 11 Days", note: "21d − 15d = 6 days (min); 21d − 10d = 11 days (max)" },
+            { label: "6. Weekly Payout Batching", val: "+0 to 7 Days", note: "Payouts run on fixed weekly batch dates (Day 0 to Day 7)" },
+            { label: "7. Total Settlement Elapsed", val: "21 to 28 Days", note: "Total calendar time from customer order to bank transfer" },
+            { label: "Final Empty Days Gap", val: "= 6 to 18 Days", note: "Commissions sit 100% risk-free yet completely inaccessible" },
+            { label: "SplitPay Solution", val: "Day 10–15 Instant Unlock", note: "Redeems pending balance for new stock at checkout, eliminating the 6–18 day dead gap" }
         ]
     },
     "lever22-nmv": {
