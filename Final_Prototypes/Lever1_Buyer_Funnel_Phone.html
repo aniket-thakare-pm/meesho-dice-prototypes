@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buyer-to-Creator Phone</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+
+        
+html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#fff; font-family:-apple-system,sans-serif; }
+.phone-view { width:100%; height:100%; position:relative; overflow:hidden; background:#fff; }
+
+        
+        .prototype-wrapper {
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .phone-frame-old {
+            box-sizing: content-box; width: 390px; aspect-ratio: 472 / 1024;
+            border: 14px solid #000; border-radius: 40px;
+            position: relative; background: white;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+            overflow: hidden; 
+        }
+
+        .phone-frame::before {
+            content: ''; position: absolute; top: 15px; left: 50%;
+            transform: translateX(-50%); width: 12px; height: 12px;
+            background: #000; border-radius: 50%; z-index: 100;
+        }
+
+        .view-container {
+            width: 100%; height: 100%; overflow: hidden;
+            position: relative; background: white; display: none;
+        }
+        .bg-img { width: 100%; display: block; height: 100%; object-fit: contain; }
+        
+        /* Universal Hotspots */
+        .hotspot { position: absolute; z-index: 10; cursor: pointer; }
+        .nav-home { bottom: 0; left: 0; width: 25%; height: 70px; }
+        .nav-orders { bottom: 0; right: 0; width: 25%; height: 70px; }
+        .nav-creator-payments { bottom: 0; left: 50%; width: 25%; height: 70px; }
+        
+        /* Overlays for Buyer Funnel */
+        .popup-overlay {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6); display: flex; align-items: center;
+            justify-content: center; z-index: 50;
+        }
+        .buyer-overlay-banner {
+            position: absolute; top: 19.5%; left: 2%; width: 96%; height: 21.5%;
+            z-index: 5; border-radius: 0.5rem; overflow: hidden; display: flex;
+        }
+
+        /* Overlays for Creator Funnel */
+        .full-screen-blur {
+            position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 50; padding: 20px;
+        }
+        .widget-overlay-home {
+            position: absolute; top: 51.5%; left: 4%; width: 92%; height: 26%;
+            z-index: 5; border-radius: 12px; overflow: hidden;
+        }
+        .widget-overlay-wallet {
+            position: absolute; top: 31%; left: 3%; width: 94%; height: 16%;
+            z-index: 5; border-radius: 12px; overflow: hidden;
+        }
+    
+</style>
+</head>
+<body>
+<div class="phone-view">
+<!-- 1. BUYER HOME VIEW -->
+            <div id="view-buyer-home" class="view-container buyer-view" style="display: block;">
+                <img src="../home_bg.jpg" class="bg-img" alt="Meesho Home">
+                <div class="hotspot nav-orders" onclick="switchBuyerView('buyer-orders')" title="Go to My Orders"></div>
+                
+                <!-- ACQUISITION POP-UP OVERLAY -->
+                <div id="acquisition-popup" class="popup-overlay">
+                    <div class="bg-white rounded-xl w-10/12 overflow-hidden shadow-2xl transform transition-all relative mt-20">
+                        <button onclick="document.getElementById('acquisition-popup').style.display='none'" class="absolute top-2 right-2 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-200 z-10">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <div class="bg-purple-100 h-32 w-full flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-purple-200 rounded-full opacity-50"></div>
+                            <div class="absolute left-4 bottom-2 w-12 h-12 bg-pink-200 rounded-full opacity-50"></div>
+                            <i class="fa-solid fa-bullhorn text-6xl text-purple-600 transform -rotate-12 z-10 drop-shadow-md"></i>
+                        </div>
+                        <div class="p-5 text-center">
+                            <span class="bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider mb-2 inline-block">Exclusive Invite</span>
+                            <h2 class="text-lg font-bold text-gray-800 mb-2 leading-tight">You buy a lot of beauty!</h2>
+                            <p class="text-sm text-gray-600 mb-5 leading-relaxed">
+                                You're a frequent shopper. Did you know you can earn cash directly to your bank account by sharing your honest review links?
+                            </p>
+                            <button onclick="document.getElementById('acquisition-popup').style.display='none'" class="w-full bg-purple-600 text-white font-bold py-3 rounded-lg shadow-md hover:bg-purple-700 transition">
+                                Explore Creator Program <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                            <button onclick="document.getElementById('acquisition-popup').style.display='none'" class="w-full text-gray-400 text-xs font-medium mt-3 uppercase tracking-wide">
+                                Maybe Later
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. BUYER MY ORDERS VIEW -->
+            <div id="view-buyer-orders" class="view-container buyer-view">
+                <img src="../my_orders_bg.jpg" class="bg-img" alt="Meesho My Orders">
+                <div class="hotspot nav-home" onclick="switchBuyerView('buyer-home')" title="Go to Home"></div>
+
+                <!-- TARGETED CREATOR BANNER OVERLAY -->
+                <div class="buyer-overlay-banner bg-gradient-to-r from-pink-100 to-purple-200 shadow-md border border-purple-300">
+                    <div class="w-[35%] flex items-center justify-center relative bg-purple-50">
+                        <i class="fa-solid fa-bullhorn text-[6rem] text-orange-500 transform -rotate-12 absolute opacity-90 drop-shadow-lg"></i>
+                    </div>
+                    <div class="w-[65%] p-2 flex flex-col justify-center relative z-10 pl-4">
+                        <div class="bg-purple-900 text-white text-[8px] font-bold px-2 py-0.5 rounded-full self-start mb-1 tracking-wider uppercase">Power Buyer Invite</div>
+                        <h3 class="text-orange-700 font-black text-[14px] leading-tight mb-2" style="text-shadow: 1px 1px 0px rgba(255,255,255,0.7);">
+                            Did you know you can get paid to review your beauty orders?
+                        </h3>
+                        <div class="grid grid-cols-1 gap-0.5 text-[9.5px] text-gray-800 font-bold mb-2">
+                            <div class="flex items-center"><i class="fa-solid fa-check text-purple-700 mr-1 text-[8px]"></i> Earn Cash on Sales</div>
+                            <div class="flex items-center"><i class="fa-solid fa-check text-purple-700 mr-1 text-[8px]"></i> Zero followers required</div>
+                        </div>
+                        <button class="bg-gradient-to-r from-orange-500 to-orange-600 text-white text-[10px] font-bold py-1.5 px-4 rounded-full self-start shadow-md hover:from-orange-600 hover:to-orange-700">
+                            Know More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+
+</div>
+
+<script>
+    function switchBuyerView(viewId) {
+        document.querySelectorAll('.buyer-view').forEach(el => el.style.display = 'none');
+        document.getElementById('view-' + viewId).style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

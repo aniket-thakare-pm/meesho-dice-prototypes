@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meesho - Lever 2: Zero-Friction Sourcing (SplitPay & Ad-Credit Sampling)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { 
+            margin: 0; background-color: #0b0f19; min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+            color: #f3f4f6;
+        }
+        
+        .phone-frame {
+            box-sizing: content-box; width: 380px; height: 780px;
+            border: 14px solid #1f2937; border-radius: 42px;
+            position: relative; background: #fff;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+        }
+
+        .phone-frame::before {
+            content: ''; position: absolute; top: 12px; left: 50%;
+            transform: translateX(-50%); width: 12px; height: 12px;
+            background: #111827; border-radius: 50%; z-index: 100;
+        }
+
+        iframe { width: 100%; height: 100%; border: none; }
+        
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #374151; border-radius: 999px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- TOP EXECUTIVE BAR -->
+    <header class="bg-gray-900/90 backdrop-blur-md border-b border-gray-800 px-8 py-3.5 flex items-center justify-between sticky top-0 z-50">
+        <div class="flex items-center gap-4">
+            <a href="../index.html" class="px-3.5 py-1.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white text-xs font-bold transition flex items-center gap-2 border border-gray-700">
+                <i class="fa-solid fa-arrow-left"></i> All Levers
+            </a>
+            <div class="h-5 w-px bg-gray-700"></div>
+            <div>
+                <span class="text-[11px] font-black tracking-widest text-pink-500 uppercase">LEVER 2 · ZERO-FRICTION SOURCING</span>
+                <h1 class="text-base font-extrabold text-white leading-tight">SplitPay Wallet & Supplier-Funded Sampling Credits</h1>
+            </div>
+        </div>
+
+        <!-- TOGGLE SUB-SOLUTIONS -->
+        <div class="flex items-center gap-2 bg-gray-800/80 p-1.5 rounded-xl border border-gray-700">
+            <button id="tab21" onclick="switchView('splitpay')" class="px-4 py-1.5 rounded-lg text-xs font-black transition bg-pink-600 text-white shadow-md flex items-center gap-2">
+                <span>2.1 SplitPay Wallet</span>
+            </button>
+            <button id="tab22" onclick="switchView('sampling')" class="px-4 py-1.5 rounded-lg text-xs font-bold transition text-gray-400 hover:text-white flex items-center gap-2">
+                <span>2.2 Sampling Credits</span>
+            </button>
+        </div>
+
+        <!-- KEY STAT PILLS (DYNAMICALLY UPDATED) -->
+        <div class="flex items-center gap-3">
+            <div class="px-3 py-1 rounded-xl bg-pink-950/60 border border-pink-700/50 flex items-center gap-2">
+                <span id="pillNmvLabel" class="text-[11px] text-pink-300 font-semibold">SplitPay NMV:</span>
+                <button id="pillNmvBtn" onclick="openGuesstimate('lever21-nmv')" class="text-sm font-black text-pink-400 hover:underline flex items-center gap-1">₹15.5 Cr / yr <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+            </div>
+            <div class="px-3 py-1 rounded-xl bg-purple-950/60 border border-purple-700/50 flex items-center gap-2">
+                <span id="pillMetricLabel" class="text-[11px] text-purple-300 font-semibold">Adoption Rate:</span>
+                <button id="pillMetricBtn" onclick="openGuesstimate('splitpay-adoption')" class="text-sm font-black text-purple-300 hover:underline flex items-center gap-1">42.5% Adopters <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN 3-COLUMN CONTENT -->
+    <div class="flex-1 flex max-w-[1720px] w-full mx-auto px-8 py-6 gap-8 items-start justify-center">
+
+        <!-- LEFT PANEL: DYNAMIC INSIGHT & PRIMARY NUMBERS -->
+        <aside class="w-[360px] shrink-0 bg-gray-900/70 border border-gray-800 rounded-2xl p-6 custom-scroll max-h-[820px] overflow-y-auto space-y-5">
+            <div>
+                <span id="tagInsight" class="text-[10px] font-black tracking-wider uppercase text-pink-400 bg-pink-950/60 px-2.5 py-1 rounded border border-pink-800/40">2.1 Cashflow Bottleneck</span>
+                <h3 id="headInsight" class="text-sm font-bold text-gray-100 mt-2.5 leading-snug">
+                    Commission stays locked until the return period ends, paralyzing creator re-investment.
+                </h3>
+                <p id="descInsight" class="text-xs text-gray-400 mt-2 leading-relaxed">
+                    Creators wait 7–14 days for returns to close before accessing payouts. SplitPay unlocks this confirmed pending commission directly at checkout so they can instantly order new video inventory.
+                </p>
+            </div>
+
+            <!-- EVIDENCE INFOGRAPHIC CARDS (DYNAMIC) -->
+            <div id="cardsLeft" class="space-y-3">
+                <!-- Injected via switchView -->
+            </div>
+
+            <!-- DYNAMIC ECONOMICS BOX -->
+            <div id="boxEconomics" class="bg-gray-950/60 border border-gray-800 rounded-xl p-4 space-y-2.5 text-xs">
+                <!-- Injected via switchView -->
+            </div>
+        </aside>
+
+        <!-- CENTER: INTERACTIVE PHONE PROTOTYPE -->
+        <main class="flex flex-col items-center justify-center shrink-0">
+            <div class="mb-3 text-center flex items-center gap-3">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-gray-400 block" id="phoneSubTitle">SOLUTION 2.1</span>
+                    <h2 class="text-lg font-black text-white" id="phoneTitle">SplitPay Wallet Checkout</h2>
+                </div>
+            </div>
+            
+            <div class="phone-frame">
+                <iframe id="mainIframe" src="Lever2_SplitPay_Phone.html"></iframe>
+            </div>
+
+            <!-- QUICK BOTTOM NAVIGATION TOGGLE -->
+            <div class="mt-4 flex items-center gap-3">
+                <button onclick="switchView('splitpay')" id="btnNavPrev" class="px-4 py-1.5 rounded-xl bg-gray-800 text-xs font-bold text-gray-500 border border-gray-800 cursor-not-allowed">
+                    ‹ 2.1 SplitPay
+                </button>
+                <button onclick="switchView('sampling')" id="btnNavNext" class="px-4 py-1.5 rounded-xl bg-pink-600 hover:bg-pink-500 text-xs font-bold text-white shadow-lg transition cursor-pointer">
+                    Next: 2.2 Sampling Credits ›
+                </button>
+            </div>
+        </main>
+
+        <!-- RIGHT PANEL: DYNAMIC MECHANIC BREAKDOWN & DEMO GUIDE -->
+        <aside class="w-[360px] shrink-0 bg-gray-900/70 border border-gray-800 rounded-2xl p-6 custom-scroll max-h-[820px] overflow-y-auto space-y-5">
+            <div>
+                <span id="tagSolution" class="text-[10px] font-black tracking-wider uppercase text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded border border-emerald-800/40">Solution Architecture</span>
+                <h3 id="headSolution" class="text-sm font-bold text-gray-100 mt-2.5">
+                    How Sourcing Friction Disappears
+                </h3>
+            </div>
+
+            <!-- DYNAMIC SOLUTION DETAILS -->
+            <div id="solutionDetails" class="space-y-3.5">
+                <!-- Injected via switchView -->
+            </div>
+
+            <!-- INTERACTIVE DEMO GUIDE -->
+            <div class="bg-gradient-to-br from-pink-950/40 to-purple-950/40 border border-pink-700/40 rounded-xl p-4">
+                <div class="flex items-center gap-2 text-pink-400 font-bold text-xs mb-2">
+                    <i class="fa-solid fa-hand-pointer animate-bounce"></i> Try In Prototype Now:
+                </div>
+                <div id="guideText" class="text-[11px] text-gray-300 space-y-1.5 leading-snug">
+                    <!-- Injected via switchView -->
+                </div>
+            </div>
+
+            <!-- NMV MATHEMATICAL DERIVATION (DYNAMIC) -->
+            <div class="border-t border-gray-800 pt-3">
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2" id="nmvModelHeading">Annual Value Created (Deck S6 & S21)</div>
+                <div id="nmvMathBox" class="space-y-1.5 text-[11px] font-mono text-gray-300 bg-gray-950/60 p-3 rounded-lg">
+                    <!-- Injected via switchView -->
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- APPENDIX GUESSTIMATE POPUP MODAL -->
+    <div id="guesstimateModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4">
+        <div class="bg-gray-900 border border-gray-700 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative animate-in fade-in duration-200">
+            <button onclick="closeGuesstimate()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase bg-pink-950 text-pink-400 border border-pink-800">Appendix Calculation</span>
+                <span id="modalSource" class="text-xs text-gray-400 font-medium"></span>
+            </div>
+            <h3 id="modalTitle" class="text-lg font-black text-white mt-1 mb-4 leading-snug"></h3>
+            
+            <div class="space-y-3.5 mb-5">
+                <div class="bg-gray-950/70 rounded-xl p-3 border border-gray-800">
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-1">Base Number & Source:</span>
+                    <p id="modalBase" class="text-xs text-gray-200 font-medium leading-relaxed"></p>
+                </div>
+                <div class="bg-gray-950/70 rounded-xl p-3 border border-gray-800">
+                    <span class="text-[10px] font-bold text-pink-400 uppercase tracking-wider block mb-1">Guesstimate Formula:</span>
+                    <p id="modalFormula" class="text-xs font-mono text-pink-300"></p>
+                </div>
+                <div>
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block mb-2">Step-by-Step Derivation:</span>
+                    <div id="modalBreakdown" class="space-y-2"></div>
+                </div>
+            </div>
+
+            <div class="pt-3 border-t border-gray-800 flex justify-between items-center text-xs text-gray-400">
+                <span>Verified in DICE R2 Submission Deck</span>
+                <button onclick="closeGuesstimate()" class="px-4 py-1.5 bg-pink-600 hover:bg-pink-500 text-white font-bold rounded-lg transition">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="appendix_modal.js"></script>
+    <script>
+        // Specific modal entries for 2.1 and 2.2
+        appendixData["lever21-nmv"] = {
+            title: "₹15.5 Cr / yr — SplitPay Wallet NMV",
+            source: "Appendix Page 21 (SplitPay Economics)",
+            base: "8,000 Programme Creators on Creator Club",
+            formula: "8,000 Creators × 70% Pending Balance × 42.5% Adopt = 2,380 Adopters × 12 Extra Videos × ₹5,436 NMV",
+            breakdown: [
+                { label: "Programme Creators", val: "8,000", note: "BPC creator cohort" },
+                { label: "With Pending Balance", val: "70%", note: "Awaiting return window" },
+                { label: "Adoption Rate", val: "42.5%", note: "Store-credit benchmark 35-45%" },
+                { label: "Active Adopters", val: "2,380 creators", note: "Unblocked to buy inventory" },
+                { label: "NMV per Incremental Video", val: "₹5,436", note: "Derived in S19" },
+                { label: "Annual SplitPay NMV", val: "= ₹15.5 Cr", note: "Conservative: ₹4.5 Cr (6,000 × 70% × 30%)" }
+            ]
+        };
+
+        appendixData["lever22-nmv"] = {
+            title: "₹51.0 Cr / yr — Ad-Credit Sampling NMV",
+            source: "Appendix Page 21 (Sampling Economics)",
+            base: "8,000 Creators × 26 Samples/yr × 45% Post Rate × 60% Selling × ₹12,080 NMV × 75% Incremental",
+            formula: "8,000 × 26 × 45% × 60% × ₹12,080 × 75% = ₹51.0 Cr NMV",
+            breakdown: [
+                { label: "Creators in Program", val: "8,000", note: "Eligible BPC creators" },
+                { label: "Samples Claimed / Creator", val: "26 samples/yr", note: "Funded via 5% net NMV grant" },
+                { label: "Post Compliance Rate", val: "45%", note: "Video submission rate" },
+                { label: "Selling Videos Share", val: "60%", note: "Videos generating orders" },
+                { label: "NMV per Selling Video", val: "₹12,080", note: "Derived in S19" },
+                { label: "Annual Sampling NMV", val: "= ₹51.0 Cr", note: "Base Case (Conservative: ₹10 Cr | Upside: ₹141 Cr)" }
+            ]
+        };
+
+        appendixData["splitpay-adoption"] = {
+            title: "42.5% — SplitPay Wallet Adoption Benchmark",
+            source: "Appendix Page 21 (Store-Credit Benchmark)",
+            base: "Standard E-Commerce Store-Credit Reinvestment Rates (35% - 45%)",
+            formula: "Applied to 5,600 creators holding confirmed pending balances awaiting return windows",
+            breakdown: [
+                { label: "Industry Benchmark", val: "35% - 45%", note: "Store-credit utilization" },
+                { label: "Model Assumption", val: "42.5%", note: "Midpoint adoption" },
+                { label: "Resulting Adopter Cohort", val: "2,380 creators", note: "Will generate 12 extra videos/year each" }
+            ]
+        };
+
+        function switchView(tab) {
+            const iframe = document.getElementById('mainIframe');
+            const tab21 = document.getElementById('tab21');
+            const tab22 = document.getElementById('tab22');
+            const title = document.getElementById('phoneTitle');
+            const subtitle = document.getElementById('phoneSubTitle');
+            const tagInsight = document.getElementById('tagInsight');
+            const headInsight = document.getElementById('headInsight');
+            const descInsight = document.getElementById('descInsight');
+            const cardsLeft = document.getElementById('cardsLeft');
+            const boxEconomics = document.getElementById('boxEconomics');
+            const tagSolution = document.getElementById('tagSolution');
+            const headSolution = document.getElementById('headSolution');
+            const solutionDetails = document.getElementById('solutionDetails');
+            const guideText = document.getElementById('guideText');
+            const nmvMathBox = document.getElementById('nmvMathBox');
+            const pillNmvLabel = document.getElementById('pillNmvLabel');
+            const pillNmvBtn = document.getElementById('pillNmvBtn');
+            const pillMetricLabel = document.getElementById('pillMetricLabel');
+            const pillMetricBtn = document.getElementById('pillMetricBtn');
+            const btnNavPrev = document.getElementById('btnNavPrev');
+            const btnNavNext = document.getElementById('btnNavNext');
+
+            if (tab === 'splitpay') {
+                iframe.src = 'Lever2_SplitPay_Phone.html';
+                title.innerText = 'SplitPay Wallet Checkout';
+                subtitle.innerText = 'SOLUTION 2.1';
+                tab21.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-pink-600 text-white shadow-md flex items-center gap-2';
+                tab22.className = 'px-4 py-1.5 rounded-lg text-xs font-bold transition text-gray-400 hover:text-white flex items-center gap-2';
+                
+                pillNmvLabel.innerText = "SplitPay NMV:";
+                pillNmvBtn.innerHTML = `₹15.5 Cr / yr <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+                pillNmvBtn.setAttribute("onclick", "openGuesstimate('lever21-nmv')");
+
+                pillMetricLabel.innerText = "Adoption Rate:";
+                pillMetricBtn.innerHTML = `42.5% Adopters <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+                pillMetricBtn.setAttribute("onclick", "openGuesstimate('splitpay-adoption')");
+
+                tagInsight.innerText = "2.1 Cashflow Bottleneck";
+                headInsight.innerText = "Commission stays locked until the return period ends, paralyzing creator re-investment.";
+                descInsight.innerText = "Creators wait 7–14 days for returns to close before accessing payouts. SplitPay unlocks this confirmed pending commission directly at checkout so they can instantly order new video inventory.";
+
+                cardsLeft.innerHTML = `
+                    <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-wallet text-pink-400"></i>
+                        </div>
+                        <div>
+                            <button onclick="openGuesstimate('breakeven-11')" class="text-base font-black text-white hover:text-pink-400 hover:underline text-left cursor-pointer flex items-center gap-1.5">11 Orders → 0 <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-pink-400"></i></button>
+                            <div class="text-[11px] text-gray-400 leading-tight">Eliminates creator cash risk before filming</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-users text-purple-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-white">2,380 Creators</div>
+                            <div class="text-[11px] text-gray-400 leading-tight">Adopters unblocked to purchase and review new SKUs</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-video text-emerald-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-white">+12 Videos / yr</div>
+                            <div class="text-[11px] text-gray-400 leading-tight">Extra shoppable content produced per active creator</div>
+                        </div>
+                    </div>
+                `;
+
+                boxEconomics.innerHTML = `
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">SplitPay Checkout Example</span>
+                    <div class="flex items-center justify-between text-gray-300"><span>Product Order Value</span><span class="text-gray-400 font-mono">₹500</span></div>
+                    <div class="flex items-center justify-between text-gray-300"><span>Paid via Pending Wallet</span><span class="text-pink-400 font-mono font-bold">−₹300</span></div>
+                    <div class="flex items-center justify-between text-gray-300"><span>Paid via Creator UPI</span><span class="text-emerald-400 font-mono font-bold">₹200</span></div>
+                `;
+
+                tagSolution.innerText = "Solution 2.1";
+                headSolution.innerText = "SplitPay Commission Set-Off";
+                solutionDetails.innerHTML = `
+                    <div class="p-3.5 rounded-xl bg-gray-800/70 border-2 border-pink-500/50">
+                        <h4 class="text-xs font-bold text-white mb-1">Instant Re-investment at Checkout</h4>
+                        <p class="text-[11px] text-gray-300 leading-snug">
+                            Creator uses confirmed pending earnings directly on the payment screen. Cash comes back to them as new stock, leading to a new video in 14 days.
+                        </p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-gray-800/40 border border-gray-700/50">
+                        <h4 class="text-xs font-bold text-white mb-1">Zero Working Capital Risk</h4>
+                        <p class="text-[11px] text-gray-300 leading-snug">
+                            Only orders where customer payment is confirmed can be set off. Meesho never advances platform debt.
+                        </p>
+                    </div>
+                `;
+
+                guideText.innerHTML = `
+                    <p>1. Check the <strong>"Use SplitPay Wallet"</strong> checkbox.</p>
+                    <p>2. See the final balance automatically split into UPI (₹200).</p>
+                    <p>3. Tap <strong>"Next: 2.2 Sampling Credits"</strong> to try the supplier-funded catalog!</p>
+                `;
+
+                nmvMathBox.innerHTML = `
+                    <div class="flex justify-between"><span>2,380</span><span class="text-gray-500">Adopters</span></div>
+                    <div class="flex justify-between"><span>× 12</span><span class="text-gray-500">Extra Videos/yr</span></div>
+                    <div class="flex justify-between"><span>× ₹5,436</span><span class="text-gray-500">NMV / Video</span></div>
+                    <div class="flex justify-between border-t border-gray-800 pt-1 font-bold text-pink-400"><span>= ₹15.5 Cr</span><button onclick="openGuesstimate('lever21-nmv')" class="underline hover:text-pink-300">See Guesstimate</button></div>
+                `;
+
+                btnNavPrev.className = "px-4 py-1.5 rounded-xl bg-gray-800 text-xs font-bold text-gray-500 border border-gray-800 cursor-not-allowed";
+                btnNavNext.className = "px-4 py-1.5 rounded-xl bg-pink-600 hover:bg-pink-500 text-xs font-bold text-white shadow-lg transition cursor-pointer";
+                btnNavNext.setAttribute("onclick", "switchView('sampling')");
+                btnNavNext.innerText = "Next: 2.2 Sampling Credits ›";
+            } else {
+                iframe.src = 'Lever2_Sampling_Phone.html';
+                title.innerText = 'Supplier-Funded Sampling Credits';
+                subtitle.innerText = 'SOLUTION 2.2';
+                tab22.className = 'px-4 py-1.5 rounded-lg text-xs font-black transition bg-pink-600 text-white shadow-md flex items-center gap-2';
+                tab21.className = 'px-4 py-1.5 rounded-lg text-xs font-bold transition text-gray-400 hover:text-white flex items-center gap-2';
+                
+                pillNmvLabel.innerText = "Sampling NMV:";
+                pillNmvBtn.innerHTML = `₹51.0 Cr / yr <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+                pillNmvBtn.setAttribute("onclick", "openGuesstimate('lever22-nmv')");
+
+                pillMetricLabel.innerText = "Ad Credit Swap:";
+                pillMetricBtn.innerHTML = `₹40 replaces ₹120 <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>`;
+                pillMetricBtn.setAttribute("onclick", "openGuesstimate('ad-credit-sample')");
+
+                tagInsight.innerText = "2.2 Sourcing Cost Bottleneck";
+                headInsight.innerText = "Creators won't risk their own money on untested BPC products.";
+                descInsight.innerText = "Suppliers trade free Trial-SKU samples to creators in exchange for Meesho ad credits. Creators test on skin with zero out-of-pocket risk; suppliers gain targeted traffic; Meesho advances zero cash.";
+
+                cardsLeft.innerHTML = `
+                    <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-coins text-pink-400"></i>
+                        </div>
+                        <div>
+                            <button onclick="openGuesstimate('ad-credit-sample')" class="text-base font-black text-white hover:text-pink-400 hover:underline text-left cursor-pointer flex items-center gap-1.5">₹40 Ad Credits <i class="fa-solid fa-arrow-up-right-from-square text-[11px] text-pink-400"></i></button>
+                            <div class="text-[11px] text-gray-400 leading-tight">replaces a ₹120 cash sample (supplier gets 8.62x RoAS ads)</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-box-open text-purple-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-white">26 Samples / yr</div>
+                            <div class="text-[11px] text-gray-400 leading-tight">Redeemed per creator via 5% net NMV earnings grant</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800/60 border border-gray-700/60 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-hand-holding-dollar text-emerald-400"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-white">₹0 Meesho Cash</div>
+                            <div class="text-[11px] text-gray-400 leading-tight">Funded by supplier ad exchange; zero balance sheet liability</div>
+                        </div>
+                    </div>
+                `;
+
+                boxEconomics.innerHTML = `
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider block">Supplier Ad Credit Exchange (Deck S21)</span>
+                    <div class="flex items-center justify-between text-gray-300"><span>Product Cost to Supplier</span><span class="text-gray-400 font-mono">₹75</span></div>
+                    <div class="flex items-center justify-between text-gray-300"><span>+ Foregone Profit</span><span class="text-gray-400 font-mono">+₹40</span></div>
+                    <div class="flex items-center justify-between text-gray-300"><span>÷ 8.62 RoAS × 33% Margin</span><span class="text-purple-400 font-mono font-bold">÷ ₹2.87</span></div>
+                    <div class="flex items-center justify-between text-gray-300 border-t border-gray-800 pt-1"><span>Meesho Ad Credits</span><span class="text-pink-400 font-mono font-bold">= ₹40</span></div>
+                `;
+
+                tagSolution.innerText = "Solution 2.2";
+                headSolution.innerText = "Supplier-Funded Sampling Credits";
+                solutionDetails.innerHTML = `
+                    <div class="p-3.5 rounded-xl bg-gray-800/70 border-2 border-pink-500/50">
+                        <h4 class="text-xs font-bold text-white mb-1">Trial-SKU Catalog</h4>
+                        <p class="text-[11px] text-gray-300 leading-snug">
+                            Eligible products carry a "Trial" badge. Creators redeem using earned sampling credits without paying cash out of pocket.
+                        </p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-gray-800/40 border border-gray-700/50">
+                        <h4 class="text-xs font-bold text-white mb-1">Post-or-Pay Guardrail</h4>
+                        <p class="text-[11px] text-gray-300 leading-snug">
+                            Creators must post a video review within 14 days. Non-posters have credit access paused to prevent inventory hoarding.
+                        </p>
+                    </div>
+                `;
+
+                guideText.innerHTML = `
+                    <p>1. Browse the <strong>Trial-tagged SKUs</strong> in Beauty & Personal Care.</p>
+                    <p>2. Tap <strong>"Trial"</strong> on Vitamin C Glow Serum to test 1-credit sample redemption.</p>
+                `;
+
+                nmvMathBox.innerHTML = `
+                    <div class="flex justify-between"><span>8,000</span><span class="text-gray-500">Creators</span></div>
+                    <div class="flex justify-between"><span>× 26</span><span class="text-gray-500">Samples/yr</span></div>
+                    <div class="flex justify-between"><span>× 45%</span><span class="text-gray-500">Post Rate</span></div>
+                    <div class="flex justify-between"><span>× 60%</span><span class="text-gray-500">Selling</span></div>
+                    <div class="flex justify-between border-t border-gray-800 pt-1 font-bold text-pink-400"><span>= ₹51.0 Cr</span><button onclick="openGuesstimate('lever22-nmv')" class="underline hover:text-pink-300">See Guesstimate</button></div>
+                `;
+
+                btnNavPrev.className = "px-4 py-1.5 rounded-xl bg-gray-800 hover:bg-gray-700 text-xs font-bold text-gray-300 hover:text-white border border-gray-700 transition cursor-pointer";
+                btnNavPrev.setAttribute("onclick", "switchView('splitpay')");
+                btnNavNext.className = "px-4 py-1.5 rounded-xl bg-pink-600 hover:bg-pink-500 text-xs font-bold text-white shadow-lg transition cursor-pointer";
+                btnNavNext.setAttribute("onclick", "switchView('splitpay')");
+                btnNavNext.innerText = "‹ Back to 2.1 SplitPay";
+            }
+        }
+
+        // Initialize view
+        switchView('splitpay');
+    </script>
+</body>
+</html>
