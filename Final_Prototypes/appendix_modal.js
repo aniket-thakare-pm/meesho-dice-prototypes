@@ -1,6 +1,32 @@
 /* Appendix Data Modal Handler */
 const appendixData = {
     // LEVER 1 NUMBERS
+    "bpc-creator-share": {
+        title: "16.0% — Beauty Creator Share Deficit",
+        source: "Deck Slide 1, Slide 3 & Appendix Page 21",
+        base: "50,000+ Total Meesho Creators (Nov 2025) & 8,000 BPC Active Cohort",
+        formula: "8,000 BPC Creators ÷ 50,000 Total Creators = 16.0% (vs #1 category on TikTok Shop)",
+        breakdown: [
+            { label: "Total Platform Creators", val: "50,000+", note: "Meesho CEO, IPO briefing (Nov 2025)" },
+            { label: "Active BPC Creators", val: "8,000", note: "Target beauty cohort on Creator Club" },
+            { label: "Beauty Creator Share", val: "16.0%", note: "Severely lags apparel & fashion hauls" },
+            { label: "Global Benchmark", val: "#1 Category", note: "Beauty is TikTok Shop's top GMV driver worldwide" },
+            { label: "Strategic Imperative", val: "Close Supply Gap", note: "Recruit 6,700+ new beauty creators across 3 routes" }
+        ]
+    },
+    "peer-trust": {
+        title: "83.5% — Tier-2/3 Buyers Trust Peer Creators",
+        source: "Deck Slide 15 (Primary Buyer Research, n=118)",
+        base: "Primary User Survey across Tier-2/3 Meesho BPC Shoppers",
+        formula: "83.5% of respondents trust everyday micro-creators who share their skin tone and dialect",
+        breakdown: [
+            { label: "Total Survey Respondents", val: "118 buyers", note: "Tier-2/3 Meesho shoppers" },
+            { label: "Trust Peer/Nano Creators", val: "83.5%", note: "Over polished metro mega-influencers" },
+            { label: "Demand Authentic Match", val: "75.7%", note: "Want to see products on skin like theirs" },
+            { label: "Metro Agency CAC", val: "₹5,000–₹7,000", note: "High-cost talent with poor Tier-2/3 resonance" },
+            { label: "In-App Solution 1.1", val: "Zero-Distance Trust", note: "Converts verified local buyers into credible creators" }
+        ]
+    },
     "lever11-nmv": {
         title: "₹8.9 Cr / yr — In-App Buyer-to-Creator NMV",
         source: "Appendix Page 20 & Deck Slide 5 (Route A: In-App Supply)",
