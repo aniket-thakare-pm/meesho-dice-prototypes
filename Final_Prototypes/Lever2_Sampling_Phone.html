@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sampling Phone</title>
+<title>Supplier-Funded Sampling Credits</title>
 <style>
-
 :root{
   --m:#a51d89;
   --m-dark:#64104f;
@@ -21,362 +20,523 @@
   --shadow:0 14px 40px rgba(41,25,44,.16);
 }
 *{box-sizing:border-box}
-body{
-  margin:0;background:#111827;color:var(--ink);
-  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 40px;
+html, body { 
+  margin:0; padding:0; width:100%; height:100%; overflow:hidden; 
+  background:#fff; color:var(--ink);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; 
 }
 button{font:inherit}
-.page_old{max-width:1100px;margin:auto;}
-.phones_old{
-  display:grid;grid-template-columns:repeat(2,minmax(320px,390px));
-  gap:80px;justify-content:center;align-items:start;
+
+.phone-view { 
+  width:100%; height:100%; background:#fff; position:relative; overflow:hidden; 
+  display:flex; flex-direction:column;
 }
-.phone-wrap_old{display:flex; flex-direction:column; align-items:center;}
-.phone-label{
-  margin:0 0 24px;color:#fff;font-size:24px;font-weight:900;
-  letter-spacing:.025em;text-transform:none;text-shadow:0 4px 6px -1px rgba(0,0,0,0.3);
+
+/* Native Meesho Status Bar */
+.status-bar-wrap {
+  width: 100%;
+  height: 28px;
+  flex: none;
+  background: #fff;
+  z-index: 35;
+  position: relative;
 }
-.phone_old{
-  width:390px;max-width:100%;height:844px;margin:auto;background:#111014;
-  border:9px solid #111014;border-radius:38px;overflow:hidden;
-  position:relative;box-shadow:var(--shadow);
+.status-bar-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
 }
-.notch{
-  position:absolute;z-index:8;top:-9px;left:50%;transform:translateX(-50%);
-  width:145px;height:25px;background:#111014;border-radius:0 0 16px 16px;
+
+/* Screen Views Container */
+.views-container {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
-.screen{height:100%;background:#fff;display:flex;flex-direction:column}
-.status{
-  height:34px;padding:8px 15px 2px;display:flex;justify-content:space-between;
-  align-items:flex-end;font-size:11px;font-weight:800;flex:none
-}
-.status span:last-child{color:#555}
+
+/* Common App Bar */
 .appbar{
-  height:56px;padding:0 14px;display:flex;align-items:center;gap:10px;
-  border-bottom:1px solid var(--line);flex:none;background:#fff
+  height:52px;padding:0 14px;display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid var(--line);flex:none;background:#fff;z-index:20;
 }
-.appbar h2{margin:0;font-size:18px;flex:1}
+.appbar h2{margin:0;font-size:16px;font-weight:800;flex:1;color:var(--ink)}
 .icon-btn{
-  width:34px;height:34px;border:none;border-radius:50%;background:#faf6fa;
-  color:var(--m);font-weight:900;cursor:pointer;display:grid;place-items:center
+  width:32px;height:32px;border:none;border-radius:50%;background:#faf6fa;
+  color:var(--m);font-weight:900;cursor:pointer;display:grid;place-items:center;
 }
 .back{
   width:32px;height:32px;border:0;background:#fff;color:#555;cursor:pointer;
-  font-size:28px;line-height:1;display:grid;place-items:center;padding:0
+  font-size:26px;line-height:1;display:grid;place-items:center;padding:0;
 }
-.content{padding:12px 12px 86px;overflow:auto;scrollbar-width:none}
+
+/* Scrollable Content */
+.content{
+  flex: 1;
+  padding:12px 12px 80px;
+  overflow-y:auto;
+  scrollbar-width:none;
+}
 .content::-webkit-scrollbar{display:none}
-.card{
-  border:1px solid var(--line);border-radius:17px;background:#fff;
-  box-shadow:0 3px 11px rgba(38,26,42,.045)
-}
-.order-card{padding:12px}
-.product-row{display:flex;gap:11px;align-items:center}
-.prod-img{
-  width:76px;height:76px;border-radius:13px;overflow:hidden;flex:none;
-  border:1px solid #eee7ee;background:#faf7fa
-}
-.prod-img svg{width:100%;height:100%;display:block}
-.prod-main{min-width:0;flex:1}
-.prod-name{font-weight:900;font-size:13px;line-height:1.25}
-.prod-meta{margin-top:4px;font-size:10px;color:var(--muted)}
-.price{font-size:17px;font-weight:900;margin-top:7px}
-.delivery{
-  border-top:1px solid var(--line);margin-top:12px;padding-top:11px;
-  font-size:11px;line-height:1.35
-}
-.delivery strong{font-size:12px}
-.section-title{font-size:14px;font-weight:900;margin:13px 2px 8px}
-.price-box{padding:12px}
-.price-line{
-  display:flex;justify-content:space-between;gap:10px;font-size:11px;margin:7px 0
-}
-.price-line.total{font-size:14px;font-weight:900;border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
-.split-toggle{
-  padding:12px;border:1px solid #eadbea;border-radius:15px;background:#fcf9fc;
-  display:flex;align-items:center;gap:11px;cursor:pointer
-}
-.toggle-copy{flex:1;text-align:left}
-.toggle-copy strong{display:block;font-size:13px}
-.toggle-copy span{display:block;color:var(--muted);font-size:10px;margin-top:3px;line-height:1.3}
-.switch{
-  width:48px;height:28px;border-radius:20px;background:#d6d2d7;
-  padding:3px;transition:.2s;flex:none
-}
-.knob{width:22px;height:22px;background:white;border-radius:50%;transition:.2s;box-shadow:0 1px 4px rgba(0,0,0,.18)}
-.switch.on{background:var(--m)}
-.switch.on .knob{transform:translateX(20px)}
-.wallet-panel{
-  display:none;margin-top:9px;padding:11px;border-radius:14px;
-  background:var(--m-soft);border:1px solid #e7cde1
-}
-.wallet-panel.show{display:block}
-.wallet-head{display:flex;justify-content:space-between;align-items:center}
-.wallet-head strong{font-size:12px}
-.wallet-balance{color:var(--green);font-size:17px;font-weight:900}
-.wallet-copy{font-size:10px;color:#6f6a73;margin-top:4px;line-height:1.35}
-.pay-box{
-  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px
-}
-.pay-part{
-  border:1px solid #dfd7e0;background:#fff;border-radius:10px;padding:9px
-}
-.pay-part label{display:block;font-size:9px;color:var(--muted);font-weight:800}
-.pay-part b{display:block;margin-top:3px;font-size:15px}
-.pay-part.wallet b{color:var(--green)}
-.primary{
-  width:100%;border:none;border-radius:13px;background:var(--m);color:#fff;
-  padding:13px;font-weight:900;font-size:14px;cursor:pointer;margin-top:11px;
-  box-shadow:0 7px 16px rgba(165,29,137,.18)
-}
-.primary:hover{background:#8f1774}
-.note{
-  margin-top:9px;padding:9px 10px;border-radius:11px;background:var(--yellow-soft);
-  font-size:10px;line-height:1.35;color:#695521
-}
 
-/* sampling listing */
-.search{
-  border:1px solid var(--line);border-radius:12px;height:42px;display:flex;
-  align-items:center;padding:0 11px;color:#98949d;font-size:11px;margin:12px 12px 9px
-}
-.category-row{display:flex;gap:8px;overflow:hidden;padding:0 12px 5px}
-.cat{flex:none;padding:7px 10px;border-radius:999px;background:#f8f4f8;color:#6f6b75;font-size:10px;font-weight:800}
-.cat.active{background:var(--m);color:white}
-.banner{
-  margin:6px 12px 10px;border-radius:12px;padding:11px 12px;
-  background:linear-gradient(100deg,#fbe6f6,#f5dff0);display:flex;align-items:center;gap:8px
-}
-.banner b{font-size:11px;color:var(--m-dark)}
-.banner span{font-size:10px;color:#6f5565}
-.products{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:0 12px}
-.listing{
-  border:1px solid var(--line);border-radius:13px;background:#fff;overflow:hidden;
-  cursor:pointer;position:relative
-}
-.listing-img{height:128px;background:#faf7fa}
-.listing-img svg{width:100%;height:100%;display:block}
-.listing-body{padding:8px}
-.listing-name{
-  font-size:11px;font-weight:850;line-height:1.25;height:28px;overflow:hidden
-}
-.listing-price{font-size:14px;font-weight:900;margin-top:5px}
-.trial{
-  display:inline-flex;margin-top:6px;padding:4px 7px;border-radius:7px;
-  background:#fff2bf;color:#714f00;font-size:9px;font-weight:900;cursor:pointer;
-  border:1px solid #f0d88d
-}
-.trial:hover{background:#ffeb9a}
-.no-trial{font-size:9px;color:#99939d;margin-top:7px}
-.listing .tiny-note{
-  position:absolute;top:7px;right:7px;background:rgba(255,255,255,.94);
-  padding:4px 6px;border-radius:8px;font-size:8px;font-weight:900;color:var(--m)
-}
-
-/* sampling credits */
-.credit-hero{
-  margin:12px 12px 0;border-radius:18px;padding:16px 15px;
-  background:linear-gradient(135deg,#a51d89,#861465);color:#fff
-}
-.credit-label{font-size:10px;font-weight:900;letter-spacing:.04em;opacity:.9}
-.credit-number{
-  display:block;font-size:34px;line-height:1.1;font-weight:950;margin-top:5px;color:#fff;
-  letter-spacing:.01em
-}
-.credit-desc{font-size:11px;line-height:1.35;margin-top:5px;color:#faeaf6}
-.pills{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
-.pill{
-  border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.11);
-  color:#fff;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:900
-}
-.credit-section{padding:0 12px}
-.sample-item{
-  display:flex;align-items:center;gap:9px;border:1px solid var(--line);
-  border-radius:14px;padding:9px;margin-top:8px;background:#fff
-}
-.sample-item .prod-img{width:58px;height:58px}
-.sample-meta{min-width:0;flex:1}
-.sample-name{font-size:11px;font-weight:900;line-height:1.25}
-.sample-meta .sub{font-size:9px;color:var(--muted);margin-top:3px}
-.redeem-btn{
-  border:none;border-radius:9px;background:var(--yellow);color:#4d3200;
-  font-size:10px;font-weight:900;padding:8px 8px;cursor:pointer
-}
-.info{
-  margin-top:10px;border:1px solid #eadbea;background:#fcf9fc;border-radius:12px;
-  padding:10px;font-size:10px;line-height:1.4;color:#6d6872
-}
+/* Bottom Nav */
 .bottom{
-  position:absolute;left:0;right:0;bottom:0;height:68px;background:#fff;
-  border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center
+  position:absolute;left:0;right:0;bottom:0;height:60px;background:#fff;
+  border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;
+  z-index:30;
 }
-.nav{font-size:9px;color:#85818b;text-align:center}
-.nav b{display:block;font-size:17px;line-height:19px;margin-bottom:2px}
+.nav{font-size:9px;color:#85818b;text-align:center;cursor:pointer}
+.nav b{display:block;font-size:16px;line-height:18px;margin-bottom:2px}
 .nav.active{color:var(--m);font-weight:900}
 
+/* ========================================= */
+/* SCREEN 1: HOME VIEW                       */
+/* ========================================= */
+#homeView {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+.home-scroll {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  scrollbar-width: none;
+  padding-bottom: 60px;
+}
+.home-scroll::-webkit-scrollbar { display: none; }
+
+.home-banner-card {
+  position: absolute;
+  top: 310px;
+  left: 14px;
+  right: 14px;
+  z-index: 25;
+  background: linear-gradient(135deg, #570054, #8b1874);
+  border: 1.5px solid #df1e7b;
+  border-radius: 14px;
+  padding: 12px 14px;
+  box-shadow: 0 6px 20px rgba(87,0,84,0.35);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  transition: transform 0.15s ease;
+}
+.home-banner-card:active {
+  transform: scale(0.98);
+}
+.home-banner-title {
+  font-size: 11.5px;
+  font-weight: 850;
+  letter-spacing: 0.2px;
+}
+.home-banner-sub {
+  font-size: 9.5px;
+  opacity: 0.9;
+  margin-top: 2px;
+}
+.home-banner-btn {
+  font-size: 10.5px;
+  font-weight: 900;
+  background: #df1e7b;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  white-space: nowrap;
+}
+
+/* ========================================= */
+/* SCREEN 2: SAMPLE PRODUCTS LISTING         */
+/* ========================================= */
+#sampleListingView {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+}
+.search{
+  border:1px solid var(--line);border-radius:12px;height:40px;display:flex;
+  align-items:center;padding:0 12px;color:#98949d;font-size:11px;margin:10px 12px 8px;
+  background:#fafafa;
+}
+.category-row{display:flex;gap:8px;overflow:hidden;padding:0 12px 6px}
+.cat{flex:none;padding:6px 12px;border-radius:999px;background:#f8f4f8;color:#6f6b75;font-size:10px;font-weight:800}
+.cat.active{background:var(--m);color:white}
+
+.sub-banner{
+  margin:4px 12px 10px;border-radius:12px;padding:10px 12px;
+  background:linear-gradient(100deg,#fbe6f6,#f5dff0);display:flex;align-items:center;gap:8px;
+}
+.sub-banner b{font-size:11px;color:var(--m-dark)}
+.sub-banner span{font-size:9.5px;color:#6f5565}
+
+.products{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px}
+.listing{
+  border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;
+  position:relative;display:flex;flex-direction:column;
+}
+.listing-img{height:128px;background:#faf7fa;display:flex;align-items:center;justify-content:center}
+.listing-body{padding:10px;display:flex;flex-direction:column;flex:1}
+.listing-name{
+  font-size:11px;font-weight:800;line-height:1.25;height:28px;overflow:hidden;
+}
+
+.select-sample-btn{
+  width:100%;border:none;border-radius:9px;background:var(--m);color:#fff;
+  padding:8px 0;font-size:10.5px;font-weight:850;cursor:pointer;margin-top:8px;
+  text-align:center;box-shadow:0 3px 8px rgba(165,29,137,0.18);
+  transition:background 0.15s ease, transform 0.1s ease;
+}
+.select-sample-btn:active{transform:scale(0.97)}
+.select-sample-btn:hover{background:var(--m-dark)}
+
+/* ========================================= */
+/* SCREEN 3: YOUR BASKET & CREDITS           */
+/* ========================================= */
+#basketView {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+}
+.credit-hero{
+  margin:10px 12px 0;border-radius:16px;padding:14px 14px;
+  background:linear-gradient(135deg,#a51d89,#731157);color:#fff;
+}
+.credit-label{font-size:9.5px;font-weight:900;letter-spacing:.04em;opacity:.9}
+.credit-number{
+  display:block;font-size:30px;line-height:1.1;font-weight:950;margin-top:4px;color:#fff;
+  letter-spacing:.01em;
+}
+.credit-desc{font-size:10.5px;line-height:1.35;margin-top:4px;color:#faeaf6}
+.pills{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.pill{
+  border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.11);
+  color:#fff;border-radius:999px;padding:4px 8px;font-size:8.5px;font-weight:850;
+}
+
+.section-title{font-size:13px;font-weight:900;margin:12px 14px 6px;color:var(--ink)}
+
+.basket-list{padding:0 12px}
+.sample-item{
+  display:flex;align-items:center;gap:10px;border:1px solid var(--line);
+  border-radius:14px;padding:10px;margin-top:8px;background:#fff;
+  transition:all 0.25s ease;
+}
+.sample-item .prod-img{
+  width:54px;height:54px;border-radius:10px;overflow:hidden;flex:none;
+  border:1px solid #eee7ee;background:#faf7fa;
+}
+.sample-meta{min-width:0;flex:1}
+.sample-name{font-size:11px;font-weight:850;line-height:1.25;color:var(--ink)}
+.sample-meta .sub{font-size:9px;color:var(--muted);margin-top:2px}
+
+.item-price-action{
+  display:flex;align-items:center;gap:8px;flex:none;
+}
+.item-price{
+  font-size:12.5px;font-weight:900;color:var(--ink);
+}
+.remove-btn{
+  width:24px;height:24px;border-radius:50%;border:1px solid #e0dbe1;
+  background:#fbf7fb;color:#777;font-size:11px;font-weight:800;
+  display:grid;place-items:center;cursor:pointer;transition:all 0.15s ease;
+}
+.remove-btn:hover{background:#fee2e2;color:#dc2626;border-color:#fca5a5}
+
+/* Over-budget warning & status */
+.warning-box{
+  margin:10px 12px 0;padding:10px 12px;border-radius:12px;
+  font-size:10px;line-height:1.45;transition:all 0.25s ease;
+}
+.warning-box.alert{
+  background:#fef2f2;border:1px solid #fecaca;color:#991b1b;
+}
+.warning-box.success{
+  background:#f0fdf4;border:1px solid #bbf7d0;color:#166534;
+}
+
+/* Basket Summary & Action Area */
+.basket-checkout-wrap{
+  margin:12px 12px 0;padding-top:10px;border-top:1px solid var(--line);
+}
+.basket-row{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;
+}
+.basket-row-label{font-size:9.5px;color:var(--muted);text-transform:uppercase;font-weight:800}
+.basket-total-amt{font-size:17px;font-weight:900;color:var(--ink)}
+
+.cart-action-btn{
+  width:100%;border:none;border-radius:12px;padding:12px;font-size:13px;
+  font-weight:900;transition:all 0.25s ease;text-align:center;
+}
+.cart-action-btn.disabled{
+  background:#e5e7eb;color:#9ca3af;cursor:not-allowed;
+}
+.cart-action-btn.active{
+  background:var(--m);color:#ffffff;cursor:pointer;
+  box-shadow:0 6px 18px rgba(165,29,137,0.3);
+}
+.cart-action-btn.active:hover{background:var(--m-dark)}
+
+/* Modal */
 .modal-bg{
   position:fixed;inset:0;background:rgba(35,24,38,.55);display:none;align-items:center;
-  justify-content:center;padding:18px;z-index:50
+  justify-content:center;padding:18px;z-index:60;
 }
 .modal{
-  width:min(360px,100%);background:#fff;border-radius:20px;padding:18px;
-  box-shadow:0 20px 60px rgba(0,0,0,.28)
+  width:min(350px,100%);background:#fff;border-radius:20px;padding:18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.28);
 }
-.modal h3{font-size:16px;margin:0 0 5px}
+.modal h3{font-size:15px;margin:0 0 5px;font-weight:900}
 .modal p{margin:0;color:var(--muted);font-size:11px;line-height:1.45}
 .modal .row{
-  margin-top:12px;padding-top:11px;border-top:1px solid var(--line);
-  display:flex;justify-content:space-between;font-size:11px
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;font-size:11px;
 }
 .close{
   width:100%;margin-top:12px;border:none;border-radius:12px;background:#f1ebf1;
-  color:var(--m);padding:11px;font-weight:900;cursor:pointer
+  color:var(--m);padding:10px;font-weight:900;cursor:pointer;font-size:12px;
 }
-@media(max-width:900px){.phones_old{grid-template-columns:1fr}}
-@media(max-width:450px){
-  .page_old{padding:12px}
-  .phone_old{width:100%;height:820px}
-}
-
-html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:#fff; font-family:Inter,-apple-system,sans-serif; }
-.phone-view { width:100%; height:100%; background:#fff; position:relative; overflow:hidden; }
-.screen { height:100%; display:flex; flex-direction:column; }
-.notch { display:none; }
-
 </style>
 </head>
 <body>
 <div class="phone-view">
-<div class="screen" id="samplingScreen">
-          <div class="status"><span>9:41</span><span>5G&nbsp;&nbsp;◔&nbsp;&nbsp;▮</span></div>
-          <div class="appbar">
-            <button class="back" onclick="samplingBack()">‹</button>
-            <h2 id="samplingTitle">BEAUTY & PERSONAL CARE</h2>
-            <button class="icon-btn" onclick="openModal('Only products marked Trial are eligible for Sampling Credits. Other SKUs remain regular purchase products.')">?</button>
+
+    <!-- Status Bar (Universal on all 3 views) -->
+    <div class="status-bar-wrap">
+      <img src="../assets/status_bar_notification.png" alt="Status Bar">
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SCREEN 1: SCROLLABLE MEESHO HOMEPAGE                     -->
+    <!-- ======================================================== -->
+    <div id="homeView">
+      <div class="home-scroll">
+        <div style="position: relative;">
+          <!-- Real Meesho Home Page Background -->
+          <img src="../home_bg.jpg" alt="Meesho Home" style="width: 100%; display: block;">
+          
+          <!-- Slim Sample Trigger Banner (Integrated into Feed) -->
+          <div class="home-banner-card" onclick="goToSampleListing()" title="Check Available Free Samples">
+            <div style="display: flex; align-items: center; gap: 9px;">
+              <span style="font-size: 18px;">🎁</span>
+              <div>
+                <div class="home-banner-title">Creator Perks · Available Free Samples</div>
+                <div class="home-banner-sub">Claim up to ₹300 worth of trial products for ₹0</div>
+              </div>
+            </div>
+            <div class="home-banner-btn">Claim →</div>
           </div>
+        </div>
+      </div>
 
-          <!-- Listing state -->
-          <div class="content" id="listingView">
-            <div class="search">⌕&nbsp;&nbsp;Search beauty products</div>
-            <div class="category-row">
-              <div class="cat active">All</div>
-              <div class="cat">Skincare</div>
-              <div class="cat">Haircare</div>
-              <div class="cat">Makeup</div>
+      <!-- Pinned Meesho Home Bottom Navbar -->
+      <div class="bottom" style="height: 60px; padding: 0;">
+        <img src="../assets/navbar_home_active.png" alt="Navbar" style="width: 100%; height: 100%; object-fit: fill; display: block;">
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SCREEN 2: SAMPLE PRODUCTS LISTING                        -->
+    <!-- ======================================================== -->
+    <div id="sampleListingView">
+      <div class="appbar">
+        <button class="back" onclick="goToHome()">‹</button>
+        <h2>Sample Products</h2>
+        <button class="icon-btn" onclick="openModal('Sample Products','All products displayed here are 100% eligible for Sampling Credits. Add products to bundle your basket.')">?</button>
+      </div>
+
+      <div class="content" style="padding-top: 4px;">
+        <div class="search">⌕&nbsp;&nbsp;Search Sample Products</div>
+        <div class="category-row">
+          <div class="cat active">All</div>
+          <div class="cat">Skincare</div>
+          <div class="cat">Haircare</div>
+          <div class="cat">Makeup</div>
+        </div>
+        
+        <div class="sub-banner">
+          <div style="font-size:17px">🎁</div>
+          <div><b>Free Creator Samples</b><br><span>Use your ₹300 Sampling Credits</span></div>
+        </div>
+
+        <div class="products">
+          <!-- Sample 1 -->
+          <div class="listing">
+            <div class="listing-img">
+              <img src="../assets/bpc_order_1_minimalist.jpg" alt="Minimalist Niacinamide Serum" style="width:100%;height:100%;object-fit:contain;padding:8px;background:#fff;display:block;">
             </div>
-            <div class="banner">
-              <div style="font-size:18px">🎁</div>
-              <div><b>Try select products using Sampling Credits</b><br><span>Trial-tagged SKUs only</span></div>
-            </div>
-
-            <div class="products">
-              <div class="listing" onclick="openSamplingCredits()" style="cursor:pointer">
-                <div class="listing-img">
-                  <img src="../assets/bpc_order_1_minimalist.jpg" alt="Minimalist Niacinamide Serum" style="width:100%;height:100%;object-fit:contain;padding:8px;background:#fff;display:block;">
-                </div>
-                <div class="listing-body">
-                  <div class="listing-name">Minimalist 10% Niacinamide Serum</div>
-                  <div class="trial">TRIAL · USE CREDITS</div>
-                </div>
-              </div>
-
-              <div class="listing" onclick="openSamplingCredits()" style="cursor:pointer">
-                <div class="listing-img">
-                  <img src="../assets/bpc_order_3_dermaco.jpg" alt="The Derma Co Sunscreen" style="width:100%;height:100%;object-fit:contain;padding:8px;background:#fff;display:block;">
-                </div>
-                <div class="listing-body">
-                  <div class="listing-name">The Derma Co 1% Sunscreen Aqua Gel</div>
-                  <div class="trial">TRIAL · USE CREDITS</div>
-                </div>
-              </div>
-
-              <div class="listing" onclick="openSamplingCredits()" style="cursor:pointer">
-                <div class="listing-img">
-                  <img src="../assets/bpc_order_2_cetaphil.jpg" alt="Cetaphil Gentle Skin Cleanser" style="width:100%;height:100%;object-fit:contain;padding:8px;background:#fff;display:block;">
-                </div>
-                <div class="listing-body">
-                  <div class="listing-name">Cetaphil Gentle Skin Cleanser</div>
-                  <div class="no-trial">Regular SKU</div>
-                </div>
-              </div>
-
-              <div class="listing" onclick="openSamplingCredits()" style="cursor:pointer">
-                <div class="listing-img">
-                  <img src="../assets/bpc_order_4_justherbs.jpg" alt="Just Herbs Liquid Lipstick" style="width:100%;height:100%;object-fit:contain;padding:8px;background:#fff;display:block;">
-                </div>
-                <div class="listing-body">
-                  <div class="listing-name">Just Herbs Matte Liquid Lipstick</div>
-                  <div class="no-trial">Regular SKU</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Credits state -->
-          <div class="content" id="creditsView" style="display:none">
-            <div class="credit-hero">
-              <div class="credit-label">YOUR SAMPLING CREDITS</div>
-              <span class="credit-number">₹300</span>
-              <div class="credit-desc">Use credits on supplier-enabled Trial SKUs. Credits are non-cash and stay inside Meesho.</div>
-              <div class="pills">
-                <span class="pill">Trial SKUs only</span>
-                <span class="pill">No cash payment</span>
-                <span class="pill">Earned from NMV</span>
-              </div>
-            </div>
-
-            <div class="section-title" style="margin-left:2px;margin-right:2px">Available Trial SKUs</div>
-            <div class="credit-section">
-              <div class="sample-item">
-                <div class="prod-img">
-                  <img src="../assets/bpc_order_1_minimalist.jpg" alt="Minimalist Niacinamide Serum" style="width:100%;height:100%;object-fit:contain;padding:2px;background:#fff;display:block;">
-                </div>
-                <div class="sample-meta">
-                  <div class="sample-name">Minimalist Niacinamide Serum · Trial</div>
-                  <div class="sub">Sample value ₹120 · Mall verified</div>
-                </div>
-                <button class="redeem-btn" onclick="redeemSample(120,'Minimalist Niacinamide Serum')">Redeem</button>
-              </div>
-
-              <div class="sample-item">
-                <div class="prod-img">
-                  <img src="../assets/bpc_order_3_dermaco.jpg" alt="The Derma Co Sunscreen" style="width:100%;height:100%;object-fit:contain;padding:2px;background:#fff;display:block;">
-                </div>
-                <div class="sample-meta">
-                  <div class="sample-name">The Derma Co Sunscreen · Trial</div>
-                  <div class="sub">Sample value ₹99 · High-conversion</div>
-                </div>
-                <button class="redeem-btn" onclick="redeemSample(99,'The Derma Co Sunscreen')">Redeem</button>
-              </div>
-
-              <div class="sample-item">
-                <div class="prod-img">
-                  <img src="../assets/bpc_order_5_glossstick.jpg" alt="Swiss Beauty Gloss Stick" style="width:100%;height:100%;object-fit:contain;padding:2px;background:#fff;display:block;">
-                </div>
-                <div class="sample-meta">
-                  <div class="sample-name">Swiss Beauty Gloss Stick · Trial</div>
-                  <div class="sub">Sample value ₹110 · Creator fit</div>
-                </div>
-                <button class="redeem-btn" onclick="redeemSample(110,'Swiss Beauty Gloss Stick')">Redeem</button>
-              </div>
-
-              <div class="info">
-                <strong>How credits work:</strong> eligible creators earn Sampling Credits based on Net Attributable NMV. Credits are redeemable only on supplier-enabled Trial SKUs and cannot be withdrawn or transferred.
-              </div>
+            <div class="listing-body">
+              <div class="listing-name">Minimalist 10% Niacinamide Serum</div>
+              <button class="select-sample-btn" onclick="goToBasket()">Select Sample</button>
             </div>
           </div>
 
-          <div class="bottom">
-            <div class="nav active"><b>⌂</b>Home</div>
-            <div class="nav"><b>▣</b>Categories</div>
-            <div class="nav"><b>♡</b>Wishlist</div>
-            <div class="nav"><b>□</b>Orders</div>
-            <div class="nav"><b>◌</b>Account</div>
+          <!-- Sample 2 -->
+          <div class="listing">
+            <div class="listing-img">
+              <img src="../assets/bpc_order_3_dermaco.jpg" alt="The Derma Co Sunscreen" style="width:100%;height:100%;object-fit:contain;padding:8px;background:#fff;display:block;">
+            </div>
+            <div class="listing-body">
+              <div class="listing-name">The Derma Co 1% Sunscreen Aqua Gel</div>
+              <button class="select-sample-btn" onclick="goToBasket()">Select Sample</button>
+            </div>
+          </div>
+
+          <!-- Sample 3 -->
+          <div class="listing">
+            <div class="listing-img">
+              <img src="../assets/bpc_order_5_glossstick.jpg" alt="Swiss Beauty Gloss Stick" style="width:100%;height:100%;object-fit:contain;padding:8px;background:#fff;display:block;">
+            </div>
+            <div class="listing-body">
+              <div class="listing-name">Swiss Beauty Gloss Stick</div>
+              <button class="select-sample-btn" onclick="goToBasket()">Select Sample</button>
+            </div>
+          </div>
+
+          <!-- Sample 4 -->
+          <div class="listing">
+            <div class="listing-img">
+              <img src="../assets/bpc_order_4_justherbs.jpg" alt="Just Herbs Liquid Lipstick" style="width:100%;height:100%;object-fit:contain;padding:8px;background:#fff;display:block;">
+            </div>
+            <div class="listing-body">
+              <div class="listing-name">Just Herbs Matte Liquid Lipstick</div>
+              <button class="select-sample-btn" onclick="goToBasket()">Select Sample</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Nav -->
+      <div class="bottom">
+        <div class="nav" onclick="goToHome()"><b>⌂</b>Home</div>
+        <div class="nav active"><b>🎁</b>Samples</div>
+        <div class="nav"><b>♡</b>Wishlist</div>
+        <div class="nav"><b>□</b>Orders</div>
+        <div class="nav"><b>◌</b>Account</div>
+      </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- SCREEN 3: YOUR BASKET & CREDITS                          -->
+    <!-- ======================================================== -->
+    <div id="basketView">
+      <div class="appbar">
+        <button class="back" onclick="goToSampleListing()">‹</button>
+        <h2>Your Basket</h2>
+        <button class="icon-btn" onclick="openModal('Sampling Credits','Use credits on supplier-enabled Trial SKUs. Credits are non-cash and stay inside Meesho.')">?</button>
+      </div>
+
+      <div class="content" style="padding-top: 4px;">
+        <!-- Hero Balance -->
+        <div class="credit-hero">
+          <div class="credit-label">YOUR SAMPLING CREDITS</div>
+          <span class="credit-number">₹300</span>
+          <div class="credit-desc">Use credits on supplier-enabled Trial SKUs. Credits are non-cash and stay inside Meesho.</div>
+          <div class="pills">
+            <span class="pill">Trial SKUs only</span>
+            <span class="pill">No cash payment</span>
+            <span class="pill">Earned from NMV</span>
           </div>
         </div>
 
+        <div class="section-title">Your Basket</div>
+        
+        <!-- Basket Items List -->
+        <div class="basket-list" id="basketList">
+          
+          <!-- Item 1: Minimalist Serum ₹120 -->
+          <div class="sample-item" id="basketItem1">
+            <div class="prod-img">
+              <img src="../assets/bpc_order_1_minimalist.jpg" alt="Minimalist Serum" style="width:100%;height:100%;object-fit:contain;padding:2px;background:#fff;display:block;">
+            </div>
+            <div class="sample-meta">
+              <div class="sample-name">Minimalist Niacinamide Serum · Trial</div>
+              <div class="sub">Mall verified · Sample size</div>
+            </div>
+            <div class="item-price-action">
+              <span class="item-price">₹120</span>
+              <button class="remove-btn" onclick="removeItem(1, 120)" title="Remove item">✕</button>
+            </div>
+          </div>
+
+          <!-- Item 2: The Derma Co Sunscreen ₹99 -->
+          <div class="sample-item" id="basketItem2">
+            <div class="prod-img">
+              <img src="../assets/bpc_order_3_dermaco.jpg" alt="The Derma Co Sunscreen" style="width:100%;height:100%;object-fit:contain;padding:2px;background:#fff;display:block;">
+            </div>
+            <div class="sample-meta">
+              <div class="sample-name">The Derma Co Sunscreen · Trial</div>
+              <div class="sub">High-conversion · SPF 50</div>
+            </div>
+            <div class="item-price-action">
+              <span class="item-price">₹99</span>
+              <button class="remove-btn" onclick="removeItem(2, 99)" title="Remove item">✕</button>
+            </div>
+          </div>
+
+          <!-- Item 3: Swiss Beauty Gloss Stick ₹110 -->
+          <div class="sample-item" id="basketItem3">
+            <div class="prod-img">
+              <img src="../assets/bpc_order_5_glossstick.jpg" alt="Swiss Beauty Gloss Stick" style="width:100%;height:100%;object-fit:contain;padding:2px;background:#fff;display:block;">
+            </div>
+            <div class="sample-meta">
+              <div class="sample-name">Swiss Beauty Gloss Stick · Trial</div>
+              <div class="sub">Creator fit · Trending BPC</div>
+            </div>
+            <div class="item-price-action">
+              <span class="item-price">₹110</span>
+              <button class="remove-btn" onclick="removeItem(3, 110)" title="Remove item">✕</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Over-Budget Status / Warning Box -->
+        <div id="basketWarning" class="warning-box alert">
+          ⚠️ <strong>Basket Total: ₹329</strong> · Exceeds your ₹300 Sampling Credit limit by ₹29! You can only redeem worth ₹300. Please remove 1 item to proceed.
+        </div>
+
+        <!-- Summary & Cart Button -->
+        <div class="basket-checkout-wrap">
+          <div class="basket-row">
+            <div>
+              <span class="basket-row-label">Basket Total</span>
+              <div id="basketTotalText" class="basket-total-amt">₹329</div>
+            </div>
+            <div style="text-align: right;">
+              <span class="basket-row-label">Covered by Credits</span>
+              <div id="creditsAppliedText" style="color: #168d45; font-weight: 800; font-size: 13px;">Max ₹300</div>
+            </div>
+          </div>
+
+          <button id="cartBtn" class="cart-action-btn disabled" disabled onclick="checkoutBasket()">
+            Add to Cart (Exceeds ₹300)
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Bottom Nav -->
+      <div class="bottom">
+        <div class="nav" onclick="goToHome()"><b>⌂</b>Home</div>
+        <div class="nav active"><b>🎁</b>Basket</div>
+        <div class="nav"><b>♡</b>Wishlist</div>
+        <div class="nav"><b>□</b>Orders</div>
+        <div class="nav"><b>◌</b>Account</div>
+      </div>
+    </div>
+
 </div>
+
+<!-- Universal Dialog Modal -->
 <div class="modal-bg" id="modalBg" onclick="closeModal(event)">
   <div class="modal">
     <h3 id="modalTitle"></h3>
@@ -389,61 +549,114 @@ html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; back
 </div>
 
 <script>
-let splitOn=false;
-function toggleSplitPay(){
-  splitOn=!splitOn;
-  document.getElementById('splitSwitch').classList.toggle('on',splitOn);
-  document.getElementById('walletPanel').classList.toggle('show',splitOn);
-  document.getElementById('payTotal').textContent=splitOn ? '₹500' : '₹500';
+// State Management for Basket Items
+let basketItems = {
+  1: { name: 'Minimalist Niacinamide Serum', price: 120 },
+  2: { name: 'The Derma Co Sunscreen', price: 99 },
+  3: { name: 'Swiss Beauty Gloss Stick', price: 110 }
+};
+
+function goToHome() {
+  document.getElementById('homeView').style.display = 'flex';
+  document.getElementById('sampleListingView').style.display = 'none';
+  document.getElementById('basketView').style.display = 'none';
 }
-function checkoutNow(){
-  openModal(splitOn
-    ? 'SplitPay applied'
-    : 'Normal UPI checkout',
-    splitOn
-    ? '₹300 confirmed commission will be settled against the order and ₹200 will be paid by UPI. Your pending commission remains locked.'
-    : 'You are continuing with the normal Meesho checkout flow. Turn on SplitPay Wallet above to use confirmed affiliate commission.',
-    splitOn ? 'SplitPay ₹300' : 'Payment method',
-    splitOn ? 'UPI ₹200' : 'UPI');
+
+function goToSampleListing() {
+  document.getElementById('homeView').style.display = 'none';
+  document.getElementById('sampleListingView').style.display = 'flex';
+  document.getElementById('basketView').style.display = 'none';
 }
-function openSamplingCredits(){
-  document.getElementById('listingView').style.display='none';
-  document.getElementById('creditsView').style.display='block';
-  document.getElementById('samplingTitle').textContent='Sampling Credits';
+
+function goToBasket() {
+  document.getElementById('homeView').style.display = 'none';
+  document.getElementById('sampleListingView').style.display = 'none';
+  document.getElementById('basketView').style.display = 'flex';
 }
-function samplingBack(){
-  const listing=document.getElementById('listingView');
-  const credits=document.getElementById('creditsView');
-  if(credits.style.display!=='none'){
-    credits.style.display='none'; listing.style.display='block';
-    document.getElementById('samplingTitle').textContent='BEAUTY & PERSONAL CARE';
-  }else{
-    alert('Back to previous Meesho page');
+
+function removeItem(id, price) {
+  const el = document.getElementById('basketItem' + id);
+  if (el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateX(20px)';
+    setTimeout(() => {
+      el.remove();
+      delete basketItems[id];
+      updateBasketState();
+    }, 180);
   }
 }
-function redeemSample(price,name){
-  openModal('Redeem sample',
-    'Redeem '+name+' using Sampling Credits. No cash payment is required from you.',
-    'Credits after redemption',
-    '₹'+(300-price));
+
+function updateBasketState() {
+  let total = 0;
+  for (let k in basketItems) {
+    total += basketItems[k].price;
+  }
+  const totalText = document.getElementById('basketTotalText');
+  const warningBox = document.getElementById('basketWarning');
+  const cartBtn = document.getElementById('cartBtn');
+  const creditsApplied = document.getElementById('creditsAppliedText');
+  
+  if (totalText) totalText.textContent = '₹' + total;
+
+  if (total > 300) {
+    warningBox.className = 'warning-box alert';
+    warningBox.innerHTML = `⚠️ <strong>Basket Total: ₹${total}</strong> · Exceeds your ₹300 Sampling Credit limit by ₹${total - 300}! You can only redeem worth ₹300. Please remove 1 item to proceed.`;
+    cartBtn.disabled = true;
+    cartBtn.className = 'cart-action-btn disabled';
+    cartBtn.textContent = 'Add to Cart (Exceeds ₹300)';
+    creditsApplied.textContent = 'Max ₹300';
+  } else if (total > 0) {
+    warningBox.className = 'warning-box success';
+    warningBox.innerHTML = `✓ <strong>Basket Total: ₹${total} / ₹300 Credits</strong> · Covered 100% by Supplier Credits. Total payable: <strong>₹0</strong> (₹${300 - total} credit balance remaining).`;
+    cartBtn.disabled = false;
+    cartBtn.className = 'cart-action-btn active';
+    cartBtn.textContent = 'Add to Cart (₹0 Payable)';
+    creditsApplied.textContent = '-₹' + total + ' (100% Free)';
+  } else {
+    warningBox.className = 'warning-box alert';
+    warningBox.innerHTML = `Your basket is empty. Please select sample products from the catalog.`;
+    cartBtn.disabled = true;
+    cartBtn.className = 'cart-action-btn disabled';
+    cartBtn.textContent = 'Basket Empty';
+    creditsApplied.textContent = '₹0';
+  }
 }
-function openModal(bodyTitle,bodyText,left,right){
-  document.getElementById('modalTitle').textContent=bodyTitle;
-  document.getElementById('modalBody').textContent=bodyText;
-  const row=document.getElementById('modalRow');
-  if(left!==undefined){
-    row.style.display='flex';
-    document.getElementById('modalLeft').textContent=left;
-    document.getElementById('modalRight').textContent=right;
-  }else row.style.display='none';
-  document.getElementById('modalBg').style.display='flex';
+
+function checkoutBasket() {
+  let total = 0;
+  for (let k in basketItems) {
+    total += basketItems[k].price;
+  }
+  if (total <= 300 && total > 0) {
+    openModal(
+      'Samples Added to Cart!',
+      '₹' + total + ' worth of samples covered 100% by your Sampling Credits. Zero cash payable. Items have been added to your regular Meesho checkout cart!',
+      'Total Payable at Checkout',
+      '₹0'
+    );
+  }
 }
-function closeModal(e){
-  if(!e || e.target===document.getElementById('modalBg')){
-    document.getElementById('modalBg').style.display='none';
+
+function openModal(bodyTitle, bodyText, left, right) {
+  document.getElementById('modalTitle').textContent = bodyTitle;
+  document.getElementById('modalBody').textContent = bodyText;
+  const row = document.getElementById('modalRow');
+  if (left !== undefined) {
+    row.style.display = 'flex';
+    document.getElementById('modalLeft').textContent = left;
+    document.getElementById('modalRight').textContent = right;
+  } else {
+    row.style.display = 'none';
+  }
+  document.getElementById('modalBg').style.display = 'flex';
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modalBg') || e.target.classList.contains('close')) {
+    document.getElementById('modalBg').style.display = 'none';
   }
 }
 </script>
 </body>
 </html>
-
