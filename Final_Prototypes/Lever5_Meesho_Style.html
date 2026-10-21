@@ -102,7 +102,7 @@
     <div class="flex-1 flex max-w-[1720px] w-full mx-auto px-8 py-6 gap-8 items-start justify-center">
 
         <!-- LEFT PANEL: RESEARCH & EVIDENCE -->
-        <aside class="w-[360px] shrink-0 meesho-panel rounded-2xl p-6 custom-scroll max-h-[820px] overflow-y-auto space-y-5">
+        <aside class="w-[360px] shrink-0 meesho-panel rounded-2xl p-6 custom-scroll min-h-[840px] space-y-5">
             <div>
                 <span id="tagInsight" class="text-[10px] font-black tracking-wider uppercase text-[#570054] bg-purple-50 px-2.5 py-1 rounded border border-purple-200">5.1 Retention Bottleneck</span>
                 <h3 id="headInsight" class="text-sm font-extrabold text-gray-900 mt-2.5 leading-snug">
@@ -137,7 +137,7 @@
         </main>
 
         <!-- RIGHT PANEL: SOLUTION ARCHITECTURE & NMV MATH -->
-        <aside class="w-[360px] shrink-0 meesho-panel rounded-2xl p-6 custom-scroll max-h-[820px] overflow-y-auto space-y-5">
+        <aside class="w-[360px] shrink-0 meesho-panel rounded-2xl p-6 custom-scroll min-h-[840px] space-y-5">
             <div>
                 <span id="tagSolution" class="text-[10px] font-black tracking-wider uppercase text-[#038d63] bg-emerald-50 px-2.5 py-1 rounded border border-emerald-200">Architecture</span>
                 <h3 id="headSolution" class="text-sm font-extrabold text-gray-900 mt-2.5">
@@ -223,6 +223,7 @@
             const solutionDetails = document.getElementById('solutionDetails');
             const guideText = document.getElementById('guideText');
             const nmvMathBox = document.getElementById('nmvMathBox');
+            const riceScoreBox = document.getElementById('riceScoreBox');
             const nmvModelHeading = document.getElementById('nmvModelHeading');
             const pillNmvLabel = document.getElementById('pillNmvLabel');
             const pillNmvBtn = document.getElementById('pillNmvBtn');
@@ -249,6 +250,64 @@
                 descInsight.innerText = "Existing dashboards induce anxiety with demotions and warnings. Our 5-tier progression ladder (Bronze → Diamond) never demotes creators and unlocks access-based perks.";
 
                 cardsLeft.innerHTML = `
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Pain Points · Creators Post Blind Without Data</div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-pink-100 text-[#df1e7b] border border-pink-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-shuffle text-lg"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">86.9% Struggle with SKU Choice</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">"The app just shows 9% commission. I have no idea which lipsticks actually get bought or returned. I'm just guessing" (20/23 creators)</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-purple-100 text-[#570054] border border-purple-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-clock-rotate-left text-lg"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">48-Hour Agency Pressure</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">"Agencies demand the reel in 48 hours. I do a hand-swatch and read the script. You can't test a serum in two days" (11/14 creators)</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-emerald-100 text-[#038d63] border border-emerald-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-chart-line text-lg"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">Return Data Hidden</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">Creators don't know BPC has lowest return rate (4–12% vs 20–40% fashion). Insights show this, reducing fear of promoting BPC</div>
+                        </div>
+                    </div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-3 mb-1">Insights Metrics</div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Pain Points · New Creators Quit Before Month 3</div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-pink-100 text-[#df1e7b] border border-pink-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-person-running text-lg"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">Slow Weeks Kill Momentum</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">Creators who don't hit a milestone in week 2–3 after sign-up disengage before their first proper month (Primary n=23)</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-purple-100 text-[#570054] border border-purple-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-fire-flame-curved text-lg"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">No Demotions = Better Retention</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">Demotion-based systems cause instant churn in side-income creators. One-way ladder keeps the creator psychologically safe</div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-lg bg-amber-100 text-amber-700 border border-amber-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-sack-dollar text-lg"></i>
+                        </div>
+                        <div>
+                            <div class="text-base font-black text-gray-900">₹3,000–4,000 Threshold</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">Primary research shows creators who earn below ₹3,000/month (at 9% = ₹33K NMV) predictably drop out. Milestones target this gap</div>
+                        </div>
+                    </div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-3 mb-1">Retention Economics</div>
                     <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
                         <div class="w-11 h-11 rounded-lg bg-pink-100 text-[#df1e7b] border border-pink-200 flex items-center justify-center shrink-0">
                             <i class="fa-solid fa-medal text-base"></i>
@@ -319,7 +378,21 @@
                         <button onclick="openGuesstimate('lever51-nmv')" class="underline hover:text-[#df1e7b]">See Guesstimate</button>
                     </div>
                 `;
-                nmvModelHeading.innerText = "Milestones NMV Model (Deck S10 & S23)";
+
+                riceScoreBox.innerHTML = `
+                    <div class="bg-purple-50/70 border border-purple-200/90 rounded-xl p-3 flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm font-black text-gray-900">RICE 10.0</span>
+                                <span class="text-[9px] font-bold text-[#570054] bg-purple-100 px-2 py-0.5 rounded border border-purple-200">Priority #10</span>
+                            </div>
+                            <div class="text-[10px] font-mono text-gray-500 mt-0.5">(R:2 × I:3 × C:5) ÷ E:3</div>
+                        </div>
+                        <button onclick="openGuesstimate('rice-51')" class="px-2.5 py-1.5 bg-[#570054] hover:bg-[#df1e7b] text-white rounded-lg text-[10px] font-bold transition flex items-center gap-1 shadow-xs">
+                            <span>Breakdown</span><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                        </button>
+                    </div>
+                `;                nmvModelHeading.innerText = "Milestones NMV Model (Deck S10 & S23)";
             } else {
                 iframe.src = 'creator_sku_insights.html?t=' + Date.now();
                 title.innerText = 'SKU Demand Intelligence';
@@ -408,7 +481,21 @@
                         <button onclick="openGuesstimate('lever52-nmv')" class="underline hover:text-[#df1e7b]">See Guesstimate</button>
                     </div>
                 `;
-                nmvModelHeading.innerText = "Insights NMV Model (Deck S10 & S23)";
+
+                riceScoreBox.innerHTML = `
+                    <div class="bg-pink-50/70 border border-pink-200/90 rounded-xl p-3 flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm font-black text-gray-900">RICE 30.0</span>
+                                <span class="text-[9px] font-bold text-[#df1e7b] bg-pink-100 px-2 py-0.5 rounded border border-pink-200">Priority #6</span>
+                            </div>
+                            <div class="text-[10px] font-mono text-gray-500 mt-0.5">(R:3 × I:5 × C:6) ÷ E:3</div>
+                        </div>
+                        <button onclick="openGuesstimate('rice-52')" class="px-2.5 py-1.5 bg-[#df1e7b] hover:bg-[#570054] text-white rounded-lg text-[10px] font-bold transition flex items-center gap-1 shadow-xs">
+                            <span>Breakdown</span><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                        </button>
+                    </div>
+                `;                nmvModelHeading.innerText = "Insights NMV Model (Deck S10 & S23)";
             }
         }
 

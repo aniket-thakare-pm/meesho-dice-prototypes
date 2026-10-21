@@ -54,6 +54,71 @@ const appendixData = {
         formula: "(Reach 5 × Impact 8 × Confidence 7) ÷ Effort 6 = 46.7",
         breakdown: [
             { label: "Reach (R: 5/10)", val: "8,000 Creators", note: "Full BPC creator pool eligible for Trial SKUs" },
+    "rice-3": {
+        title: "RICE 192 · Solution 3 Trust Stack: Creator UGC on PDP",
+        source: "Deck Slide 10 & Appendix Page 23 (Prioritization Matrix)",
+        base: "RICE Scoring Model: (Reach × Impact × Confidence) ÷ Effort (1–10 Scale)",
+        formula: "(Reach 9 × Impact 8 × Confidence 8) ÷ Effort 3 = 192",
+        breakdown: [
+            { label: "Reach (R: 9/10)", val: "29.29 Mn Users", note: "Reaches all BPC product page viewers" },
+            { label: "Impact (I: 8/10)", val: "+10% CVR Uplift", note: "Myntra reports +25–28%; model uses conservative +10%" },
+            { label: "Confidence (C: 8/10)", val: "1.7 Mn Videos Exist", note: "Videos are already there—just need PDP surface" },
+            { label: "Effort (E: 3/10)", val: "6 PMs (₹24 L)", note: "Low build: SKU-video mapping and moderation pipeline" },
+            { label: "Final Priority", val: "RICE = 192", note: "Ranked #1 in DICE 3.0 — Build Now (Months 0–3)" }
+        ]
+    },
+    "rice-41": {
+        title: "RICE 36.0 · Solution 4.1 Creator Storefronts",
+        source: "Deck Slide 10 & Appendix Page 23 (Prioritization Matrix)",
+        base: "RICE Scoring Model: (Reach × Impact × Confidence) ÷ Effort (1–10 Scale)",
+        formula: "(Reach 3 × Impact 9 × Confidence 8) ÷ Effort 6 = 36.0",
+        breakdown: [
+            { label: "Reach (R: 3/10)", val: "0.3 Mn Storefront Buyers", note: "Targets existing storefront shoppers on creator profiles" },
+            { label: "Impact (I: 9/10)", val: "+15–20% Basket Uplift", note: "Bundle regimens convert ₹250 single-item to ₹599+ routine" },
+            { label: "Confidence (C: 8/10)", val: "Shopify Benchmarks", note: "Validated by Shopify bundle studies and brand conversations" },
+            { label: "Effort (E: 6/10)", val: "8 PMs (₹32 L)", note: "Auto-build storefront from top-linked SKUs" },
+            { label: "Final Priority", val: "RICE = 36.0", note: "Ranked #5 in DICE 3.0 — Build Later (Months 6–12)" }
+        ]
+    },
+    "rice-42": {
+        title: "RICE 21.0 · Solution 4.2 Free Sample Threshold",
+        source: "Deck Slide 10 & Appendix Page 23 (Prioritization Matrix)",
+        base: "RICE Scoring Model: (Reach × Impact × Confidence) ÷ Effort (1–10 Scale)",
+        formula: "(Reach 3 × Impact 6 × Confidence 7) ÷ Effort 6 = 21.0",
+        breakdown: [
+            { label: "Reach (R: 3/10)", val: "0.3 Mn Storefront Buyers", note: "Same storefront shopper cohort near checkout" },
+            { label: "Impact (I: 6/10)", val: "₹200 Extra Cart Value", note: "35% of buyers add ₹200 to unlock a free ₹60–80 mini-SKU" },
+            { label: "Confidence (C: 7/10)", val: "Seller-Funded Mechanics", note: "Seller budget existing; Meesho pays nothing. BIS/Cosmetics Act compliance needed" },
+            { label: "Effort (E: 6/10)", val: "4 PMs (₹16 L)", note: "Threshold bar UI + seller mini-SKU logistics setup" },
+            { label: "Final Priority", val: "RICE = 21.0", note: "Ranked #8 in DICE 3.0 — Build Later (Months 6–12)" }
+        ]
+    },
+    "rice-51": {
+        title: "RICE 10.0 · Solution 5.1 Positive-Only Milestones",
+        source: "Deck Slide 10 & Appendix Page 23 (Prioritization Matrix)",
+        base: "RICE Scoring Model: (Reach × Impact × Confidence) ÷ Effort (1–10 Scale)",
+        formula: "(Reach 2 × Impact 3 × Confidence 5) ÷ Effort 3 = 10.0",
+        breakdown: [
+            { label: "Reach (R: 2/10)", val: "945 Creators Kept", note: "Targets new creators in first 90-day drop-off window" },
+            { label: "Impact (I: 3/10)", val: "+1.5 pts Retention Lift", note: "Deliberately conservative assumption on incremental retention" },
+            { label: "Confidence (C: 5/10)", val: "Behavioral Hypothesis", note: "Validated by Track360 first-sale-in-30-days predictor" },
+            { label: "Effort (E: 3/10)", val: "3 PMs (₹12 L)", note: "Dashboard and rules engine only — no cash rewards involved" },
+            { label: "Final Priority", val: "RICE = 10.0", note: "Ranked #10 in DICE 3.0 — Pilot Next (Months 3–6)" }
+        ]
+    },
+    "rice-52": {
+        title: "RICE 30.0 · Solution 5.2 Creator Insights (Beauty Layer)",
+        source: "Deck Slide 10 & Appendix Page 23 (Prioritization Matrix)",
+        base: "RICE Scoring Model: (Reach × Impact × Confidence) ÷ Effort (1–10 Scale)",
+        formula: "(Reach 3 × Impact 5 × Confidence 6) ÷ Effort 3 = 30.0",
+        breakdown: [
+            { label: "Reach (R: 3/10)", val: "8,000 BPC Creators", note: "All programme creators on Meesho Creator Club" },
+            { label: "Impact (I: 5/10)", val: "+10% NMV per Creator", note: "30% of creators using insights show +10% NMV lift" },
+            { label: "Confidence (C: 6/10)", val: "86.9% SKU Blind", note: "Meesho toolkit already flags high-performing SKUs — just needs beauty layer" },
+            { label: "Effort (E: 3/10)", val: "4 PMs (₹16 L)", note: "Extends existing toolkit — small data work for beauty signals" },
+            { label: "Final Priority", val: "RICE = 30.0", note: "Ranked #6 in DICE 3.0 — Pilot Next (Months 3–6)" }
+        ]
+    },
             { label: "Impact (I: 8/10)", val: "₹51.0 Cr / yr", note: "26 samples/yr generating high-intent review videos" },
             { label: "Confidence (C: 7/10)", val: "8.62x RoAS Proof", note: "Suppliers exchange ₹40 ad credits for ₹120 samples" },
             { label: "Effort (E: 6/10)", val: "10 PMs (₹40 L)", note: "Supplier barter engine & Trial SKU logistics" },
