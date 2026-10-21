@@ -12,6 +12,7 @@
                     colors: { 
                         'meesho-purple': '#8b1874', 
                         'meesho-pink': '#df1e7b',
+                        'meesho-darkpink': '#70105d',
                     }
                 }
             }
@@ -19,56 +20,84 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen m-0 p-4 font-sans">
+<body class="bg-white m-0 p-0 h-screen w-full overflow-hidden font-sans">
 
-    <!-- Mobile Wrapper -->
-    <div class="w-full max-w-[380px] h-[750px] bg-white shadow-2xl relative overflow-hidden rounded-[2rem] border-[12px] border-gray-900 flex flex-col mx-auto">
+    <!-- Mobile Single Phone Wrapper (NO NESTED PHONE BORDER) -->
+    <div class="w-full h-full bg-white relative overflow-hidden flex flex-col">
         
         <!-- Header -->
-        <div class="bg-white px-4 py-3 flex items-center justify-between shrink-0 z-10">
+        <div class="bg-white px-4 py-3 flex items-center justify-between shrink-0 z-10 border-b border-gray-100">
             <!-- Links back to the Reel video -->
-            <a href="reel_view.html"><i class="fa-solid fa-chevron-left text-gray-700 text-xl cursor-pointer"></i></a>
-            <div class="flex gap-5 text-gray-700 text-xl">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <i class="fa-regular fa-heart"></i>
-                <div class="relative">
-                    <i class="fa-solid fa-cart-shopping"></i>
+            <a href="reel_view.html" class="text-gray-700 hover:text-gray-900 cursor-pointer p-1">
+                <i class="fa-solid fa-chevron-left text-xl"></i>
+            </a>
+            <div class="flex gap-5 text-gray-700 text-xl items-center">
+                <i class="fa-solid fa-magnifying-glass text-lg cursor-pointer"></i>
+                <i class="fa-regular fa-heart text-lg cursor-pointer"></i>
+                <div class="relative cursor-pointer">
+                    <i class="fa-solid fa-cart-shopping text-lg"></i>
                     <div class="absolute -top-1.5 -right-2 bg-meesho-purple text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-white">4</div>
                 </div>
             </div>
         </div>
 
-        <div class="flex-1 overflow-y-auto no-scrollbar pb-20">
+        <!-- Tagged Affiliate Banner -->
+        <div class="bg-pink-50 w-full flex items-center justify-between px-3.5 py-1.5 border-b border-pink-100 shrink-0">
+            <div class="flex items-center gap-1.5 text-meesho-pink text-xs font-bold">
+                <i class="fa-solid fa-circle-check text-[11px]"></i> Tagged from Sneha's Reel
+            </div>
+            <span class="text-[10px] text-gray-500 font-medium">Free Delivery Eligible</span>
+        </div>
+
+        <!-- Scrollable Product Body -->
+        <div class="flex-1 overflow-y-auto no-scrollbar pb-24">
             
-            <!-- Hero Image (Static, No Carousel) -->
-            <div class="w-full aspect-square bg-white relative">
-                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover">
+            <!-- Hero Image -->
+            <div class="w-full aspect-square bg-white relative overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                     alt="Daily Hydrating Face Cream" 
+                     class="w-full h-full object-cover">
             </div>
 
             <!-- Product Details -->
             <div class="p-4 bg-white mt-1">
                 <div class="flex justify-between items-start gap-4 mb-2">
-                    <h1 class="text-gray-700 text-[15px] font-medium leading-tight flex-1">
+                    <h1 class="text-gray-800 text-[15px] font-semibold leading-snug flex-1">
                         Daily Hydrating Face Cream - 50g (All Skin Types) - Nourishing & Non-Greasy
                     </h1>
                     <div class="flex gap-4 shrink-0 text-gray-500">
-                        <div class="flex flex-col items-center cursor-pointer hover:text-meesho-pink"><i class="fa-regular fa-heart text-xl"></i><span class="text-[10px] mt-1">Wishlist</span></div>
-                        <div class="flex flex-col items-center cursor-pointer hover:text-blue-500"><i class="fa-solid fa-share-nodes text-xl"></i><span class="text-[10px] mt-1">Share</span></div>
+                        <div class="flex flex-col items-center cursor-pointer hover:text-meesho-pink">
+                            <i class="fa-regular fa-heart text-xl"></i>
+                            <span class="text-[10px] mt-1">Wishlist</span>
+                        </div>
+                        <div class="flex flex-col items-center cursor-pointer hover:text-blue-500">
+                            <i class="fa-solid fa-share-nodes text-xl"></i>
+                            <span class="text-[10px] mt-1">Share</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="flex items-end gap-2 mb-1 mt-3">
-                    <span class="text-3xl font-bold text-gray-900">₹245</span>
-                    <span class="text-sm text-gray-400 line-through mb-1">₹350</span>
-                    <span class="text-sm text-green-600 font-bold mb-1">30% off</span>
+                <div class="flex items-baseline gap-2 mb-1 mt-2.5">
+                    <span class="text-3xl font-extrabold text-gray-900">₹245</span>
+                    <span class="text-sm text-gray-400 line-through">₹350</span>
+                    <span class="text-sm text-green-600 font-bold">30% off</span>
                 </div>
                 
-                <div class="inline-block bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-1 rounded mt-2">
-                    Free Delivery
+                <div class="inline-block bg-gray-100 text-gray-700 text-[11px] font-semibold px-2.5 py-1 rounded mt-2">
+                    🚚 Free Delivery
                 </div>
             </div>
             
@@ -76,7 +105,7 @@
             
             <!-- Product Information -->
             <div class="p-4 bg-white min-h-[200px]">
-                <h2 class="text-gray-800 font-bold text-md mb-3">Product Details</h2>
+                <h2 class="text-gray-900 font-bold text-sm mb-3">Product Details</h2>
                 <div class="text-xs text-gray-600 leading-loose flex flex-col gap-1">
                     <p><span class="font-semibold text-gray-800">Name:</span> Daily Hydrating Face Cream - 50g</p>
                     <p><span class="font-semibold text-gray-800">Brand:</span> DermaGlow</p>
@@ -91,21 +120,16 @@
         </div>
 
         <!-- ========================================== -->
-        <!-- BOTTOM CTA BAR -->
+        <!-- BOTTOM CTA BAR (Single Phone, Fixed Bottom) -->
         <!-- ========================================== -->
-        <div class="absolute bottom-0 w-full bg-white border-t flex p-2 gap-2 z-20 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] h-16">
-            <button class="w-1/2 flex justify-center items-center gap-2 font-bold text-meesho-purple border border-meesho-purple rounded bg-white hover:bg-purple-50 transition-colors">
+        <div class="absolute bottom-0 left-0 right-0 w-full bg-white border-t border-gray-200 flex p-2.5 gap-2.5 z-20 shadow-[0_-4px_12px_rgba(0,0,0,0.06)] h-16">
+            <button class="w-1/2 flex justify-center items-center gap-2 font-bold text-meesho-purple border border-meesho-purple rounded-lg bg-white hover:bg-purple-50 transition-colors text-sm">
                 <i class="fa-solid fa-cart-shopping"></i> Add to Cart
             </button>
-            <button class="w-1/2 flex justify-center items-center gap-2 font-bold text-white bg-meesho-purple rounded hover:bg-meesho-darkpink transition-colors">
+            <button class="w-1/2 flex justify-center items-center gap-2 font-bold text-white bg-meesho-purple rounded-lg hover:bg-[#70105d] transition-colors text-sm shadow-sm">
                 <i class="fa-solid fa-angles-right"></i> Buy Now
             </button>
         </div>
     </div>
 </body>
 </html>
-
-
-
-
-
