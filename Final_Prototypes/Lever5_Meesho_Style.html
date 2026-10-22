@@ -456,24 +456,6 @@
                             <div class="text-[11px] text-gray-500 leading-tight">"The app just shows 9% commission. I have no idea which lipsticks actually get bought or returned. I'm just guessing" (20/23 creators)</div>
                         </div>
                     </div>
-                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
-                        <div class="w-11 h-11 rounded-lg bg-purple-100 text-[#570054] border border-purple-200 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-clock-rotate-left text-lg"></i>
-                        </div>
-                        <div>
-                            <div class="text-base font-black text-gray-900">48-Hour Agency Pressure</div>
-                            <div class="text-[11px] text-gray-500 leading-tight">"Agencies demand the reel in 48 hours. I do a hand-swatch and read the script. You can't test a serum in two days" (11/14 creators)</div>
-                        </div>
-                    </div>
-                    <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
-                        <div class="w-11 h-11 rounded-lg bg-emerald-100 text-[#038d63] border border-emerald-200 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-chart-line text-lg"></i>
-                        </div>
-                        <div>
-                            <div class="text-base font-black text-gray-900">Return Data Hidden</div>
-                            <div class="text-[11px] text-gray-500 leading-tight">Creators don't know BPC has lowest return rate (4–12% vs 20–40% fashion). Insights show this, removing fear of promoting BPC</div>
-                        </div>
-                    </div>
 
                     <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mt-3 mb-1">Insights Economics</div>
                     <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
@@ -486,18 +468,18 @@
                         </div>
                     </div>
                     <div class="bg-gray-50/80 border border-gray-200 rounded-xl p-3.5 flex items-center gap-3.5">
-                        <div class="w-11 h-11 rounded-lg bg-purple-100 text-[#570054] border border-purple-200 flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-shield-virus text-base"></i>
+                        <div class="w-11 h-11 rounded-lg bg-emerald-100 text-[#038d63] border border-emerald-200 flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-filter text-base"></i>
                         </div>
                         <div>
-                            <div class="text-base font-black text-gray-900">&lt;15% Return Rate</div>
-                            <div class="text-[11px] text-gray-500 leading-tight">Filters out high-return products so creator commission remains protected</div>
+                            <div class="text-base font-black text-gray-900">Intelligence Engine</div>
+                            <div class="text-[11px] text-gray-500 leading-tight">Filters recommendations based on return rates</div>
                         </div>
                     </div>
                 `;
 
                 boxEconomics.innerHTML = `
-                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">Intelligence Signal Overlap (Deck S9)</span>
+                    <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">Intelligence Signal</span>
                     <div class="flex items-center justify-between text-gray-700"><span>Signal 1</span><span class="text-[#df1e7b] font-bold">What Sells (Velocity)</span></div>
                     <div class="flex items-center justify-between text-gray-700"><span>Signal 2</span><span class="text-[#038d63] font-bold">What Returns (&lt;15%)</span></div>
                     <div class="flex items-center justify-between text-gray-700"><span>Signal 3</span><span class="text-[#570054] font-bold">Shade Fit (Audience Match)</span></div>
@@ -507,9 +489,15 @@
                 headSolution.innerText = "Beauty-Specific Creator Toolkit";
                 solutionDetails.innerHTML = `
                     <div class="p-3.5 rounded-xl bg-purple-50/70 border border-purple-200">
-                        <h4 class="text-xs font-bold text-[#570054] mb-1">One Clear Action per Card</h4>
+                        <h4 class="text-xs font-bold text-[#570054] mb-1">Product-Wise & Audience-Matched Analytics</h4>
                         <p class="text-[11px] text-gray-600 leading-snug">
-                            Where velocity, low returns, and shade fit overlap, creator gets one actionable card in her vernacular language.
+                            Replaces generic commission tables with order-level diagnostics, showing creators which shade, formulation, and price tier converts with their specific audience demographic.
+                        </p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200">
+                        <h4 class="text-xs font-bold text-gray-900 mb-1">One Clear Action per Card</h4>
+                        <p class="text-[11px] text-gray-600 leading-snug">
+                            Replaces raw commission tables with 1 actionable suggestion: <em>"Order Bella Vita Perfume — 89% sell-through, 4% return rate"</em>.
                         </p>
                     </div>
                     <div class="p-3.5 rounded-xl bg-gray-50 border border-gray-200">
