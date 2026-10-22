@@ -34,6 +34,12 @@ const appendixData = {
         formula: "(Reach 8 × Impact 8 × Confidence 5) ÷ Effort 3 = 106.7",
         breakdown: [
             { label: "Reach (R: 8/10)", val: "90,000 Pool", note: "Qualified Instagram nano/micro creators" },
+            { label: "Impact (I: 8/10)", val: "₹5,000/mo NMV", note: "High sales velocity with established followings" },
+            { label: "Confidence (C: 5/10)", val: "API Gated", note: "Meta Graph API checks >5K followers & >2% ER" },
+            { label: "Effort (E: 3/10)", val: "4 PMs (₹16 L)", note: "OAuth verification + welcome token workflow" },
+            { label: "Final Priority", val: "RICE = 106.7", note: "Ranked #2 in DICE 3.0; #1 highest in Lever 1" }
+        ]
+    },
     "rice-21": {
         title: "RICE 12.0 · Solution 2.1 SplitPay Wallet",
         source: "Deck Slide 10 & Appendix Page 23 (Prioritization Matrix)",
@@ -54,6 +60,12 @@ const appendixData = {
         formula: "(Reach 5 × Impact 8 × Confidence 7) ÷ Effort 6 = 46.7",
         breakdown: [
             { label: "Reach (R: 5/10)", val: "8,000 Creators", note: "Full BPC creator pool eligible for Trial SKUs" },
+            { label: "Impact (I: 8/10)", val: "₹51.0 Cr / yr", note: "26 samples/yr generating high-intent review videos" },
+            { label: "Confidence (C: 7/10)", val: "8.62x RoAS Proof", note: "Suppliers exchange ₹40 ad credits for ₹120 samples" },
+            { label: "Effort (E: 6/10)", val: "10 PMs (₹40 L)", note: "Supplier barter engine & Trial SKU logistics" },
+            { label: "Final Priority", val: "RICE = 46.7", note: "Ranked #4 in DICE 3.0 (DEEP DIVE); Months 0–3 foundation" }
+        ]
+    },
     "rice-3": {
         title: "RICE 192 · Solution 3 Trust Stack: Creator UGC on PDP",
         source: "Deck Slide 10 & Appendix Page 23 (Prioritization Matrix)",
@@ -117,18 +129,6 @@ const appendixData = {
             { label: "Confidence (C: 6/10)", val: "86.9% SKU Blind", note: "Meesho toolkit already flags high-performing SKUs — just needs beauty layer" },
             { label: "Effort (E: 3/10)", val: "4 PMs (₹16 L)", note: "Extends existing toolkit — small data work for beauty signals" },
             { label: "Final Priority", val: "RICE = 30.0", note: "Ranked #6 in DICE 3.0 — Pilot Next (Months 3–6)" }
-        ]
-    },
-            { label: "Impact (I: 8/10)", val: "₹51.0 Cr / yr", note: "26 samples/yr generating high-intent review videos" },
-            { label: "Confidence (C: 7/10)", val: "8.62x RoAS Proof", note: "Suppliers exchange ₹40 ad credits for ₹120 samples" },
-            { label: "Effort (E: 6/10)", val: "10 PMs (₹40 L)", note: "Supplier barter engine & Trial SKU logistics" },
-            { label: "Final Priority", val: "RICE = 46.7", note: "Ranked #4 in DICE 3.0 (DEEP DIVE); Months 0–3 foundation" }
-        ]
-    },
-            { label: "Impact (I: 8/10)", val: "₹5,000/mo NMV", note: "High sales velocity with established followings" },
-            { label: "Confidence (C: 5/10)", val: "API Gated", note: "Meta Graph API checks >5K followers & >2% ER" },
-            { label: "Effort (E: 3/10)", val: "4 PMs (₹16 L)", note: "OAuth verification + welcome token workflow" },
-            { label: "Final Priority", val: "RICE = 106.7", note: "Ranked #2 in DICE 3.0; #1 highest in Lever 1" }
         ]
     },
     "bpc-creator-share": {
@@ -592,3 +592,25 @@ function closeGuesstimate() {
     modal.classList.add("hidden");
     modal.classList.remove("flex");
 }
+
+/* Explicit window attachment for rock-solid global access */
+window.openGuesstimate = openGuesstimate;
+window.closeGuesstimate = closeGuesstimate;
+
+// Close modal on Escape key press or clicking backdrop
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeGuesstimate();
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('guesstimateModal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeGuesstimate();
+            }
+        });
+    }
+});
