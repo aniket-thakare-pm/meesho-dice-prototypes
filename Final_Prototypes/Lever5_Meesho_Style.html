@@ -156,17 +156,37 @@
             </div>
 
             <!-- DYNAMIC ECONOMICS BOX -->
-            <div id="boxEconomics" class="bg-gray-50 border border-gray-200 rounded-xl p-4 space-y-2.5 text-xs">
-<span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">945 Creators Kept Derivation (Deck S9 & S22)</span>
-                    <div class="flex items-center justify-between text-gray-700"><span>63,000</span><span class="text-gray-400">Total Creator Club Pool</span></div>
-                    <div class="flex items-center justify-between text-gray-700"><span>× 1.5%</span><span class="text-purple-600 font-bold">Retention Rate Lift</span></div>
-                    <div class="flex items-center justify-between text-gray-700"><span>= 945</span><span class="text-[#038d63] font-bold">Creators Saved from Churn</span></div>
-                    <div class="flex items-center justify-between text-gray-700"><span>× ₹3,000/mo</span><span class="text-gray-400">Monthly NMV / Creator</span></div>
-                    <div class="flex items-center justify-between text-gray-700"><span>× 12 mos × 75%</span><span class="text-gray-400">Incremental Share</span></div>
-                    <div class="flex items-center justify-between border-t border-gray-200 pt-1 font-bold text-[#570054]">
-                        <span>= ₹2.6 Cr / yr</span>
-                        <button onclick="openGuesstimate('lever51-nmv')" class="underline hover:text-[#df1e7b]">See Guesstimate</button>
-                    </div></div>
+            <div id="boxEconomics" class="bg-gray-50 border border-gray-200 rounded-xl p-4 space-y-2 text-xs">
+                <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">945 Creators Kept Derivation (Deck S9 & S22)</span>
+                <div class="flex items-center justify-between text-gray-700"><span>Total Creator Club Pool</span><span class="font-bold text-gray-900">63,000</span></div>
+                <div class="flex items-center justify-between text-gray-700"><span>Incremental Retention Lift</span><span class="text-purple-600 font-bold">× 1.5%</span></div>
+                <div class="flex items-center justify-between border-t border-gray-200 pt-1 font-bold text-[#038d63]">
+                    <span>= Creators Kept from Churn</span>
+                    <button onclick="openGuesstimate('lever51-nmv')" class="underline hover:text-[#df1e7b] flex items-center gap-1 font-mono text-xs">945 Kept <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></button>
+                </div>
+            </div>
+
+            <!-- SOLUTION PRIORITIZATION & RICE (BOTTOM-LEFT) -->
+            <div class="border-t border-gray-100 pt-3">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">Solution Prioritization</span>
+                    <span class="text-[10px] font-semibold text-gray-400">Deck Slide 10</span>
+                </div>
+                <div id="riceScoreBox">
+                    <div class="bg-purple-50/70 border border-purple-200/90 rounded-xl p-3 flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm font-black text-gray-900">RICE 10.0</span>
+                                <span class="text-[9px] font-bold text-[#570054] bg-purple-100 px-2 py-0.5 rounded border border-purple-200">Priority #10</span>
+                            </div>
+                            <div class="text-[10px] font-mono text-gray-500 mt-0.5">(R:2 × I:3 × C:5) ÷ E:3</div>
+                        </div>
+                        <button onclick="openGuesstimate('rice-51')" class="px-2.5 py-1.5 bg-[#570054] hover:bg-[#df1e7b] text-white rounded-lg text-[10px] font-bold transition flex items-center gap-1 shadow-xs cursor-pointer">
+                            <span>Breakdown</span><i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </aside>
 
         <!-- CENTER: INTERACTIVE PHONE PROTOTYPE -->
@@ -349,14 +369,11 @@
 
                 boxEconomics.innerHTML = `
                     <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block">945 Creators Kept Derivation (Deck S9 & S22)</span>
-                    <div class="flex items-center justify-between text-gray-700"><span>63,000</span><span class="text-gray-400">Total Creator Club Pool</span></div>
-                    <div class="flex items-center justify-between text-gray-700"><span>× 1.5%</span><span class="text-purple-600 font-bold">Retention Rate Lift</span></div>
-                    <div class="flex items-center justify-between text-gray-700"><span>= 945</span><span class="text-[#038d63] font-bold">Creators Saved from Churn</span></div>
-                    <div class="flex items-center justify-between text-gray-700"><span>× ₹3,000/mo</span><span class="text-gray-400">Monthly NMV / Creator</span></div>
-                    <div class="flex items-center justify-between text-gray-700"><span>× 12 mos × 75%</span><span class="text-gray-400">Incremental Share</span></div>
-                    <div class="flex items-center justify-between border-t border-gray-200 pt-1 font-bold text-[#570054]">
-                        <span>= ₹2.6 Cr / yr</span>
-                        <button onclick="openGuesstimate('lever51-nmv')" class="underline hover:text-[#df1e7b]">See Guesstimate</button>
+                    <div class="flex items-center justify-between text-gray-700"><span>Total Creator Club Pool</span><span class="font-bold text-gray-900">63,000</span></div>
+                    <div class="flex items-center justify-between text-gray-700"><span>Incremental Retention Lift</span><span class="text-purple-600 font-bold">× 1.5%</span></div>
+                    <div class="flex items-center justify-between border-t border-gray-200 pt-1 font-bold text-[#038d63]">
+                        <span>= Creators Kept from Churn</span>
+                        <button onclick="openGuesstimate('lever51-nmv')" class="underline hover:text-[#df1e7b] flex items-center gap-1 font-mono text-xs">945 Kept <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i></button>
                     </div>
                 `;
 
