@@ -494,15 +494,16 @@ const appendixData = {
     },
     "lever51-nmv": {
         title: "₹2.6 Cr / yr — Positive Milestone Retention NMV",
-        source: "Appendix Page 23 (Creator Retention Economics)",
-        base: "8,000 BPC Active Creators & 63,000 Overall Creator Club Pool",
-        formula: "8,000 Creators × +1.5% Retention Lift (750 kept) × ₹3,000/mo incremental NMV × 12 = ₹2.6 Cr",
+        source: "Deck Slide 9 & Appendix Page 22 (Retention Economics)",
+        base: "63,000 Total Creators on Meesho Creator Club",
+        formula: "63,000 Creators × +1.5% Retention Lift (945 kept) × ₹3,000/mo NMV × 12 × 75% = ₹2.6 Cr",
         breakdown: [
-            { label: "BPC Active Creators", val: "8,000", note: "Target beauty cohort" },
-            { label: "Retention Rate Lift", val: "+1.5 pts", note: "Zero-demotion milestone ladder" },
-            { label: "Creators Saved from Churn", val: "750 creators", note: "Maintained beyond Month 3" },
-            { label: "Net Monthly NMV / Creator", val: "₹3,000 / mo", note: "Conservative basket velocity" },
-            { label: "Annual Retention NMV", val: "= ₹2.6 Cr", note: "Deck Slide 10 & 23" }
+            { label: "Total Platform Creators", val: "63,000", note: "Meesho Creator Club total pool" },
+            { label: "Incremental Retention Lift", val: "+1.5 pts", note: "Zero-demotion milestone progression" },
+            { label: "Creators Saved from Churn", val: "945 creators", note: "Maintained beyond Month 3 drop-off" },
+            { label: "Monthly NMV per Creator", val: "₹3,000 / mo", note: "10-12 orders/mo at ₹250-300 AOV" },
+            { label: "Attribution Haircut", val: "75% net share", note: "25% discount for deadweight & overlap" },
+            { label: "Annual Retention NMV", val: "= ₹2.6 Cr", note: "Deck Slide 9 & Slide 22 (₹25.5 L/mo × 12)" }
         ]
     },
     "lever52-nmv": {
