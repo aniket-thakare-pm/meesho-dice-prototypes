@@ -19,16 +19,16 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif;
             color: #1f2937;
         }
-        .meesho-card {
+                .meesho-card {
             background: #ffffff;
-            border: 1px solid var(--meesho-border);
-            box-shadow: 0 4px 20px -2px rgba(87, 0, 84, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+            border: 2px solid #cbd5e1;
+            box-shadow: 0 4px 16px -2px rgba(87, 0, 84, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .meesho-card:hover {
             transform: translateY(-2px);
-            border-color: #d8b4e2;
-            box-shadow: 0 12px 28px -4px rgba(87, 0, 84, 0.10);
+            border-color: #570054;
+            box-shadow: 0 12px 28px -4px rgba(87, 0, 84, 0.12);
         }
         .custom-scroll::-webkit-scrollbar { height: 4px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 999px; }
@@ -68,118 +68,141 @@
         </p>
     </div>
 
-    <!-- SECTION 1: RESEARCH STAT NUMBERS (COMPACT WITH HOVER TOOLTIPS) -->
-    <div class="w-full max-w-[1440px] grid grid-cols-2 md:grid-cols-4 gap-3.5 mb-4">
+        <!-- SECTION 1: RESEARCH STAT NUMBERS (5-CARD BENCHMARK & PROBLEM GRID) -->
+    <div class="w-full max-w-[1440px] grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5 mb-4">
 
         <!-- Stat 1: Category Inversion -->
-        <div class="group relative meesho-card rounded-xl p-3 text-center cursor-pointer hover:border-[#570054] transition-all">
-            <span class="text-[10px] font-black uppercase tracking-wider text-gray-400 block mb-0.5">Content Commerce</span>
+        <div class="group relative meesho-card rounded-xl p-3.5 text-center cursor-pointer hover:border-[#570054] transition-all">
+            <span class="text-[10px] font-black uppercase tracking-wider text-gray-500 block mb-0.5">Content Commerce</span>
             <div class="text-2xl sm:text-3xl font-black text-[#570054]">3.4%</div>
-            <div class="text-[11px] font-bold text-gray-700">vs 10%+ on Myntra</div>
-            <div class="text-[9px] text-[#df1e7b] font-medium mt-1 flex items-center justify-center gap-1">
+            <div class="text-[11px] font-bold text-gray-800">vs 10%+ on Myntra</div>
+            <div class="text-[9px] text-[#570054] font-medium mt-1 flex items-center justify-center gap-1">
                 <span>Hover for data</span> <i class="fa-solid fa-circle-info text-[9px]"></i>
             </div>
             
             <!-- Hover Popover Tooltip -->
-            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-gray-100/90 backdrop-blur-md border border-gray-300/80 text-gray-800 text-[11px] p-3.5 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-gray-100/95 backdrop-blur-md border border-gray-300 text-gray-800 text-[11px] p-3.5 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
                 <span class="font-extrabold text-[#570054] block mb-1">The Category Inversion:</span>
                 Beauty is TikTok Shop's #1 category worldwide. On Myntra, creator-led sales drive 10%+ revenue. Yet at Meesho, content commerce drives only ~3.4% of NMV despite +141% YoY content growth.
-                <div class="text-[9px] text-gray-500 mt-2 pt-1.5 border-t border-gray-300">Source: Meesho Q1 FY27 & Redseer ($40B India TAM)</div>
+                <div class="text-[9px] text-gray-500 mt-2 pt-1.5 border-t border-gray-200">Source: Meesho Q1 FY27 & Redseer ($40B India TAM)</div>
             </div>
         </div>
 
         <!-- Stat 2: Sunk Cost Trap -->
-        <div class="group relative meesho-card rounded-xl p-3 text-center cursor-pointer hover:border-[#df1e7b] transition-all">
-            <span class="text-[10px] font-black uppercase tracking-wider text-gray-400 block mb-0.5">Sunk Cost Trap</span>
-            <div class="text-2xl sm:text-3xl font-black text-[#df1e7b]">78%</div>
-            <div class="text-[11px] font-bold text-gray-700">Face Upfront Sourcing Friction</div>
-            <div class="text-[9px] text-[#df1e7b] font-medium mt-1 flex items-center justify-center gap-1">
+        <div class="group relative meesho-card rounded-xl p-3.5 text-center cursor-pointer hover:border-[#570054] transition-all">
+            <span class="text-[10px] font-black uppercase tracking-wider text-gray-500 block mb-0.5">Sunk Cost Trap</span>
+            <div class="text-2xl sm:text-3xl font-black text-[#570054]">78%</div>
+            <div class="text-[11px] font-bold text-gray-800">Face Upfront Sourcing Friction</div>
+            <div class="text-[9px] text-[#570054] font-medium mt-1 flex items-center justify-center gap-1">
                 <span>18 of 23 Creators</span> <i class="fa-solid fa-circle-info text-[9px]"></i>
             </div>
             
             <!-- Hover Popover Tooltip -->
-            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-gray-100/90 backdrop-blur-md border border-gray-300/80 text-gray-800 text-[11px] p-3.5 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
-                <span class="font-extrabold text-[#df1e7b] block mb-1">Upfront Sourcing Friction:</span>
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-gray-100/95 backdrop-blur-md border border-gray-300 text-gray-800 text-[11px] p-3.5 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+                <span class="font-extrabold text-[#570054] block mb-1">Upfront Sourcing Friction:</span>
                 78% of creators (18 of 23) felt acute friction paying upfront out-of-pocket for non-returnable BPC products. Unlike fashion hauls where clothes are returned after filming, opened cosmetics cannot be returned—eating 100% of the cost and requiring ~11 orders to break even.
-                <div class="text-[9px] text-gray-500 mt-2 pt-1.5 border-t border-gray-300">Source: Primary Creator Interviews (n=23, Slide A2)</div>
+                <div class="text-[9px] text-gray-500 mt-2 pt-1.5 border-t border-gray-200">Source: Primary Creator Interviews (n=23, Slide A2)</div>
             </div>
         </div>
 
-        <!-- Stat 3: Sourcing Blindspot -->
-        <div class="group relative meesho-card rounded-xl p-3 text-center cursor-pointer hover:border-purple-600 transition-all">
-            <span class="text-[10px] font-black uppercase tracking-wider text-gray-400 block mb-0.5">Creator Bottleneck</span>
-            <div class="text-2xl sm:text-3xl font-black text-purple-700">86.9%</div>
-            <div class="text-[11px] font-bold text-gray-700">Struggle on SKU Selection</div>
-            <div class="text-[9px] text-[#df1e7b] font-medium mt-1 flex items-center justify-center gap-1">
+        <!-- Stat 3: Review Integrity Gap (NEW - Position 3) -->
+        <div class="group relative meesho-card rounded-xl p-3.5 text-center cursor-pointer hover:border-[#570054] transition-all">
+            <span class="text-[10px] font-black uppercase tracking-wider text-gray-500 block mb-0.5">Review Integrity Gap</span>
+            <div class="text-2xl sm:text-3xl font-black text-[#570054]">&gt; 70%</div>
+            <div class="text-[11px] font-bold text-gray-800">Inauthentic BPC Reviews</div>
+            <div class="text-[9px] text-[#570054] font-medium mt-1 flex items-center justify-center gap-1">
                 <span>Hover for data</span> <i class="fa-solid fa-circle-info text-[9px]"></i>
             </div>
             
             <!-- Hover Popover Tooltip -->
-            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-gray-100/90 backdrop-blur-md border border-gray-300/80 text-gray-800 text-[11px] p-3.5 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-80 bg-gray-100/95 backdrop-blur-md border border-gray-300 text-gray-800 text-[11px] p-3.5 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+                <span class="font-extrabold text-[#570054] block mb-1">Inauthentic BPC Reviews:</span>
+                • <strong>70%+ (Primary n=23):</strong> Post without real testing due to 7–14 day agency deadlines and non-returnable opened cosmetics.<br>
+                • <strong>63% (Fakespot):</strong> Beauty reviews online flagged as fraudulent or heavily manipulated.<br>
+                • <strong>93% (USC Annenberg / ASCI):</strong> Creator sponsored reviews failing legal disclosure standards.
+                <div class="text-[9px] text-gray-500 mt-1.5 pt-1 border-t border-gray-200">Source: Primary Creator Fieldwork (n=23), Fakespot & USC Annenberg</div>
+            </div>
+        </div>
+
+        <!-- Stat 4: Sourcing Blindspot -->
+        <div class="group relative meesho-card rounded-xl p-3.5 text-center cursor-pointer hover:border-[#570054] transition-all">
+            <span class="text-[10px] font-black uppercase tracking-wider text-gray-500 block mb-0.5">Creator Bottleneck</span>
+            <div class="text-2xl sm:text-3xl font-black text-[#570054]">86.9%</div>
+            <div class="text-[11px] font-bold text-gray-800">Struggle on SKU Selection</div>
+            <div class="text-[9px] text-[#570054] font-medium mt-1 flex items-center justify-center gap-1">
+                <span>Hover for data</span> <i class="fa-solid fa-circle-info text-[9px]"></i>
+            </div>
+            
+            <!-- Hover Popover Tooltip -->
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-gray-100/95 backdrop-blur-md border border-gray-300 text-gray-800 text-[11px] p-3.5 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
                 <span class="font-extrabold text-[#570054] block mb-1">Sourcing Blindspot:</span>
                 Creators only see generic commission % (e.g. 10%) on dashboards with zero visibility into sales velocity, leading them to promote dead stock that never sells or has high return rates.
-                <div class="text-[9px] text-gray-500 mt-2 pt-1.5 border-t border-gray-300">Source: Primary Creator Fieldwork (n=23)</div>
+                <div class="text-[9px] text-gray-500 mt-2 pt-1.5 border-t border-gray-200">Source: Primary Creator Fieldwork (n=23)</div>
             </div>
         </div>
 
-        <!-- Stat 4: Trust Deficit -->
-        <div class="group relative meesho-card rounded-xl p-3 text-center cursor-pointer hover:border-[#038d63] transition-all">
-            <span class="text-[10px] font-black uppercase tracking-wider text-gray-400 block mb-0.5">Buyer Trust Deficit</span>
-            <div class="text-2xl sm:text-3xl font-black text-[#038d63]">40%</div>
-            <div class="text-[11px] font-bold text-gray-700">Received Fake Cosmetics</div>
-            <div class="text-[9px] text-[#038d63] font-medium mt-1 flex items-center justify-center gap-1">
+        <!-- Stat 5: Trust Deficit -->
+        <div class="group relative meesho-card rounded-xl p-3.5 text-center cursor-pointer hover:border-[#570054] transition-all">
+            <span class="text-[10px] font-black uppercase tracking-wider text-gray-500 block mb-0.5">Buyer Trust Deficit</span>
+            <div class="text-2xl sm:text-3xl font-black text-[#570054]">40%</div>
+            <div class="text-[11px] font-bold text-gray-800">Received Fake Cosmetics</div>
+            <div class="text-[9px] text-[#570054] font-medium mt-1 flex items-center justify-center gap-1">
                 <span>Hover for data</span> <i class="fa-solid fa-circle-info text-[9px]"></i>
             </div>
             
             <!-- Hover Popover Tooltip -->
-            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-80 bg-gray-100/95 backdrop-blur-md border border-gray-300/80 text-gray-800 text-[11px] p-3.5 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
-                <span class="font-extrabold text-[#038d63] block mb-1">Trust Deficit on PDP:</span>
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-80 bg-gray-100/95 backdrop-blur-md border border-gray-300 text-gray-800 text-[11px] p-3.5 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
+                <span class="font-extrabold text-[#570054] block mb-1">Trust Deficit on PDP:</span>
                 40% of online BPC buyers have encountered a fake product in the past 3 years (LocalCircles, n=4,300). 35.7% of people in our primary research showed cart abandonment due to a fear of receiving a fake product, indicating a major trust gap not only on authenticity but also on compatibility (42.9% said they are not sure if this product will match their skin or hair type).
-                <div class="text-[9px] text-gray-500 mt-2 pt-1.5 border-t border-gray-300">Source: Primary Survey (n=118) & LocalCircles (n=4,300)</div>
+                <div class="text-[9px] text-gray-500 mt-2 pt-1.5 border-t border-gray-200">Source: Primary Survey (n=118) & LocalCircles (n=4,300)</div>
             </div>
         </div>
 
     </div>
 
-    <!-- SECTION 2: 1-LINE EQUATION BANNER (FITS ON ONE SINGLE LINE) -->
-    <div class="w-full max-w-[1440px] bg-gradient-to-r from-purple-50 via-pink-50/40 to-purple-50 border border-purple-200/80 rounded-xl px-4 py-2 text-center overflow-x-auto custom-scroll mb-2">
-        <div class="inline-flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm font-black text-gray-900 whitespace-nowrap">
-            <span class="text-[#570054] font-extrabold uppercase tracking-wide text-[10px]">The Equation:</span>
-            <span class="bg-purple-100 text-[#570054] px-2 py-0.5 rounded font-black text-xs">NMV</span>
-            <span class="text-gray-400 font-normal">=</span>
-            <span class="bg-white border border-purple-200 text-[#570054] px-2 py-0.5 rounded shadow-xs text-xs">[Active Creators</span>
-            <span class="text-gray-400 font-normal">×</span>
-            <span class="bg-white border border-purple-200 text-[#570054] px-2 py-0.5 rounded shadow-xs text-xs">Videos per Creator]</span>
-            <span class="text-gray-400 font-normal">×</span>
-            <span class="bg-white border border-pink-200 text-[#df1e7b] px-2 py-0.5 rounded shadow-xs text-xs">Conversion</span>
-            <span class="text-gray-400 font-normal">×</span>
-            <span class="bg-white border border-purple-200 text-[#570054] px-2 py-0.5 rounded shadow-xs text-xs">AOV</span>
-            <span class="text-gray-400 font-normal">×</span>
-            <span class="bg-white border border-emerald-200 text-[#038d63] px-2 py-0.5 rounded shadow-xs text-xs">(1 − Return Rate)</span>
+    <!-- SECTION 2: PROMINENT FULL-WIDTH VALUE EQUATION BANNER (MATCHES 5-BOX WIDTH) -->
+    <div class="w-full max-w-[1440px] bg-gradient-to-r from-purple-50/90 via-pink-50/40 to-purple-50/90 border-2 border-purple-300/90 rounded-2xl p-4 sm:p-5 shadow-sm mb-3">
+        <div class="w-full flex flex-wrap items-center justify-between gap-3 sm:gap-4">
+            <div class="flex items-center gap-2.5">
+                <span class="text-[#570054] font-extrabold uppercase tracking-wider text-[11px] sm:text-xs bg-purple-100 px-3 py-1 rounded-lg border border-purple-200">The Value Engine</span>
+                <span class="bg-white border-2 border-purple-300 text-[#570054] px-4 py-1.5 rounded-xl shadow-xs font-black text-lg sm:text-xl md:text-2xl">NMV</span>
+                <span class="text-purple-400 font-bold text-xl sm:text-2xl">=</span>
+            </div>
+            <div class="flex items-center flex-wrap gap-2 sm:gap-3 flex-1 justify-center lg:justify-end">
+                <span class="bg-white border-2 border-purple-200 text-[#570054] px-3.5 py-1.5 rounded-xl shadow-xs text-xs sm:text-sm md:text-base font-black">[Active Creators</span>
+                <span class="text-purple-400 font-bold text-lg sm:text-xl">&times;</span>
+                <span class="bg-white border-2 border-purple-200 text-[#570054] px-3.5 py-1.5 rounded-xl shadow-xs text-xs sm:text-sm md:text-base font-black">Videos per Creator]</span>
+                <span class="text-purple-400 font-bold text-lg sm:text-xl">&times;</span>
+                <span class="bg-white border-2 border-purple-200 text-[#570054] px-3.5 py-1.5 rounded-xl shadow-xs text-xs sm:text-sm md:text-base font-black">Conversion</span>
+                <span class="text-purple-400 font-bold text-lg sm:text-xl">&times;</span>
+                <span class="bg-white border-2 border-purple-200 text-[#570054] px-3.5 py-1.5 rounded-xl shadow-xs text-xs sm:text-sm md:text-base font-black">AOV</span>
+                <span class="text-purple-400 font-bold text-lg sm:text-xl">&times;</span>
+                <span class="bg-white border-2 border-purple-200 text-[#570054] px-3.5 py-1.5 rounded-xl shadow-xs text-xs sm:text-sm md:text-base font-black">(1 &minus; Return Rate)</span>
+            </div>
         </div>
     </div>
 
     <!-- SECTION 3: EXACT 5-COLUMN LEVER MAPPING BAR (VERBATIM FROM DECK SLIDE 1) -->
-    <div class="w-full max-w-[1440px] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 mb-8">
-        <div class="bg-white border border-purple-100 rounded-xl px-2.5 py-2 text-center shadow-xs">
-            <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-400 block mb-0.5">Active creators</span>
-            <span class="text-xs font-black text-[#570054]">L1 Acquire + L5 Retain</span>
+    <div class="w-full max-w-[1440px] grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
+        <div class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] transition-all">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 block mb-0.5">Active creators</span>
+            <span class="text-xs sm:text-sm font-black text-[#570054]">L1 Acquire + L5 Retain</span>
         </div>
-        <div class="bg-white border border-purple-100 rounded-xl px-2.5 py-2 text-center shadow-xs">
-            <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-400 block mb-0.5">Videos / creator</span>
-            <span class="text-xs font-black text-[#570054]">L2 Produce: wallet + sampling</span>
+        <div class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] transition-all">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 block mb-0.5">Videos / creator</span>
+            <span class="text-xs sm:text-sm font-black text-[#570054]">L2 Produce: wallet + sampling</span>
         </div>
-        <div class="bg-white border border-pink-100 rounded-xl px-2.5 py-2 text-center shadow-xs">
-            <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-400 block mb-0.5">Conversion</span>
-            <span class="text-xs font-black text-[#df1e7b]">L3 Convert: PDP video</span>
+        <div class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] transition-all">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 block mb-0.5">Conversion</span>
+            <span class="text-xs sm:text-sm font-black text-[#570054]">L3 Convert: PDP video</span>
         </div>
-        <div class="bg-white border border-purple-100 rounded-xl px-2.5 py-2 text-center shadow-xs">
-            <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-400 block mb-0.5">AOV</span>
-            <span class="text-xs font-black text-[#570054]">L4 Basket: storefronts</span>
+        <div class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] transition-all">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 block mb-0.5">AOV</span>
+            <span class="text-xs sm:text-sm font-black text-[#570054]">L4 Basket: storefronts</span>
         </div>
-        <div class="bg-white border border-emerald-100 rounded-xl px-2.5 py-2 text-center shadow-xs">
-            <span class="text-[9px] font-extrabold uppercase tracking-wider text-gray-400 block mb-0.5">1 − Returns</span>
-            <span class="text-xs font-black text-[#038d63]">Handled in L3 and L4</span>
+        <div class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] transition-all">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 block mb-0.5">1 − Returns</span>
+            <span class="text-xs sm:text-sm font-black text-[#570054]">Handled in L3 and L4</span>
         </div>
     </div>
 
@@ -279,11 +302,11 @@
                 Best Single Bet
             </div>
             <div class="flex items-center justify-between mb-2">
-                <span class="w-8 h-8 rounded-xl bg-pink-50 text-[#df1e7b] border border-pink-200 font-black text-xs flex items-center justify-center group-hover:bg-[#df1e7b] group-hover:text-white transition-colors">3</span>
+                <span class="w-8 h-8 rounded-xl bg-purple-50 text-[#570054] border border-purple-200 font-black text-xs flex items-center justify-center group-hover:bg-[#570054] group-hover:text-white transition-colors">3</span>
                 
                 <!-- RICE Badge with Hover Tooltip -->
                 <div class="relative group/rice mr-12">
-                    <span class="text-[9px] font-black tracking-wider text-[#df1e7b] bg-pink-50 px-2 py-0.5 rounded border border-pink-200 uppercase flex items-center gap-1 cursor-help">
+                    <span class="text-[9px] font-black tracking-wider text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200 uppercase flex items-center gap-1 cursor-help">
                         <span>RICE 192</span> <i class="fa-solid fa-circle-question text-[8px] text-[#df1e7b]"></i>
                     </span>
                     <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-72 bg-gray-100/95 backdrop-blur-md border border-gray-300/90 text-gray-800 text-[10px] p-3.5 rounded-xl shadow-2xl opacity-0 invisible group-hover/rice:opacity-100 group-hover/rice:visible transition-all duration-200 z-50 pointer-events-none text-left leading-relaxed">
@@ -306,7 +329,7 @@
             
             <div class="pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
                 <span class="text-gray-400 font-medium text-[11px]">Annual NMV:</span>
-                <span class="font-black text-[#df1e7b] text-xs">₹29.7 Cr</span>
+                <span class="font-black text-[#570054] text-xs">₹29.7 Cr</span>
             </div>
         </a>
 
@@ -386,7 +409,7 @@
 
 
     <!-- BOTTOM TOTAL IMPACT SCORECARD -->
-    <div class="w-full max-w-[1440px] bg-white rounded-2xl border border-[#ede8f0] p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-5 shadow-sm">
+    <div class="w-full max-w-[1440px] bg-white rounded-2xl border-2 border-gray-200 p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-5 shadow-sm">
         <div class="flex items-center gap-3.5">
             <div class="w-10 h-10 rounded-xl bg-purple-50 border border-purple-200 flex items-center justify-center text-[#570054] shrink-0 text-lg font-black">
                 ₹
