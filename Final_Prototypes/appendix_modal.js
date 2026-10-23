@@ -384,14 +384,14 @@ const appendixData = {
         ]
     },
     "fake-stat": {
-        title: "40% — Cosmetic Trust Deficit & Fake Product Fear",
-        source: "Appendix Page 15 (Primary User Research, n=118)",
-        base: "Primary User Survey across Tier-2/3 Meesho Shoppers",
-        formula: "Direct Survey Response to: 'Have you ever hesitated or received a fake/unsuitable beauty product online?'",
+        title: "40% — Cosmetic Trust Deficit & Authenticity Gap",
+        source: "Appendix Page 15 (Primary Research n=118 & LocalCircles n=4,300)",
+        base: "LocalCircles National Study & Primary User Research across Tier-2/3 Meesho Shoppers",
+        formula: "Cross-Tabulation of Fake Product Experience & Cart Abandonment Triggers",
         breakdown: [
-            { label: "Respondents with Fake Fears", val: "75.7%", note: "Cart abandonment driver" },
-            { label: "Experienced Bad/Fake Cosmetic", val: "40.0%", note: "Have received sub-standard items online" },
-            { label: "Core Demand", val: "Verified Original Badge", note: "Outweighed discounts in field responses" }
+            { label: "Encountered Fake (Past 3 Yrs)", val: "40.0%", note: "LocalCircles study (n=4,300 online BPC buyers)" },
+            { label: "Cart Abandonment (Fake Fear)", val: "35.7%", note: "Primary research (n=118): abandoned cart over fake concerns" },
+            { label: "Compatibility Uncertainty", val: "42.9%", note: "Unsure if product will match skin tone or hair type" }
         ]
     },
     "video-inventory": {
