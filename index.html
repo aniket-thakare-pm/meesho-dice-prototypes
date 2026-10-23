@@ -32,6 +32,17 @@
         }
         .custom-scroll::-webkit-scrollbar { height: 4px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 999px; }
+        .lever-highlight {
+            transform: translateY(-8px) scale(1.025) !important;
+            border-color: #570054 !important;
+            box-shadow: 0 0 0 3px rgba(87, 0, 84, 0.35), 0 20px 32px -4px rgba(87, 0, 84, 0.22) !important;
+            z-index: 25 !important;
+        }
+        .lever-dimmed {
+            opacity: 0.38 !important;
+            filter: grayscale(20%) !important;
+            transform: scale(0.98) !important;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center p-4 sm:p-6 md:p-8">
@@ -166,37 +177,37 @@
             <span class="text-white font-black uppercase tracking-wider text-[11px] sm:text-xs bg-[#570054] px-3.5 py-1 rounded-xl shadow-xs mr-1 sm:mr-2">The Equation</span>
             <span class="bg-white border-2 border-purple-300 text-[#570054] px-3.5 py-1 rounded-xl shadow-xs font-black text-sm sm:text-base md:text-lg">NMV</span>
             <span class="text-[#570054] font-black text-base sm:text-lg">=</span>
-            <span class="bg-white border-2 border-purple-300 text-[#570054] px-3 py-1 rounded-xl shadow-xs text-xs sm:text-sm font-black">[Active Creators</span>
+            <span onmouseenter="highlightLevers([1, 5])" onmouseleave="resetLevers()" class="bg-white border-2 border-purple-300 text-[#570054] px-3 py-1 rounded-xl shadow-xs text-xs sm:text-sm font-black cursor-pointer hover:border-[#570054] hover:bg-purple-50 transition-all">[Active Creators</span>
             <span class="text-[#570054] font-black text-base sm:text-lg">&times;</span>
-            <span class="bg-white border-2 border-purple-300 text-[#570054] px-3 py-1 rounded-xl shadow-xs text-xs sm:text-sm font-black">Videos per Creator]</span>
+            <span onmouseenter="highlightLevers([2])" onmouseleave="resetLevers()" class="bg-white border-2 border-purple-300 text-[#570054] px-3 py-1 rounded-xl shadow-xs text-xs sm:text-sm font-black cursor-pointer hover:border-[#570054] hover:bg-purple-50 transition-all">Videos per Creator]</span>
             <span class="text-[#570054] font-black text-base sm:text-lg">&times;</span>
-            <span class="bg-white border-2 border-purple-300 text-[#570054] px-3 py-1 rounded-xl shadow-xs text-xs sm:text-sm font-black">Conversion</span>
+            <span onmouseenter="highlightLevers([3])" onmouseleave="resetLevers()" class="bg-white border-2 border-purple-300 text-[#570054] px-3 py-1 rounded-xl shadow-xs text-xs sm:text-sm font-black cursor-pointer hover:border-[#570054] hover:bg-purple-50 transition-all">Conversion</span>
             <span class="text-[#570054] font-black text-base sm:text-lg">&times;</span>
-            <span class="bg-white border-2 border-purple-300 text-[#570054] px-3 py-1 rounded-xl shadow-xs text-xs sm:text-sm font-black">AOV</span>
+            <span onmouseenter="highlightLevers([4])" onmouseleave="resetLevers()" class="bg-white border-2 border-purple-300 text-[#570054] px-3 py-1 rounded-xl shadow-xs text-xs sm:text-sm font-black cursor-pointer hover:border-[#570054] hover:bg-purple-50 transition-all">AOV</span>
             <span class="text-[#570054] font-black text-base sm:text-lg">&times;</span>
-            <span class="bg-white border-2 border-purple-300 text-[#570054] px-3 py-1 rounded-xl shadow-xs text-xs sm:text-sm font-black">(1 &minus; Return Rate)</span>
+            <span onmouseenter="highlightLevers([3, 4])" onmouseleave="resetLevers()" class="bg-white border-2 border-purple-300 text-[#570054] px-3 py-1 rounded-xl shadow-xs text-xs sm:text-sm font-black cursor-pointer hover:border-[#570054] hover:bg-purple-50 transition-all">(1 &minus; Return Rate)</span>
         </div>
     </div>
 
-    <!-- SECTION 3: EXACT 5-COLUMN LEVER MAPPING BAR (VERBATIM FROM DECK SLIDE 1) -->
+    <!-- SECTION 3: EXACT 5-COLUMN LEVER MAPPING BAR (INTERACTIVE CROSS-HIGHLIGHTING) -->
     <div class="w-full max-w-[1440px] grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-8">
-        <div class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] transition-all">
+        <div onmouseenter="highlightLevers([1, 5])" onmouseleave="resetLevers()" class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] hover:bg-purple-50 hover:shadow-md cursor-pointer transition-all duration-200">
             <span class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 block mb-0.5">Active creators</span>
             <span class="text-xs sm:text-sm font-black text-[#570054]">L1 Acquire + L5 Retain</span>
         </div>
-        <div class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] transition-all">
+        <div onmouseenter="highlightLevers([2])" onmouseleave="resetLevers()" class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] hover:bg-purple-50 hover:shadow-md cursor-pointer transition-all duration-200">
             <span class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 block mb-0.5">Videos / creator</span>
             <span class="text-xs sm:text-sm font-black text-[#570054]">L2 Produce: wallet + sampling</span>
         </div>
-        <div class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] transition-all">
+        <div onmouseenter="highlightLevers([3])" onmouseleave="resetLevers()" class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] hover:bg-purple-50 hover:shadow-md cursor-pointer transition-all duration-200">
             <span class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 block mb-0.5">Conversion</span>
             <span class="text-xs sm:text-sm font-black text-[#570054]">L3 Convert: PDP video</span>
         </div>
-        <div class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] transition-all">
+        <div onmouseenter="highlightLevers([4])" onmouseleave="resetLevers()" class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] hover:bg-purple-50 hover:shadow-md cursor-pointer transition-all duration-200">
             <span class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 block mb-0.5">AOV</span>
             <span class="text-xs sm:text-sm font-black text-[#570054]">L4 Basket: storefronts</span>
         </div>
-        <div class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] transition-all">
+        <div onmouseenter="highlightLevers([3, 4])" onmouseleave="resetLevers()" class="bg-white border-2 border-purple-200/90 rounded-xl px-3 py-2.5 text-center shadow-xs hover:border-[#570054] hover:bg-purple-50 hover:shadow-md cursor-pointer transition-all duration-200">
             <span class="text-[10px] font-extrabold uppercase tracking-wider text-gray-500 block mb-0.5">1 − Returns</span>
             <span class="text-xs sm:text-sm font-black text-[#570054]">Handled in L3 and L4</span>
         </div>
@@ -215,7 +226,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 w-full max-w-[1440px] mb-8">
         
         <!-- Lever 1 (MAIN HIGHLIGHT & HIGHEST RICE LEVER) -->
-        <a href="Final_Prototypes/Lever1_Meesho_Style.html" class="meesho-card rounded-2xl p-5 flex flex-col group border-2 border-[#570054] relative bg-gradient-to-b from-purple-50/25 to-white shadow-md hover:z-30">
+        <a href="Final_Prototypes/Lever1_Meesho_Style.html" data-lever="1" id="leverCard1" class="meesho-card rounded-2xl p-5 flex flex-col group border-2 border-[#570054] relative bg-gradient-to-b from-purple-50/25 to-white shadow-md hover:z-30">
             <div class="absolute top-0 right-0 bg-[#570054] text-white text-[8px] font-black uppercase px-2.5 py-0.5 rounded-tr-xl rounded-bl-lg tracking-wider shadow-xs">
                 Main Focus · Top RICE
             </div>
@@ -256,7 +267,7 @@
         </a>
 
         <!-- Lever 2 -->
-        <a href="Final_Prototypes/Lever2_Meesho_Style.html" class="meesho-card rounded-2xl p-5 flex flex-col group relative hover:z-30">
+        <a href="Final_Prototypes/Lever2_Meesho_Style.html" data-lever="2" id="leverCard2" class="meesho-card rounded-2xl p-5 flex flex-col group relative hover:z-30">
             <div class="flex items-center justify-between mb-2">
                 <span class="w-8 h-8 rounded-xl bg-purple-50 text-[#570054] border border-purple-200 font-black text-xs flex items-center justify-center group-hover:bg-[#570054] group-hover:text-white transition-colors">2</span>
                 
@@ -293,7 +304,7 @@
         </a>
 
         <!-- Lever 3 (Best Single Bet) -->
-        <a href="Final_Prototypes/Lever3_Meesho_Style.html" class="meesho-card rounded-2xl p-5 flex flex-col group relative hover:z-30">
+        <a href="Final_Prototypes/Lever3_Meesho_Style.html" data-lever="3" id="leverCard3" class="meesho-card rounded-2xl p-5 flex flex-col group relative hover:z-30">
             <div class="absolute top-0 right-0 bg-purple-50 text-[#570054] border-l border-b border-purple-200 text-[8px] font-bold uppercase px-2 py-0.5 rounded-tr-xl rounded-bl-lg tracking-wider shadow-2xs">
                 Best Single Bet
             </div>
@@ -330,7 +341,7 @@
         </a>
 
         <!-- Lever 4 -->
-        <a href="Final_Prototypes/Lever4_Meesho_Style.html" class="meesho-card rounded-2xl p-5 flex flex-col group relative hover:z-30">
+        <a href="Final_Prototypes/Lever4_Meesho_Style.html" data-lever="4" id="leverCard4" class="meesho-card rounded-2xl p-5 flex flex-col group relative hover:z-30">
             <div class="flex items-center justify-between mb-2">
                 <span class="w-8 h-8 rounded-xl bg-purple-50 text-[#570054] border border-purple-200 font-black text-xs flex items-center justify-center group-hover:bg-[#570054] group-hover:text-white transition-colors">4</span>
                 
@@ -366,7 +377,7 @@
         </a>
 
         <!-- Lever 5 -->
-        <a href="Final_Prototypes/Lever5_Meesho_Style.html" class="meesho-card rounded-2xl p-5 flex flex-col group relative hover:z-30">
+        <a href="Final_Prototypes/Lever5_Meesho_Style.html" data-lever="5" id="leverCard5" class="meesho-card rounded-2xl p-5 flex flex-col group relative hover:z-30">
             <div class="flex items-center justify-between mb-2">
                 <span class="w-8 h-8 rounded-xl bg-purple-50 text-[#570054] border border-purple-200 font-black text-xs flex items-center justify-center group-hover:bg-[#570054] group-hover:text-white transition-colors">5</span>
                 
@@ -429,5 +440,27 @@
         </div>
     </div>
 
+    <!-- INTERACTIVE CROSS-HIGHLIGHTING SCRIPT -->
+    <script>
+        function highlightLevers(leverNums) {
+            document.querySelectorAll('[data-lever]').forEach(card => {
+                const num = parseInt(card.getAttribute('data-lever'));
+                if (leverNums.includes(num)) {
+                    card.classList.add('lever-highlight');
+                    card.classList.remove('lever-dimmed');
+                } else {
+                    card.classList.add('lever-dimmed');
+                    card.classList.remove('lever-highlight');
+                }
+            });
+        }
+
+        function resetLevers() {
+            document.querySelectorAll('[data-lever]').forEach(card => {
+                card.classList.remove('lever-highlight');
+                card.classList.remove('lever-dimmed');
+            });
+        }
+    </script>
 </body>
 </html>
